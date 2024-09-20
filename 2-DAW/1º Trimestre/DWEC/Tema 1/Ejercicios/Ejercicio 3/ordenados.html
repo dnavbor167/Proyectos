@@ -17,8 +17,8 @@
     </p>
     <p id="demo"></p>
     <script>
-        var arr1 = [1,4,6,8,9,15];
-        var arr2 = [2,5,7,9,15,19];
+        var arr1 = [1,4,6,8,9,15,21];
+        var arr2 = [2,5,7,9,15,19,20];
         var arr3=[];
         let i=0;
         let j=0;
@@ -27,7 +27,17 @@
         */
 
         while (i < arr1.length || j < arr2.length) {
-            if (arr1[i] < arr2[j]) {
+            //Compruebo de que i no se haya pasado de la longitud, 
+            //si se hubiese pasado, hago un push de j e incremento en uno la j
+            if (i >= arr1.length) {
+                arr3.push(arr2[j]);
+                j++;
+            //Compruebo de que j no se haya pasado de la longitud, 
+            //si se hubiese pasado, hago un push de i e incremento en uno la i
+            } else if (j >= arr2.length) {
+                arr3.push(arr1[i]);
+                i++;
+            } else if (arr1[i] < arr2[j]) {
                 arr3.push(arr1[i]);
                 i++;
             } else {

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio inversión de array</title>
+</head>
+<body>
+    <h1>Inversión de un array</h1>
+    <p id="normalText">Normal: </p>
+    <p id="invertText">Invertido: </p>
+    
+    <script>
+        let text = "Hello world!";
+        let result = "";
+
+        //hacemos un for para recorrer desde la ultima palabra de text
+        //hasta la primera, hacemos el text.length - 1 para empezar
+        //en la ultima palabra de text
+        for (let i = text.length - 1; i >= 0; i--) {
+            //hacemos el substring con i, i + 1 para poder coger solo una palabra,
+            //Ejemplo de como funciona substring, el primer valor es el indice incluido
+            //y el segundo valor es hasta donde quieres coger del string sin contar con ese indice
+            //substring(0, 1);
+            result += text.substring(i, i + 1);
+        }
+        document.getElementById('normalText').innerHTML += text;
+        document.getElementById('invertText').innerHTML += result;
+        console.log(result);
+    </script>
+</body>
+</html>
