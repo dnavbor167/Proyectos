@@ -27,7 +27,7 @@
 <body>
     <?php 
         //debo controlar lo serrores
-        if (!isset($_POST["btnEnviar"]) || !$errores_form) {
+        if (!isset($_POST["btnEnviar"]) || $errores_form) {
             //el require no es mas que para ir a donde está el otro código y copiarlo
             require "vistas/vista_formulario.php";
         } else {
