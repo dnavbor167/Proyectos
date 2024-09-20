@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>El juego de las preguntas</h1>
+    <p class="pre">1. Pregunta: La Tierra es el tercer planeta del sistema solar. </p>
+    <button type="button" class="correcto">Verdadero</button>
+    <button type="button" class="erroneo">Falso</button>
+
+    <p class="pre">2. Pregunta: Los pingüinos pueden volar. </p>
+    <button type="button" class="erroneo">Verdadero</button>
+    <button type="button" class="correcto">Falso</button>
+
+    <p class="pre">3. Pregunta: El agua hierve a 100 grados Celsius a nivel del mar. </p>
+    <button type="button" class="correcto">Verdadero</button>
+    <button type="button" class="erroneo">Falso</button>
+
+    <p class="pre">4. Pregunta: Los murciélagos son mamíferos.</p>
+    <button type="button" class="correcto">Verdadero</button>
+    <button type="button" class="erroneo">Falso</button>
+
+    <p class="pre">5. Pregunta: La Gran Muralla China es visible desde la Luna. </p>
+    <button type="button" class="erroneo">Verdadero</button>
+    <button type="button" class="correcto">Falso</button>
+
+    <p class="pre">6. Pregunta: El sol es una estrella. </p>
+    <button type="button" class="correcto">Verdadero</button>
+    <button type="button" class="erroneo">Falso</button>
+
+    <p class="pre">7. Pregunta: Los delfines son peces. </p>
+    <button type="button" class="erroneo">Verdadero</button>
+    <button type="button" class="correcto">Falso</button>
+
+    <script>
+        var preguntas = document.getElementsByClassName('pre');
+        var preguntasCorrectas = document.getElementsByClassName('correcto');
+        var preguntasErroneas = document.getElementsByClassName('erroneo');
+
+        for (let i = 0; i < preguntas.length; i++) {
+            preguntasCorrectas[i].addEventListener("click", function () {
+                preguntas[i].style.color = "green";
+            })
+            preguntasErroneas[i].addEventListener("click", function () {
+                preguntas[i].style.color = "red";
+            })
+            
+        }
+    </script>
+</body>
+</html>

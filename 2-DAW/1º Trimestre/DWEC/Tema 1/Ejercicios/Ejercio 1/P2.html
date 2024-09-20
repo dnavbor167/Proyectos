@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 2</title>
+</head>
+<body>
+    <h1>Cambio de imágenes con JavaScript</h1>
+    <img id="myLetter" onclick="cambiaPic()" src="https://acortar.link/GcC2es" 
+        alt="letra A" width="100" height="180">
+    <p>Haz click sobre las letras para cambiarlas.</p>
+    <script>
+        function cambiaPic() {
+            var image = document.getElementById('myLetter');
+            if (image.src.match("GcC2es")) {
+                image.src = "https://acortar.link/Cz1TAW";
+                image.alt = "letra B";
+            } else if (image.src.match("Cz1TAW")) {
+                image.src = "https://acortar.link/6wOz9p";
+                image.alt = "letra C";
+            } else if (image.src.match("6wOz9p")) {
+                image.src = "https://acortar.link/UBLvpR";
+                image.alt = "letra D";
+            } else {
+                image.src = "https://acortar.link/GcC2es";
+                image.alt = "letra A";
+            }
+        }
+    </script>
+</body>
+</html>
