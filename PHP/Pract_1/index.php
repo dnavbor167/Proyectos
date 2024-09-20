@@ -50,7 +50,7 @@
 
         <br><br>
 
-        <input type="submit" value="Guardar cambios">
+        <input type="submit" value="Guardar cambios" name="btnEnviar">
         <input type="reset" value="Borrar los datos introducidos">
     </form>
 </body>
