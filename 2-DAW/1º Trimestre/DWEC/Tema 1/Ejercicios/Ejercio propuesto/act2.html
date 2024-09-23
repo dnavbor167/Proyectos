@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array-Multiplicador-sumador</title>
+</head>
+<body>
+    <script>
+        let total = 0;
+        let arr1 = [1,3,5];
+
+        function calcula(valor, index, array) {
+            total += valor * index;
+        }
+
+        //No hace pasarle parametros en el forEach porque lo coge directamente del array:
+        //El primero es el valor, el segundo el índice del array y el tercero es el array
+        arr1.forEach(calcula);
+
+        //Otra forma de hacerlo (Se llaman funciones flechas o funciones arrow):
+        arr1.forEach((valor, index, array)=>{total += valor * index;})
+
+        console.log(total);
+    </script>
+</body>
+</html>
