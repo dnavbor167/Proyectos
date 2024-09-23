@@ -23,7 +23,7 @@
         ?>
 
         <label for="pass">Contraseña</label><br>
-        <input type="password" name="pass" id="pass" required value="<?php if (isset($_POST["pass"])) echo $_POST["pass"] ?>"> <br>
+        <input type="password" name="pass" id="pass" value="<?php if (isset($_POST["pass"])) echo $_POST["pass"] ?>"> <br>
         <?php 
             if (isset($_POST["btnEnviar"]) && $error_clave) {
                 echo "<span class='error'>Campo vacío</span>";
@@ -31,7 +31,7 @@
         ?>
 
         <label for="dni">DNI</label><br>
-        <input type="text" name="dni" id="dni" size=10 required value="<?php if (isset($_POST["dni"])) echo $_POST["dni"] ?>"> <br>
+        <input type="text" name="dni" id="dni" size=10 value="<?php if (isset($_POST["dni"])) echo $_POST["dni"] ?>"> <br>
         <?php 
             if (isset($_POST["btnEnviar"]) && $error_dni) {
                 echo "<span class='error'>Campo vacío</span>";
@@ -39,8 +39,8 @@
         ?>
 
         <label for="sexo">Sexo</label> <br>
-        <input type="radio" name="sexo" id="mujer" value="<?php if (isset($_POST["sexo"])) echo $_POST["sexo"] ?>"> <label for="mujer">Mujer</label> <br>
-        <input type="radio" name="sexo" id="hombre" value="<?php if (isset($_POST["sexo"])) echo $_POST["sexo"] ?>"> <label for="hombre">Hombre</label> <br> <br>
+        <input type="radio" name="sexo" id="mujer" <?php if (isset($_POST["sexo"]) && $_POST["sexo"] == "mujer") echo "checked"; ?> value="mujer"> <label for="mujer">Mujer</label> <br>
+        <input type="radio" name="sexo" id="hombre" <?php if (isset($_POST["sexo"]) && $_POST["sexo"] == "hombre") echo "checked"; ?> value="hombre"> <label for="hombre">Hombre</label> <br> <br>
         <?php 
             if (isset($_POST["btnEnviar"]) && $error_sexo) {
                 echo "<span class='error'>Campo vacío</span>";
@@ -52,13 +52,13 @@
 
         <label for="localidad">Nacido en:</label>   
         <select name="localidad" id="localidad">
-            <option value="estepona">Estepona</option>
-            <option value="laLinea">La linea</option>
-            <option value="algeciras">Algeciras</option>
+            <option <?php if (isset($_POST["localidad"]) && $_POST["localidad"] == "estepona") echo "selected"; ?> value="estepona">Estepona</option>
+            <option <?php if (isset($_POST["localidad"]) && $_POST["localidad"] == "laLinea") echo "selected"; ?> value="laLinea">La linea</option>
+            <option <?php if (isset($_POST["localidad"]) && $_POST["localidad"] == "algeciras") echo "selected"; ?> value="algeciras">Algeciras</option>
         </select> <br> <br>
 
         <label for="comentarios">Comentarios:</label>
-        <textarea  name="comentarios" id="comentarios" cols="40" rows="10">value="<?php if (isset($_POST["comentarios"])) echo $_POST["comentarios"] ?>"</textarea>
+        <textarea  name="comentarios" id="comentarios" cols="40" rows="10"><?php if (isset($_POST["comentarios"])) echo $_POST["comentarios"] ?></textarea>
         <?php 
             if (isset($_POST["btnEnviar"]) && $error_comentarios) {
                 echo "<span class='error'>Campo vacío</span>";
@@ -66,11 +66,11 @@
         ?>
         <br> <br>
     
-        <input type="checkbox" name="suscribete" id="suscribete">
+        <input type="checkbox" name="suscribete" id="suscribete" <?php if (isset($_POST["suscribete"])) echo "checked"; ?>>
         <label for="suscribete">Suscribirse al boletín de Novedades</label>
 
         <br><br>
 
         <input type="submit" value="Guardar cambios" name="btnEnviar">
-        <input type="reset" value="Borrar los datos introducidos">
+        <input type="submit" value="Borrar los datos introducidos" name="btnBorrar">
     </form>
