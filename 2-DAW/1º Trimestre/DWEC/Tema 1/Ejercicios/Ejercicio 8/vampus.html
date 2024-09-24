@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARRAY VAMPIRO</title>
+</head>
+<body>
+    <h1>ARRAY VAMPIRO</h1>
+    <p id="array"></p>
+    <script>
+        let arr=[1,2,3,4,5,6,5,4,3,2,1];
+
+        /*INCLUYE TU CÓDIGO AQUÍ*/
+        function vampus(indice, arr) {
+            //si ha llegado a la mitad o más significa que es una función vampiro
+            if (indice >= arr.length / 2) {
+                return true;
+            }
+
+            //Devolvemos false si el indice del array y la longitud del array menos 1 menos 
+            //el valor del indice no son iguales
+            if (arr[indice] !== arr[arr.length - 1 - indice]) {
+                return false;
+            }
+
+            //en caso de que no entre en ningún if llamamos a la funcion de nuevo y creamos recursividad con esto
+
+            return vampus(indice + 1, arr);
+        }
+
+        let resultado = vampus(0, arr);
+        console.log(resultado);
+        
+        if (resultado) {
+            document.getElementById("array").innerHTML = "Este array: " + arr + "<strong> SÍ es vampiro</strong>";
+        } else {
+            document.getElementById("array").innerHTML = "Este array: " + arr + "<strong> NO es vampiro</strong>";
+        }
+        
+    </script>
+</body>
+</html>

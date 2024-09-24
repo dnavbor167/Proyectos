@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bombaso</title>
+</head>
+
+<body>
+    <h2>BOMBASSO</h2>
+    <p> Se pide que crees un programa que genere un campo de minas.
+        Las minas se colocan de forma aleatoria pero teniendo
+        en cuenta que no se deben colocar dos minas juntas.
+        realiza el programa para que genere 10, 20 o todas
+        las minas que se puedan instalar.
+    </p>
+    <p id="demo"></p>
+    <script>
+        var arr = [[" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
+        [" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
+        [" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
+        [" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
+        [" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
+        [" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
+        [" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
+        [" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
+        [" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "]
+
+        ];
+        console.log(arr.length, arr[0].length);
+        //para calcular cuantos * como maximo puedo poner usaré una formula
+        //Para pares:
+        //(filas * columnas) / 2
+        //Para impares (este caso) o impares y pares:
+        //(filas * columnas + 1) / 2
+
+        //Calculamos el numero total de minas que puede haber:
+        const MAX_MINAS = (arr.length * arr[0].length + 1) / 2;
+        const DIEZ_MINAS = 10;
+        const VEINTE_MINAS = 10;
+
+        function generateRandomInt(min, max) {
+            return Math.floor((Math.random() * (max - min)) + min);
+        }
+
+        function calcularPosición(x, y) {
+            //calculamos la posición aleatoria de x
+            let x = generateRandomInt(0, arr.length);
+            //calculamos posición aleatoria de y
+            let y = generateRandomInt(0, arr[0].length);
+
+            //verificamos si la posición ya tiene una mina
+            if (arr[x][y] === "*") {
+                calcularPosición(x, y);
+            } else if (arr[++x][y] === "*" || arr[x][++y] === "*" || arr[--x][y] === "*" || arr[x][--y] === "*") {
+                calcularPosición(x, i);
+            }
+        }
+
+        /*COLOCA AQUÍ TU CÓDIGO*/
+
+        let numMinasRandom = generateRandomInt(1, 4);
+
+        switch (numMinasRandom) {
+            case 1:
+                
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+        }
+    </script>
+</body>
+
+</html>

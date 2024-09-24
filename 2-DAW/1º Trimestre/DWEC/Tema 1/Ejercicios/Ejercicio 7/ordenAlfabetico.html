@@ -27,6 +27,7 @@
                 }
             }
 
+            //Si no está incluido en "repeticion" la palabra se añade a "repeticion"
             if (!document.getElementById("repeticion").innerHTML.includes(palabrasOrdenadas[i])) {
                 document.getElementById("repeticion").innerHTML += "La palabra " + palabrasOrdenadas[i] + " aparece " + contador + " veces" + "<br>";
             }
