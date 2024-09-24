@@ -7,19 +7,18 @@
         echo "<p><strong>No has seleccionado ninguna afición</strong></p>";
     }
 
-    //voy a hacer 3 if porque se pueden cumplir los 3 a la vez
-    echo "<ol>";
+    
     //como llamar a un array:
-    if(isset($_POST["aficiones"][0])) {
-        echo "<li>" . $_POST["aficiones"][0] . "</li>";
+    if (isset($_POST["aficiones"])) {
+        echo "<p><strong>Las aficiones seleccionadas han sido:</strong></p>";
+        echo "<ol>";
+        for ($i = 0; $i < count($_POST["aficiones"]); $i++) {
+            echo "<li>" . $_POST["aficiones"][$i] . "</li>";
+        }
+        echo "</ol>";
+    } else {
+        echo "<p>No ha elegido ninguna afición</p>";
     }
-    if(isset($_POST["aficiones"][1])) {
-        echo "<li>" . $_POST["aficiones"][1] . "</li>";
-    }
-    if(isset($_POST["aficiones"][2])) {
-        echo "<li>" . $_POST["aficiones"][2] . "</li>";
-    }
-    echo "</ol>";
 
     if (isset($_POST["comentarios"]) && $_POST["comentarios"] != "") {
         echo "<p><strong>El comentario enviado ha sido: </strong>" . $_POST["comentarios"] .  "</p>";
