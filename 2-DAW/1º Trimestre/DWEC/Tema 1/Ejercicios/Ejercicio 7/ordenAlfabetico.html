@@ -6,31 +6,33 @@
     <title>Palabras Ordenadas Alfabéticamente</title>
 </head>
 <body>
-    <p id="palabras">Tex,to Predete,rminad.,'-o Texto algo</p>
+    <p id="palabras">Tex,to Predete,rminad.,'-o Texto algo Texto algo texto</p>
+    <p id="ordenada"></p>
+    <p id="repeticion"></p>
 
     <script>
+        //Sacamos de la p el texto y le ponemos una expresión regular
         let palabras = document.getElementById("palabras").innerHTML.replace(/[^a-zA-Z0-9 ]/g, '');
-        let palabraSola = "";
         let palabrasOrdenadas = [];
-        console.log(palabras);
+        let contador = 0;
 
-        for (let i = 0; i < palabras.length; i++) { 
-            if (palabras[i] == " " || palabras[i] == ",") {
-                palabrasOrdenadas.push(palabraSola.replace(" ", ""));
-                palabraSola = "";
-            } 
+        //separamos por " " cada palabra
+        palabrasOrdenadas = palabras.split(" ").sort();
+        document.getElementById("ordenada").innerHTML = palabrasOrdenadas.join(" ");
 
-            palabraSola += palabras[i];
-
-            if (i == palabras.length -1) {
-                palabras[i] += " ";
+        for (let i = 0; i < palabrasOrdenadas.length; i++) {
+            for (let j = 0; j < palabrasOrdenadas.length; j++) {
+                if (palabrasOrdenadas[i] === palabrasOrdenadas[j]) {
+                    contador++;
+                }
             }
 
-            
+            if (!document.getElementById("repeticion").innerHTML.includes(palabrasOrdenadas[i])) {
+                document.getElementById("repeticion").innerHTML += "La palabra " + palabrasOrdenadas[i] + " aparece " + contador + " veces" + "<br>";
+            }
 
-            
+            contador = 0;            
         }
-        console.log(palabrasOrdenadas.sort());
     </script>
 </body>
 </html>
