@@ -21,7 +21,7 @@
     }
     echo "</ol>";
 
-    if (isset($_POST["comentarios"])) {
+    if (isset($_POST["comentarios"]) && $_POST["comentarios"] != "") {
         echo "<p><strong>El comentario enviado ha sido: </strong>" . $_POST["comentarios"] .  "</p>";
     } else {
         echo "<p><strong>No has hecho ningun comentario</strong></p>";
