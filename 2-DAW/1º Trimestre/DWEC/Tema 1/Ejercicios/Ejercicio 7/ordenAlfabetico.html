@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palabras Ordenadas Alfabéticamente</title>
+</head>
+<body>
+    <p id="palabras">Tex,to Predete,rminad.,'-o Texto algo</p>
+
+    <script>
+        let palabras = document.getElementById("palabras").innerHTML.replace(/[^a-zA-Z0-9 ]/g, '');
+        let palabraSola = "";
+        let palabrasOrdenadas = [];
+        console.log(palabras);
+
+        for (let i = 0; i < palabras.length; i++) { 
+            if (palabras[i] == " " || palabras[i] == ",") {
+                palabrasOrdenadas.push(palabraSola.replace(" ", ""));
+                palabraSola = "";
+            } 
+
+            palabraSola += palabras[i];
+
+            if (i == palabras.length -1) {
+                palabras[i] += " ";
+            }
+
+            
+
+            
+        }
+        console.log(palabrasOrdenadas.sort());
+    </script>
+</body>
+</html>

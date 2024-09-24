@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio de eventos</title>
+</head>
+<body>
+    <p id="hola">HolaMundo</p>
+    <button id="rojo">MouseOver</button>
+    <input type="text" name="texto" id="texto">
+    
+    <script>
+        //cambiamos la p a color rojo cuando el mouse se ponga encima del botón "MouseOver"
+        document.getElementById("rojo").addEventListener("mouseover", function () {
+            document.getElementById("hola").style.color = "red";
+        }, false);
+
+        //cambiamos la p a color verde cuando el mouse se salga encima del botón "MouseOver"
+        document.getElementById("rojo").addEventListener("mouseout", function () {
+            document.getElementById("hola").style.color = "green";
+        });
+
+        //cambiamos el foco del input
+        document.getElementById("texto").addEventListener("blur", function () {
+            document.getElementById("hola").style.fontSize = "3rem";
+        }, false);
+    </script>
+</body>
+</html>
