@@ -37,7 +37,8 @@
         //(filas * columnas + 1) / 2
 
         //Calculamos el numero total de minas que puede haber:
-        const MAX_MINAS = (arr.length * arr[0].length + 1) / 2;
+        const MAX_MINAS = Math.floor((arr.length * arr[0].length) / 2);
+        console.log((arr.length * arr[0].length + 1) / 2);
         const DIEZ_MINAS = 10;
         const VEINTE_MINAS = 20;
 
@@ -45,7 +46,9 @@
             return Math.floor((Math.random() * (max - min)) + min);
         }
 
-        function calcularPosición() {
+        function calcularPosición(intentos = 0) {
+            return (intentos >= 100) ? false : true;
+
             //calculamos la posición aleatoria de x
             let x = generateRandomInt(0, arr.length);
             //calculamos posición aleatoria de y
@@ -60,7 +63,7 @@
                 hayMinas = arr[x+1][y] === "*" || arr[x][y+1] === "*";
             //esquina superior derecha
             } else if (x === 0 && y === arr[0].length - 1) {
-                hayMinas = arr[x][y-1] === "*" || arr[x-1][y] === "*";
+                hayMinas = arr[x][y-1] === "*" || arr[x+1][y] === "*";
             //esquina inferior izquierda
             } else if (x === arr.length - 1 && y === 0) {
                 hayMinas = arr[x-1][y] === "*" || arr[x][y+1] === "*";
@@ -69,13 +72,13 @@
                 hayMinas = arr[x-1][y] === "*" || arr[x][y-1] === "*";
             //primera fila
             } else if (x === 0) {
-                hayMinas = arr[x][y+1] === "*" || arr[x][y-1] === "*" || arr[x+1] [y] === "*";
+                hayMinas = arr[x][y+1] === "*" || arr[x][y-1] === "*" || arr[x+1][y] === "*";
             //ultima fila
             } else if (x === arr.length - 1) {
                 hayMinas = arr[x][y+1] === "*" || arr[x][y-1] === "*" || arr[x-1][y] === "*";
             //columna izquierda
             } else if (y === 0) {
-                hayMinas = arr[x+1][y] === "*" || arr[x][y+1] === "*" || arr[x][y-1] === "*";
+                hayMinas = arr[x+1][y] === "*" || arr[x][y+1] === "*" || arr[x-1][y] === "*";
             //columna derecha
             } else if (y === arr[0].length - 1) {
                 hayMinas = arr[x][y-1] === "*" || arr[x+1][y] === "*" || arr[x-1][y] === "*";
@@ -85,10 +88,11 @@
 
             //Si hayMinas === True significa que no se podía poner la mina por lo que llamamos de nuevo a la funcion (se convierte en recursiva)
             if (hayMinas) {
-                return calcularPosición();
+                return calcularPosición(intentos + 1);
             }
             //Si todo ha ido bien se pone en la posición *
             arr[x][y] = "*";
+            return true;
         }
 
         /*COLOCA AQUÍ TU CÓDIGO*/
@@ -100,16 +104,20 @@
                 for (let i = 0; i < DIEZ_MINAS; i++) {
                     calcularPosición();
                 }
+                console.log("diez");
                 break;
             case 2:
                 for (let i = 0; i < VEINTE_MINAS; i++) {
                     calcularPosición();
+                    
                 }
+                console.log("veinte");
                 break;
             case 3:
                 for (let i = 0; i < MAX_MINAS; i++) {
                     calcularPosición();
                 }
+                console.log("todos");
                 break;
         }
 
