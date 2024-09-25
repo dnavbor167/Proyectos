@@ -57,30 +57,30 @@
                 hayMinas = true;
             //esquina superior izquierda
             } else if (x === 0 && y === 0) { 
-                hayMinas = arr[x++][y] === "*" || arr[x][y++] === "*";
+                hayMinas = arr[x+1][y] === "*" || arr[x][y+1] === "*";
             //esquina superior derecha
             } else if (x === 0 && y === arr[0].length - 1) {
-                hayMinas = arr[x][y--] === "*" || arr[x--][y] === "*";
+                hayMinas = arr[x][y-1] === "*" || arr[x-1][y] === "*";
             //esquina inferior izquierda
             } else if (x === arr.length - 1 && y === 0) {
-                hayMinas = arr[x--][y] === "*" || arr[x][y++] === "*";
+                hayMinas = arr[x-1][y] === "*" || arr[x][y+1] === "*";
             //esquina inferior derecha
             } else if (x === arr.length - 1 && y === arr[0].length - 1) {
-                hayMinas = arr[x--][y] === "*" || arr[x][y--] === "*";
+                hayMinas = arr[x-1][y] === "*" || arr[x][y-1] === "*";
             //primera fila
             } else if (x === 0) {
-                hayMinas = arr[x][y++] === "*" || arr[x][y--] === "*" || arr[x++] [y] === "*";
+                hayMinas = arr[x][y+1] === "*" || arr[x][y-1] === "*" || arr[x+1] [y] === "*";
             //ultima fila
             } else if (x === arr.length - 1) {
-                hayMinas = arr[x][y++] === "*" || arr[x][y--] === "*" || arr[x--][y] === "*";
+                hayMinas = arr[x][y+1] === "*" || arr[x][y-1] === "*" || arr[x-1][y] === "*";
             //columna izquierda
             } else if (y === 0) {
-                hayMinas = arr[x++][y] === "*" || arr[x][y++] === "*" || arr[x][y--] === "*";
+                hayMinas = arr[x+1][y] === "*" || arr[x][y+1] === "*" || arr[x][y-1] === "*";
             //columna derecha
             } else if (y === arr[0].length - 1) {
-                hayMinas = arr[x][y--] === "*" || arr[x++][y] === "*" || arr[x--][y] === "*";
+                hayMinas = arr[x][y-1] === "*" || arr[x+1][y] === "*" || arr[x-1][y] === "*";
             } else {
-                hayMinas = arr[x++][y] === "*" || arr[x][y++] === "*" || arr[x--][y] === "*" || arr[x][y--] === "*";
+                hayMinas = arr[x+1][y] === "*" || arr[x][y+1] === "*" || arr[x-1][y] === "*" || arr[x][y-1] === "*";
             }
 
             //Si hayMinas === True significa que no se podía poner la mina por lo que llamamos de nuevo a la funcion (se convierte en recursiva)

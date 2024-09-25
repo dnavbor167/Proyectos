@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cronónmetro</title>
+</head>
+<body>
+    <p id="cronoP"></p> <br>
+    <button id="startButton">Start</button>
+    <button id="stopButton">Stop</button>
+    <button id="resetButton">Reset</button>
+
+
+    <script>
+        var minutos = 0;
+        var segundos = 0;
+        var interval;
+
+        function contar() {
+            
+            if (segundos < 60) {
+                segundos++;
+            } else {
+                segundos = 0;
+                minutos++;
+            }
+
+            let minutosFormats = minutos < 10 ? '0' + minutos : minutos;
+            let segundosFormats = segundos < 10 ? '0' + segundos : segundos;
+            
+            document.getElementById("cronoP").innerHTML = minutosFormats + ':' + segundosFormats;
+            
+        }
+
+        //definimos funciones a ejecutar en los addEventListener
+        function start() {
+            intervalo = setInterval(contar, 1000);
+        }
+
+        function stop() {
+            clearInterval(intervalo);
+        }
+
+        function reset() {
+            stop();
+            segundos = 0;
+            minutos= 0;
+
+            document.getElementById("cronoP").innerHTML = '0' + minutos + ':' + '0' + segundos
+        }
+
+        document.getElementById('startButton').addEventListener('click', start, false);
+        document.getElementById('stopButton').addEventListener('click', stop, false);
+        document.getElementById('resetButton').addEventListener('click', reset, false);
+    </script>
+</body>
+</html>
