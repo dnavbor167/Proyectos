@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funciones con parámetros</title>
+</head>
+<body>
+    <h1>Numeros locos</h1>
+    <p id="cubo">5</p>
+    <p id="multiplicacion">5</p>
+    <p id="suma">5</p>
+    <p id="numero"></p>
+
+    <script>
+        function parametrosLocos(num1, num2, num3) {
+            let numParams = arguments.length;
+
+            switch (numParams) {
+                case 1:
+                    return Math.pow(num1, 3);
+                    break;
+                case 2:
+                    return num1 * num2;
+                    break;
+                case 3:
+                    //pasamos a int porque al extraerlo de una p detecta que es un String y los concatena
+                    return parseInt(num1) + parseInt(num2) + parseInt(num3);
+                    break;
+                default:
+                    return "Debes introducir entre 1 y 3 parámetros";
+            }
+        }
+        
+        let numero1 = document.getElementById('cubo').innerHTML;
+        let numero2 = document.getElementById('multiplicacion').innerHTML;
+        let numero3 = document.getElementById('suma').innerHTML;
+
+        let cubo = parametrosLocos(numero1);
+        let multiplicacion = parametrosLocos(numero1, numero2);
+        let suma = parametrosLocos(numero1, numero2, numero3);
+
+        
+        
+        document.getElementById("numero").innerHTML += 'El cubo es: ' + cubo + '<br>';
+        document.getElementById("numero").innerHTML += 'La multiplicación es: ' + multiplicacion + '<br>';
+        document.getElementById("numero").innerHTML += 'La suma es: ' + suma;
+        console.log(cubo);
+        console.log(multiplicacion);
+        console.log(suma);
+    </script>
+</body>
+</html>
