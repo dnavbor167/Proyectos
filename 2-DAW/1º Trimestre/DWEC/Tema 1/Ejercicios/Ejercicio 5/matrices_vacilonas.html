@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,14 +13,28 @@
     <p id="matriz"></p>
 
     <script>
-        let numMatriz;
-        numMatriz = parseInt(document.getElementById("numero").innerHTML);
+        let numMatriz = parseInt(document.getElementById("numero").innerHTML);
 
-        let matriz = new Array(numMatriz);
+        let matriz = [];
 
         for (let i = 0; i < numMatriz; i++) {
-        }
+            let fila = [];
 
+            for(let j = 0; j < numMatriz; j++) {
+                fila.push(1);
+            }
+            matriz.push(fila);
+        }
+        console.log(matriz);
+
+        for (let i = 0; i < matriz.length; i++) {
+            for (let j = 0; j < matriz.length; j++) {
+                if (i > 0 && j > 0) {
+                    matriz[i][j] = matriz[i-1][j] + matriz[i][j-1];
+                }
+            }
+        }
+        console.log(matriz);
     </script>
 </body>
 </html>
