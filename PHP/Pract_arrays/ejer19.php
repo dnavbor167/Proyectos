@@ -73,16 +73,6 @@
             }
             echo "</ol>";
         }
-
-        foreach($amigos as $key => $value) {
-            echo "<p>".$key.$value."</p>";
-            foreach($value as $key2=>$value2){
-                echo "<p>".$key2.$value2."</p>";
-                foreach($value2 as $key3=>$value3) {
-                    echo "<p>".$key3.$value3."</p>";
-                }
-            }
-        }
     ?>
 </body>
 </html>
