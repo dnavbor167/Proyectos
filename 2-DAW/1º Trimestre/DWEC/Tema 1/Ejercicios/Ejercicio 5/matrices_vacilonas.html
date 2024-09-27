@@ -17,6 +17,7 @@
 
         let matriz = [];
 
+        //relleno la matriz de 1
         for (let i = 0; i < numMatriz; i++) {
             let fila = [];
 
@@ -25,8 +26,8 @@
             }
             matriz.push(fila);
         }
-        console.log(matriz);
 
+        //Cambio las filas y columnas por el patrón, si no estan en la primera fila y en la primera columna
         for (let i = 0; i < matriz.length; i++) {
             for (let j = 0; j < matriz.length; j++) {
                 if (i > 0 && j > 0) {

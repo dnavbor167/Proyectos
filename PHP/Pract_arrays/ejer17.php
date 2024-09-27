@@ -1,27 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ejercicio 15</title>
+    <title>Ejercicio 17</title>
 </head>
 <body>
     <h1>Ejercicio 17</h1>
     <?php 
-        $numeros = array(5=>1,12=>2,13=>56,"x"=>42);
+        $familia["Los Simpson"] = [
+            "Padre" => "Hommer",
+            "Madre" => "Marge",
+            "Hijos" => [
+                "Hijo1" => "Bart",
+                "Hijo2" => "Lisa",
+                "Hijo3" => "Maggie"
+            ]
+        ];
 
-        echo "<p>El número de elementos que tiene el array es " . count($numeros) . "</p>";
-        echo "<p>Primer array</p>";
-        foreach($numeros as $key=>$value) {
-            echo "<p>" . $value . "</p>";
-        }  
+        $familia["Los Griffin"] = [
+            "Padre" => "Peter",
+            "Madre" => "Lois",
+            "Hijos" => [
+                "Hijo1" => "Chris",
+                "Hijo2" => "Meg",
+                "Hijo3" => "Stewie"
+            ]
+        ];
 
-        unset($numeros[5]);
-
-        echo "<p>Segundo array</p>";
-        foreach($numeros as $key=>$value) {
-            echo "<p>" . $value . "</p>";
-        }  
+        echo "<ul>";
+        foreach($familia as $key=>$value) {
+            echo "<li>" . $key . "</li>";
+            echo "<ul>";
+            foreach($value as $key2=>$value2) {
+                if (!is_array($value2)) {
+                    echo "<li>" . $key2 . ": " . $value2 . "</li>";
+                } else {
+                    echo "<li>" . $key2 . ": " . "</li>";
+                    echo "<ul>";
+                    foreach($value2 as $key3=>$value3) {
+                        echo "<li>" . $key3 . ": " . $value3 . "</li>";
+                    }
+                    echo "</ul>";
+                }
+            }
+            echo "</ul>";
+        }
+        echo "</ul>";
     ?>
 </body>
 </html>
