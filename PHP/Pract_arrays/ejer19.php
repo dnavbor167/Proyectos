@@ -70,6 +70,7 @@
                     echo "<strong>" . $key3 . "</strong>" . ": " . $value3 . ". ";
                 }
                 echo "</li>";
+                //Finalizado
             }
             echo "</ol>";
         }
