@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fucnión Arrow recursiva</title>
+</head>
+<body>
+    <script>
+        let factorial = (num) => {
+            if (num == 0) {
+                return 1;
+            } else {
+                return (num * factorial(num - 1));
+            }
+        }
+
+        console.log(factorial(5));
+    </script>
+</body>
+</html>
