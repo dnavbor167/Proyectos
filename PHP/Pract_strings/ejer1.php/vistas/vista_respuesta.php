@@ -12,6 +12,6 @@
                 $respuesta = "riman.";
             }
         }
-        echo "<p><strong>" . $texto1 . "</strong> y <strong>" . $texto2 . "</strong> " . $respuesta . "</p>"
+        echo "<p><strong>" . $texto1 . "</strong> y <strong>" . $texto2 . "</strong> " . $respuesta . "</p>";
     ?>
 </div>
