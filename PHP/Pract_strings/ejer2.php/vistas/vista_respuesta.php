@@ -6,9 +6,10 @@
         $respuesta = true;
 
         for ($i = 0; $i < $l_texto1; $i++) {
-            if ($texto_m[$i] != $texto_m[$l_texto1 - 1 - $i] {
+            if ($texto1_m[$i] != $texto1_m[$l_texto1 - 1 - $i]) {
                 $respuesta = false;
-            })
+                break;
+            }
         }
 
         if ($todo_letra) {

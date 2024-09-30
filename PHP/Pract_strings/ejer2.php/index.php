@@ -14,7 +14,7 @@
     function todo_numeros($texto) {
         $todo_n = true;
         for($i = 0; $i < strlen($texto); $i++) {
-            if (ord($texto[$i]) < ord(0) || ord($texto[$i]) > ord(57)) {
+            if (ord($texto[$i]) < ord('0') || ord($texto[$i]) > ord('57')) {
                 $todo_n = false;
                 break;
             }
@@ -26,9 +26,9 @@
         $texto1 = trim($_POST["palabra1"]);
         $l_texto1 = strlen($texto1);
         $todo_letra = todo_letras($texto1);
-        $todo_numeros = todo_letras($texto1);
+        $todo_numeros = todo_numeros($texto1);
 
-        $error_texto1 =  $texto1 == "" && (!$todo_letra || !$todo_numeros);
+        $error_texto1 =  $texto1 == "" || (!$todo_letra && !$todo_numeros);
     }
 ?>
 
@@ -60,12 +60,11 @@
             text-align: center;
         }
 
-        p {
+        p, button {
             margin-left: .5rem;
         }
 
         form {
-            margin-left: 1rem;
             margin-bottom: 1rem;
         }
     </style>
