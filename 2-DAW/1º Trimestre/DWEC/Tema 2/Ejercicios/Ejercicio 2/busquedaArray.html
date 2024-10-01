@@ -14,16 +14,18 @@
         let busqueda = (multidimensional) => {
             let contador = 0;
             for(let i = 0; i < multidimensional.length; i++) {
-                for(let j = multidimensional.length)
+                for(let j = multidimensional.length; j > 0; j--)
                 
                 if (Array.isArray(multidimensional[i])) {
-                    if (multidimensional[i-1] === busqueda(multidimensional[i])) {
+                    if (multidimensional[i] === busqueda(multidimensional[i])) {
                         contador++;
                     } else {
 
                     }
                 } else {
-                    if (multidimensional[i] ===)
+                    if (multidimensional[i] === multidimensional[j] - 1) {
+                        contador++;
+                    }
                 }
             }
         }
