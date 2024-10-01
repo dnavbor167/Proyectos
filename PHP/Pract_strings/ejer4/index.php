@@ -1,34 +1,41 @@
 <?php 
 
     function todo_letras($texto) {
+        $texto_upper = strtoupper($texto);
+        $patron = '/^[MDCLXVI]+$/';
         $todo_l = true;
-        for($i = 0; $i < strlen($texto); $i++) {
-            if (ord($texto[$i]) < ord("A") || ord($texto[$i]) > ord("z")) {
-                $todo_l = false;
-                break;
-            }
+        
+        if (!preg_match($patron, $texto_upper)) {
+            $todo_l = false;
         }
         return $todo_l;
     }
 
-    function todo_numeros($texto) {
-        $todo_n = true;
-        for($i = 0; $i < strlen($texto); $i++) {
-            if (ord($texto[$i]) < ord('0') || ord($texto[$i]) > ord('57')) {
-                $todo_n = false;
-                break;
+    function repeticiones($texto) {
+        $romanos_l = true;
+        $contador = 0;
+
+        for ($i=0; $i < strlen($texto); $i++) { 
+            $contador++;
+            if ($texto[$i] == $texto[$i-1]) {
+                $contador++;
+            } else {
+                $contador = 0;
+            }
+            if ($contador>=4) {
+                $romanos_l = false;
             }
         }
-        return $todo_n;
+        return $romanos_l;
     }
 
-    if (isset($_POST["btnComparar"])) {
+    if (isset($_POST["btnComprobar"])) {
         $texto1 = trim($_POST["palabra1"]);
-        $l_texto1 = strlen($texto1);
         $todo_letra = todo_letras($texto1);
-        $todo_numeros = todo_numeros($texto1);
+        $romanos_l = repeticiones($texto1);
+        $l_texto1 = strlen($texto1);
 
-        $error_texto1 =  $texto1 == "" || (!$todo_letra && !$todo_numeros);
+        $error_form =  $texto1 == "" || !$todo_letra || !$romanos_l;
     }
 ?>
 
@@ -71,7 +78,7 @@
 </head>
 <body>
     <?php 
-        if(isset($_POST["btnComparar"]) && !$error_texto1) {
+        if(isset($_POST["btnComprobar"]) && !$error_form) {
             require "vistas/vista_formulario.php";
             require "vistas/vista_respuesta.php";
         } else {

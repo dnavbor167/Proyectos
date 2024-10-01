@@ -3,13 +3,17 @@
         echo "<h1>Palíndromos / capicúas - Resultado</h1>";
         $texto1_m = strtoupper($texto1);
 
+        $i = 0;
+        $j = $l_texto1 - 1;
         $respuesta = true;
 
-        for ($i = 0; $i < $l_texto1; $i++) {
-            if ($texto1_m[$i] != $texto1_m[$l_texto1 - 1 - $i]) {
+        while ($i < $j) {
+            if ($texto1_m[$i] != $texto1_m[$j]) {
                 $respuesta = false;
                 break;
             }
+            $i++;
+            $j--;
         }
 
         if ($todo_letra) {
@@ -18,7 +22,7 @@
             } else {
                 echo "<p>" . $texto1 . " no es un palíndromo</p>";
             }  
-        } else if ($todo_numeros) {
+        } else {
             if ($respuesta) {
                 echo "<p>" . $texto1 . " es un número capicúa</p>";
             } else {
