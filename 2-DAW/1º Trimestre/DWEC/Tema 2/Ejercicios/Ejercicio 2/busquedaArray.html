@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Busqueda en Array Multdimensional</title>
+</head>
+<body>
+    <h1>Encuentra cuantas veces aparece un número en un array multidimensional</h1>
+    
+    <script>
+        let numeros = [1,[2,3,4],[8,15,[5,1]],27];
+
+        let busqueda = (multidimensional) => {
+            let contador = 0;
+            for(let i = 0; i < multidimensional.length; i++) {
+                for(let j = multidimensional.length)
+                
+                if (Array.isArray(multidimensional[i])) {
+                    if (multidimensional[i-1] === busqueda(multidimensional[i])) {
+                        contador++;
+                    } else {
+
+                    }
+                } else {
+                    if (multidimensional[i] ===)
+                }
+            }
+        }
+    </script>
+</body>
+</html>
