@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secuencia Karratraka</title>
+</head>
+<body>
+    <h1>Secuencia KARRATRAKA</h1>
+    <script>
+        let secuenciaKarratraka = (terminos) => {
+            let secuenciaArray = [];
+            for (let i = 0; i < terminos; i++) {
+                //si i esta en la posición 0 o 1 le rellena con un 1 por defecto
+                if (i === 0 || i === 1) {
+                    secuenciaArray.push(1);
+                //Todo lo demás es mayor a 1 y la secuencia es la suma de los dos números anteriores + 1
+                } else {
+                    let sumatorio = secuenciaArray[i-1] + secuenciaArray[i-2] + 1;
+                    secuenciaArray.push(sumatorio);
+                }
+            }
+            return secuenciaArray;
+        }
+
+        let resultado = secuenciaKarratraka(10);
+        console.log(resultado);
+    </script>
+</body>
+</html>

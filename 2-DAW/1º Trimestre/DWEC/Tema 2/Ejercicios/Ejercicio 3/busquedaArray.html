@@ -12,23 +12,25 @@
         let numeros = [1,[2,3,4],[8,15,[5,1]],27];
 
         let busqueda = (multidimensional) => {
-            let contador = 0;
+            let contador = {};
             for(let i = 0; i < multidimensional.length; i++) {
-                for(let j = multidimensional.length; j > 0; j--)
-                
                 if (Array.isArray(multidimensional[i])) {
-                    if (multidimensional[i] === busqueda(multidimensional[i])) {
-                        contador++;
-                    } else {
+                    let subContador = busqueda(multidimensional[i]);
 
+                    for (let num in subContador) {
+                        //El 0 es por si es undefined la pone como 0
+                        contador[num] = (contador[num] || 0) + subContador[num];
                     }
                 } else {
-                    if (multidimensional[i] === multidimensional[j] - 1) {
-                        contador++;
-                    }
+                    //El 0 es por si es undefined la pone como 0
+                    contador[multidimensional[i]] = (contador[multidimensional[i]] || 0) + 1;
                 }
             }
+            return contador;
         }
+
+        let resultado = busqueda(numeros);
+        console.log(resultado)
     </script>
 </body>
 </html>
