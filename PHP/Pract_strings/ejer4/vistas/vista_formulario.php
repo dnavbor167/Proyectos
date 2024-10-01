@@ -18,6 +18,6 @@
             ?>
         </p>
 
-        <button type="submit" name="btnComprobar">Comprobar</button>
+        <button type="submit" name="btnConvertir">Convertir</button>
     </form>
 </div>

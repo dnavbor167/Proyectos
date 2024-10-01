@@ -13,26 +13,35 @@
 
     function repeticiones($texto) {
         $romanos_l = true;
-        $contador = 0;
+        $contador = 1;
 
-        for ($i=0; $i < strlen($texto); $i++) { 
-            $contador++;
-            if ($texto[$i] == $texto[$i-1]) {
+        for ($i=1; $i < strlen($texto); $i++) { 
+            if ($texto[$i-1] == $texto[$i]) {
                 $contador++;
+                if ($contador>4) {
+                    $romanos_l = false;
+                    break;
+                }
             } else {
-                $contador = 0;
+                $contador = 1;
             }
-            if ($contador>=4) {
-                $romanos_l = false;
-            }
+            
         }
         return $romanos_l;
     }
 
-    if (isset($_POST["btnComprobar"])) {
+    function letras_ordenadas($texto) {
+        $ordenado = true;
+        for ($i = 0; $i < strlen($texto); $i++) {
+            if ($texto[$i])
+        }
+    }
+
+    if (isset($_POST["btnConvertir"])) {
         $texto1 = trim($_POST["palabra1"]);
         $todo_letra = todo_letras($texto1);
         $romanos_l = repeticiones($texto1);
+        $romanos_o = letras_ordenadas($texto1);
         $l_texto1 = strlen($texto1);
 
         $error_form =  $texto1 == "" || !$todo_letra || !$romanos_l;
@@ -78,7 +87,7 @@
 </head>
 <body>
     <?php 
-        if(isset($_POST["btnComprobar"]) && !$error_form) {
+        if(isset($_POST["btnConvertir"]) && !$error_form) {
             require "vistas/vista_formulario.php";
             require "vistas/vista_respuesta.php";
         } else {
