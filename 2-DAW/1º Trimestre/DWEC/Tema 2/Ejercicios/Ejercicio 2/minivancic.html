@@ -1,34 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Minevancic</title>
 </head>
+
 <body>
     <h1>Minevanic</h1>
     <script>
         let minas = [
-            [0,0,0,0,0,0,0],
-            [0,1,0,0,0,0,0],
-            [0,1,0,0,0,0,0],
-            [0,0,0,0,0,1,0],
-            [0,0,0,0,0,1,0],
-            [0,0,0,0,0,0,0]
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 1, 0, 0, 0, 0, 0],
+            [0, 1, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 1, 0],
+            [0, 0, 0, 0, 0, 1, 0],
+            [0, 0, 0, 0, 0, 0, 0]
         ];
-        let contador = 1;
+
+        //cambiamos los 0 por 99
+        for (let i = 0; i < minas.length; i++) {
+            for (let j = 0; j < minas[i].length; j++) {
+                if (minas[i][j] !== 1) {
+                    minas[i][j] = 99;
+                }
+            }
+        }
+        let casilla_menor = (array, x, y) => {
+            if (array[i][j] !== 1) {
+                if (x-1 >= 0 && y-1 >= 0) {
+                    
+                }
+            }
+        }
 
         let color = (array) => {
-            for (let i = 0; i < array.length; i++) {
-                for (let j = 0; j < array[i].length; j++) {
-                    if (array[i][j] === 1) {
-                        if (array[0][j]) {
-                            array[0][j]
-                        }
-                    }
-                }
+            while (flag) {
+                flag = 0;
+                let i = 0;
+                let
+
+                //recorrer la matriz
+                //si la casilla no es 1 -> Buscar en las adyacentes y sumarle 1 -> actualizo la casilla(Si ese número es menor que el de la propia casilla)
+                //flag = 1 si hago un cambio
             }
         }
     </script>
 </body>
+
 </html>
