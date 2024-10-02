@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calcular DNI</title>
+</head>
+
+<body>
+    <h1>Cálculo de la letra del DNI</h1>
+    <input type="text" name="DNI" id="DNI" onblur="calcularDni()">
+    <label for="DNI" id="dnilabel"></label> <br>
+
+    <script>
+        calcularDni = () => {
+            var letras = ['T', 'R', 'W', 'A', 'G', 'M', 'Y', 'F', 'P', 'D', 'X', 'B', 'N', 'J', 'Z', 'S', 'Q', 'V', 'H', 'L', 'C', 'K', 'E', 'T'];
+            let valorDni = document.getElementById('DNI').value;
+            let etiqueta = document.getElementById('dnilabel');
+            //podriamos hacer soloNumeros = valorDni.replace(\/D/g, ''), esto remplaza todo lo que no es dígito por ''
+            let soloNumeros = '';
+
+            //extraemos los números de la cadena
+            for (let i = 0; i < valorDni.length; i++) {
+                //si es un número lo incluye
+                if (!isNaN(valorDni[i])) {
+                    soloNumeros += valorDni[i];
+                }
+            }
+
+            //Comprobamos si el número del dni es válido (todo lo que no sea el tamaño de 9 no es un dni valido)
+            if (valorDni.length != 9 || soloNumeros < 9 || !isNaN(valorDni[valorDni.length - 1])) {
+                window.alert("El número proporcionado no es válido");
+                etiqueta.innerHTML = '';
+                return; // El return lo hacemos para terminar la función y no siga
+            }
+
+            let ultimaLetra = valorDni[valorDni.length - 1].toUpperCase();
+            let calcularLetra = soloNumeros % 23;
+            let letraCorrecta = letras[calcularLetra];
+
+            if (ultimaLetra !== letraCorrecta) {
+                etiqueta.innerHTML = "La letra indicada no es correcta";
+                etiqueta.style.color = "red";
+            } else {
+                etiqueta.innerHTML = "El número y la letra indicada son correctas";
+                etiqueta.style.color = "green";
+            }
+
+        }
+    </script>
+</body>
+
+</html>
