@@ -1,21 +1,43 @@
 <?php 
 
-    function todo_letras($texto) {
-        $patron = '/^[a-zA-Z\s]+$/';
+    // function todo_letras($texto) {
+    //     $patron = '/^[a-zA-Z\s]+$/';
+    //     $todo_l = true;
+    //     if (!preg_match($patron, $texto)) {
+    //         $todo_l = false;
+    //     } 
+    //     return $todo_l;
+    // }
+
+    function quitar_espacios($texto) {
+        $cadena = "";
+        for ($i=0; $i < strlen($texto); $i++) { 
+            if ($texto[$i] != " ") {
+                $cadena .= $texto[$i];
+            }
+        }
+        return $cadena;
+    }
+
+    function todo_letras2($texto) {
+        $texto_sin_espacios = quitar_espacios($texto);
         $todo_l = true;
-        if (!preg_match($patron, $texto)) {
-            $todo_l = false;
-        } 
+        for($i = 0; $i < strlen($texto_sin_espacios); $i++) {
+            if (ord($texto_sin_espacios[$i]) < ord("A") || ord($texto_sin_espacios[$i]) > ord("z")) {
+                $todo_l = false;
+                break;
+            }
+        }
         return $todo_l;
     }
 
     if (isset($_POST["btnComprobar"])) {
-        $texto1 = trim($_POST["palabra1"]);
+        $texto1 = trim($_POST["palabra1"]); //el trim lo dejo por si alguien da un trim
         $todo_letra = todo_letras($texto1);
-        $frase_formulada = str_replace(" ", "", $texto1);
+        $frase_formulada = todo_letras2($texto1);
         $l_texto1 = strlen($frase_formulada);
 
-        $error_form =  $texto1 == "" || strlen($texto1) < 3 || !$todo_letra;
+        $error_form =  $texto1 == "" || strlen($texto1) < 3 || !$frase_formulada;
     }
 ?>
 

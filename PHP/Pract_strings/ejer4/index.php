@@ -1,50 +1,80 @@
 <?php 
 
-    function todo_letras($texto) {
-        $texto_upper = strtoupper($texto);
-        $patron = '/^[MDCLXVI]+$/';
-        $todo_l = true;
+    // function todo_letras($texto) {
+    //     $texto_upper = strtoupper($texto);
+    //     $patron = '/^[MDCLXVI]+$/';
+    //     $todo_l = true;
         
-        if (!preg_match($patron, $texto_upper)) {
-            $todo_l = false;
-        }
-        return $todo_l;
-    }
+    //     if (!preg_match($patron, $texto_upper)) {
+    //         $todo_l = false;
+    //     }
+    //     return $todo_l;
+    // }
 
-    function repeticiones($texto) {
-        $romanos_l = true;
-        $contador = 1;
+    const VALORES = [
+        "M" => 1000,
+        "D" => 500,
+        "C" => 100,
+        "L" => 50,
+        "X" => 10,
+        "V" => 5,
+        "I" => 1
+    ];
 
-        for ($i=1; $i < strlen($texto); $i++) { 
-            if ($texto[$i-1] == $texto[$i]) {
-                $contador++;
-                if ($contador>4) {
-                    $romanos_l = false;
-                    break;
-                }
-            } else {
-                $contador = 1;
+    function repite_bien($texto) {
+        $cont["M"]=4;
+        $cont["D"]=1;
+        $cont["C"]=4;
+        $cont["L"]=1;
+        $cont["X"]=4;
+        $cont["V"]=1;
+        $cont["I"]=4;
+
+        $bueno = true;
+
+        for ($i=0; $i < strlen($texto); $i++) { 
+            $cont[$texto[$i]]--;
+            if ($cont[$texto[$i]] < 0) {
+                $bueno = false;
+                break;
             }
-            
         }
-        return $romanos_l;
+
+        return $bueno;
     }
 
-    function letras_ordenadas($texto) {
-        $ordenado = true;
-        for ($i = 0; $i < strlen($texto); $i++) {
-            if ($texto[$i])
+    function letras_correcta($texto) {
+        $correcto = true;
+        for ($i=0; $i < strlen($texto); $i++) { 
+            if (!isset(VALORES[$texto[$i]])) {
+                $correcto = false;
+                break;
+            }
         }
+        return $correcto;
+    }
+
+    function orden_bueno($texto) {
+        $bueno = true;
+        for ($i=0; $i < strlen($texto) - 1; $i++) { 
+            if (VALORES[$texto[$i]] < VALORES[$texto[$i+1]]) {
+                $bueno = false;
+                break;
+            }
+        }
+        return $bueno;
+    }
+
+    function bien_escrito_romano($texto) {
+        
+        return letras_correcta($texto) && orden_bueno($texto) && repite_bien($texto);
     }
 
     if (isset($_POST["btnConvertir"])) {
         $texto1 = trim($_POST["palabra1"]);
-        $todo_letra = todo_letras($texto1);
-        $romanos_l = repeticiones($texto1);
-        $romanos_o = letras_ordenadas($texto1);
-        $l_texto1 = strlen($texto1);
+        $texto1_m = strtoupper($texto1);
 
-        $error_form =  $texto1 == "" || !$todo_letra || !$romanos_l;
+        $error_form =  $texto1 == "" || !bien_escrito_romano($texto1_m);
     }
 ?>
 
@@ -53,7 +83,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Palíndromos / capicúas - Formulario</title>
+    <title>Romanos a árabes - Formulario</title>
     <style>
         div {
             border: solid 2px black;

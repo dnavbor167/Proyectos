@@ -1,26 +1,12 @@
 <div id="verde">
-    <h1>Palíndromos / capicúas - Resultado</h1>
+    <h1>Romanos a árabes - Resultado</h1>
     <?php
-        $texto1_m = strtoupper($frase_formulada);
-
-        $i = 0;
-        $j = $l_texto1 - 1;
-        $respuesta = true;
-
-        while ($i < $j) {
-            if ($texto1_m[$i] != $texto1_m[$j]) {
-                $respuesta = false;
-                break;
-            }
-            $i++;
-            $j--;
+        $respuesta = 0;
+        for ($i=0; $i < strlen($texto1_m); $i++) { 
+            $respuesta += VALORES[$texto1_m[$i]];
         }
 
 
-        if ($respuesta) {
-            echo "<p><strong>" . $texto1 . "</strong> es un palíndromo</p>";
-        } else {
-            echo "<p><strong>" . $texto1 . "</strong> no es un palíndromo</p>";
-        }
+        echo "<p>El número romano <strong>" . $texto1 . "</strong> es es árabe: <strong>" . $respuesta . "</strong></p>";
     ?>
 </div>

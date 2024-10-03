@@ -18,9 +18,9 @@
 
 
         if ($respuesta) {
-            echo "<p><strong>" . $texto1 . "</strong> es un palíndromo</p>";
+            echo "<p>La frase <strong>" . $texto1 . "</strong> es un palíndroma</p>";
         } else {
-            echo "<p><strong>" . $texto1 . "</strong> no es un palíndromo</p>";
+            echo "<p>La frase <strong>" . $texto1 . "</strong> no es un palíndroma</p>";
         }
     ?>
 </div>
