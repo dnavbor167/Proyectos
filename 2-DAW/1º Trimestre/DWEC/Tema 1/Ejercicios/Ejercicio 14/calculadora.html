@@ -1,13 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora</title>
+    <style>
+        form {
+            border: solid 2px black;
+            width: 400px;
+        }
+
+        p {
+            text-align: center;
+            font-size: 23px;
+            font-weight: bold;
+        }
+
+        #campo_A_Rellenar {
+            border: solid 1px black;
+            display: block;
+            margin: 1rem;
+            height: 50px;
+            line-height: 50px;
+            padding-left: 1rem
+        }
+
+        div {
+            margin: 0 1rem;
+            margin-bottom: 1rem;
+        }
+
+        button {
+            padding: 0.2rem 1rem;
+
+            margin-right: 2rem;
+        }
+    </style>
 </head>
+
 <body>
-    <div>
-        <input type="text" name="" id="">
-    </div>
+
+    <form action="calculadora.html" method="post" enctype="multipart/form-data">
+        <p>Calculadora</p>
+        <p id="campo_A_Rellenar"></p>
+        <div>
+            <button type="button" onclick="campoRellenar.innerHTML += 1">1</button>
+            <button type="button" onclick="campoRellenar.innerHTML += 2">2</button>
+            <button type="button" onclick="campoRellenar.innerHTML += 3">3</button>
+            <button type="button" onclick="campoRellenar.innerHTML += '+'">+</button>
+        </div>
+
+        <div>
+            <button type="button" onclick="campoRellenar.innerHTML += 4">4</button>
+            <button type="button" onclick="campoRellenar.innerHTML += 5">5</button>
+            <button type="button" onclick="campoRellenar.innerHTML += 6">6</button>
+            <button type="button" onclick="campoRellenar.innerHTML += '-'">-</button>
+        </div>
+
+        <div>
+            <button type="button" onclick="campoRellenar.innerHTML += 7">7</button>
+            <button type="button" onclick="campoRellenar.innerHTML += 8">8</button>
+            <button type="button" onclick="campoRellenar.innerHTML += 9">9</button>
+            <button type="button" onclick="campoRellenar.innerHTML += '*'">x</button>
+        </div>
+
+        <div>
+            <button type="button" onclick="campoRellenar.innerHTML = ''">c</button>
+            <button type="button" onclick="campoRellenar.innerHTML += 0">0</button>
+            <button type="button" onclick="resultado(campoRellenar)">=</button>
+            <button type="button" onclick="campoRellenar.innerHTML += '/'">/</button>
+        </div>
+    </form>
+
+    <script>
+        let campoRellenar = document.getElementById("campo_A_Rellenar");
+
+        let resultado = (parametros) => {
+            const campoActual = parametros.innerHTML;
+            //si termina en cualquiera de estos símbolos y le da a igual se muestra en la p error
+            if (campoActual.endsWith('+') || campoActual.endsWith('-') || campoActual.endsWith('*') || campoActual.endsWith('/')) {
+                parametros.innerHTML = 'Error';
+                parametros.style.color = 'red';
+            } else {
+                parametros.innerHTML = eval(campoActual);
+            }
+        }
+    </script>
 </body>
+
 </html>
