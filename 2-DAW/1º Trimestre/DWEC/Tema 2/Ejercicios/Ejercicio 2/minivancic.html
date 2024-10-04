@@ -19,14 +19,6 @@
             [0, 0, 0, 0, 0, 0, 0]
         ];
 
-        //cambiamos los 0 por 99
-        for (let i = 0; i < minas.length; i++) {
-            for (let j = 0; j < minas[i].length; j++) {
-                if (minas[i][j] !== 1) {
-                    minas[i][j] = 99;
-                }
-            }
-        }
         //le tengo que sumar 1 a todo de las cordenadas que le paso y devuelve el el número más chico
         let casilla_menor = (array, x, y) => {
             if (array[i][j] !== 1) {
@@ -37,10 +29,20 @@
         }
 
         let color = (array) => {
+            let flag = 1;
             while (flag) {
                 flag = 0;
-                let i = 0;
-                let
+
+                //si encuentra un 1 rellenamos las casillas adyacentes de es 1 + 1, cuando encuentre un 2 igual
+                for (let i = 0; i < array.length; i++) {
+                    for (let j = 0; j< array[i].length; j++) {
+                        if (array[i][j] == 1) {
+                            if (i == 0 && j == 0) {
+
+                            }
+                        }
+                    }
+                }
 
                 //recorrer la matriz
                 //si la casilla no es 1 -> Buscar en las adyacentes y sumarle 1 -> actualizo la casilla(Si ese número es menor que el de la propia casilla)

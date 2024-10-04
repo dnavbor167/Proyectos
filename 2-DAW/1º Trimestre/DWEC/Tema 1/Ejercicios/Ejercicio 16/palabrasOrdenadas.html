@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista palabras en orden alfabético</title>
+</head>
+
+<body>
+    <h1>Lista de palabras en orden alfabético</h1>
+    <p id="texto">Ordenar, .algo.. que pasa</p>
+
+    <script>
+        //podemos crear una función para excluir los caracteres especificos
+        let obviarCaracteresEspeciales = (text) => {
+            let caracteresEspeciales = [",", ".", ";", ":", "-", "´",];
+            for (let i = 0; i < caracteresEspeciales.length; i++) {
+                text = text.split(caracteresEspeciales[i]).join('');
+            }
+            return text;
+        }
+
+        //o podemos usar un regex para poder abarcar solo las letras, eso haremos
+
+
+        let palabrasDeshordenadas = document.getElementById('texto').innerHTML;
+        //cuando encuentre un espacio añade a palabrasOrdenadas hasta donde haya encontrado y lo ordena
+        let palabrasOrdenadas = palabrasDeshordenadas.split(" ").sort();
+
+
+        console.log(obviarCaracteresEspeciales(palabrasDeshordenadas))
+    </script>
+
+</body>
+
+</html>
