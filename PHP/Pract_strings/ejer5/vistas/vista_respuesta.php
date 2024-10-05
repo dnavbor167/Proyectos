@@ -12,27 +12,27 @@
         $temporal_number = $texto1;
 
         while ($temporal_number > 0) {
-            if ($temporal_number > 1000 && $cont["M"] > 0) {
+            if ($temporal_number >= 1000 && $cont["M"] > 0) {
                 $temporal_number -= 1000;
                 $respuesta .= 'M';
                 $cont["M"]--;
-            } else if ($temporal_number > 500 && $cont["D"] > 0) {
+            } else if ($temporal_number >= 500 && $cont["D"] > 0) {
                 $temporal_number -= 500;
                 $respuesta .= 'D';
                 $cont["D"]--;
-            } else if ($temporal_number > 100 && $cont["C"] > 0) {
+            } else if ($temporal_number >= 100 && $cont["C"] > 0) {
                 $temporal_number -= 100;
                 $respuesta .= 'C';
                 $cont["C"]--;
-            } else if ($temporal_number > 50 && $cont["L"] > 0) {
+            } else if ($temporal_number >= 50 && $cont["L"] > 0) {
                 $temporal_number -= 50;
                 $respuesta .= 'L';
                 $cont["L"]--;
-            } else if ($temporal_number > 10 && $cont["X"] > 0) {
+            } else if ($temporal_number >= 10 && $cont["X"] > 0) {
                 $temporal_number -= 10;
                 $respuesta .= 'X';
                 $cont["X"]--;
-            } else if ($temporal_number > 5 && $cont["V"] > 0) {
+            } else if ($temporal_number >= 5 && $cont["V"] > 0) {
                 $temporal_number -= 5;
                 $respuesta .= 'V';
                 $cont["V"]--;
