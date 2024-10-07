@@ -1,21 +1,10 @@
 <?php 
-    function buenos_separadores($fecha) {
-        return $fecha[2] == "/" && $fecha[5] == "/";
-    }
-    function buenos_numeros($texto) {
-        return is_numeric(substr($texto,0,2)) && is_numeric(substr($texto,3,2)) && is_numeric(substr($texto,6,2));
-    }
-
-    function fecha_valida($texto) {
-        return checkdate(substr($texto,3,2),substr($texto,0,2),substr($texto,6,2));
-    }
-
     if (isset($_POST["btnCalcular"])) {
         $fecha1 = trim($_POST["fecha1"]);
         $fecha2 = trim($_POST["fecha2"]);
 
-        $error_fecha1 = $fecha1 == "" || strlen($fecha1) != 10 || !buenos_separadores($fecha1) || !buenos_numeros($fecha1) || !fecha_valida($fecha1);
-        $error_fecha2 = $fecha2 == "" || strlen($fecha2) != 10 || !buenos_separadores($fecha2) || !buenos_numeros($fecha2) || !fecha_valida($fecha2);
+        $error_fecha1 = !checkdate($_POST["mes1"],$_POST["dial1"],$_POST["anyio1"]);
+        $error_fecha2 = !checkdate($_POST["mes2"],$_POST["dial2"],$_POST["anyio2"]);
 
         $error_form = $error_fecha1 || $error_fecha2;
     }
