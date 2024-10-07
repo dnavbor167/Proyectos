@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>VALHALLA</title>
+</head>
+
+<body>
+    <h1>Valhalla</h1>
+    <script>
+        let arr = ["C", "U", "S", "R", "S"];
+        function valhalla(a) {
+            let resultado = 0;
+            let r = 0;
+            let simbologia = ["U", "S", "D", "C", "X", "R"];
+            let valor = { "U": 1, "S": 7, "D": 10, "C": 50, "X": 100 }
+
+            //Comprobamos de que el array solo admita letras en mayúsculas
+            //para ello pasamos todo el contenido del array a mayúsculas
+            for (let i = 0; i < a.length; i++) {
+                a[i] = a[i].toUpperCase();
+            }
+
+            //Desarrollo de logica del programa
+            for (let i = 0; i < a.length; i++) {
+                //igualamos la r a 0 por si hay más de una r
+                r = 0;
+                //si la letra está incluida se hace la opercíon 
+                switch (a[i]) {
+                    case "U":
+                        resultado += valor["U"];
+                        break;
+                    case "S":
+                        resultado += valor["S"];
+                        break;
+                    case "D":
+                        resultado += valor["D"];
+                        break;
+                    case "C":
+                        resultado += valor["C"];
+                        break;
+                    case "X":
+                        resultado += valor["X"];
+                        break;
+                    case "R":
+                        while (a[i] === "R") {
+                            r++;
+                            i++;
+                        }
+                        //si solo hay una r resta normal
+                        if (r === 1) {
+                            resultado -= valor[a[i]];
+                        } else {
+                            let restarVariante = valor[a[i]];
+                            for (let j = 1; j < r; j++) {
+                                restarVariante = 2 * restarVariante;
+                            }
+                            resultado -= restarVariante;
+                        }
+                        break;
+                    default:
+                        continue;
+                }
+            }
+            return resultado;
+        }
+
+        console.log("El resultado de sumar " + arr + " es: " + valhalla(arr))
+    </script>
+</body>
+
+</html>
