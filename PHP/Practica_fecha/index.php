@@ -33,7 +33,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reserva de Aulas</title>
-    
+    <style>
+        html {
+            box-sizing: border-box;
+        }
+
+        * {
+            box-sizing: inherit;
+        }
+
+        form {
+            background-color: lightblue;
+            border: solid 1px black;
+            height:100px;
+        }
+        form,h1 {
+            text-align: center;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        td,th {
+            border: solid 1px black;
+            padding: 8px;
+        }
+    </style>
 </head>
 <body>
     <h1>Reserva de aulas</h1>
@@ -77,9 +103,9 @@
                 for ($i=0;$i<7;$i++) {
                     echo "<tr>";
                     for ($j=0;$j<=5;$j++) {
-                        if ($i = 0 || $j>0) {
+                        if ($i == 0 || $j>0) {
                             $dia_tabla = dia_de_semana($j);
-                            echo "<td>".$dia_tabla."</td>";
+                            echo "<th>".$dia_tabla."</th>";
                         }
                     }
                     echo "</tr>";
