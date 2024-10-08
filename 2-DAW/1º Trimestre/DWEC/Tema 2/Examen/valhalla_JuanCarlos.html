@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>VALHALLA</title>
+</head>
+
+<body>
+
+    <script>
+
+        const UNO = ["C", "U", "S", "U"];
+        const DOS = ["C", "U", "S", "C", "U"];
+        const TRES = ["C", "X", "S", "R", "U"];
+        const CUATRO = ["C", "X", "S", "R", "R", "U"];
+        const CINCO = ["D", "R", "R", "R", "R", "U","R"];
+
+        function reemplazar(arr){
+            let aux=[];
+            for (let i=0; i< arr.length; i++){
+                switch(arr[i]){
+                    case "U": aux[i]=1; break;
+                    case "S": aux[i]=7; break;
+                    case "D": aux[i]=10; break;
+                    case "C": aux[i]=50; break;
+                    case "X": aux[i]=100; break;
+                    case "R": aux[i]="-"; break;
+                    default: aux[i]=0; break;
+                }
+            }
+            return aux;
+        }
+
+        function resta(arr){
+            let aux=[];
+            let pos=0;
+            for (let i=0; i< arr.length; i++){
+                switch (arr[i]){
+                    case "-":
+                        if (arr[i+1]=="-"){ 
+                            aux.push(arr[i]);
+                            break;
+                        }
+                        if (i<arr.length-1){
+                            if(arr[i+1]>=0){
+                                aux.push(-1*arr[i+1]);
+                                i++;
+                            }else{
+                                aux.push(2*arr[i+1]);
+                                i++;
+                            }
+                        }
+                        break;
+                    default: aux.push(arr[i]); break;
+                }
+            }
+            return aux;
+        }      
+
+        function hayMenos(arr){
+            for (let i=0; i< arr.length; i++){
+                if (arr[i]=="-"){return 1;}
+            }
+            return 0;
+        }
+
+        function calcula(arr){
+            let aux = 0;
+            for (let i=0; i< arr.length; i++){
+                aux+=arr[i];
+            }
+            return aux;
+        }
+
+        function valhalla(a) {
+            // ESCRIBE TU CÓDIGO AQUÍ
+            let aux = [];
+            aux = reemplazar(a);
+            while (hayMenos(aux)) aux = resta(aux);
+            return calcula(aux);
+        }
+
+        console.log(valhalla(UNO))
+        console.log(valhalla(DOS))
+        console.log(valhalla(TRES))
+        console.log(valhalla(CUATRO))
+        console.log(valhalla(CINCO))
+    </script>
+</body>
+
+</html>
