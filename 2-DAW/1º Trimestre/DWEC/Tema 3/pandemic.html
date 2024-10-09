@@ -18,10 +18,14 @@
             ['G', 'R', 'R', 'H', 'G', 'G'],
             ['R', 'R', 'H', 'H', 'G', 'P']];
 
+        // se modifica antes porque esta copiando la referencia
+        //para poder crear una nueva matriz apartir de otra hay que hacer:
+        //hacer esto siempre cuando haya matrices, porque puede haber errores
+        let biocenosis2 = JSON.parse(JSON.stringify(biocenosis));
         console.log(biocenosis);
-        pandemic(biocenosis,0,0);
-        pandemic(biocenosis, 2, 3);
-        console.log(biocenosis);
+        pandemic(biocenosis2,0,0);
+        pandemic(biocenosis2, 2, 3);
+        console.log(biocenosis2);
 
         function pandemic(array, x, y) {
             let fila = array.length;
@@ -36,11 +40,11 @@
             let valorActual = array[x][y];
 
             //comprobamos si el valor actual es igual a brr si es igual salimos de la funcion
-            if (valorActual === "brr") {
+            if (valorActual === "") {
                 return;
             }
 
-            array[x][y] = "brr"
+            array[x][y] = ""
 
 
             // Recursión en las 4 direcciones
