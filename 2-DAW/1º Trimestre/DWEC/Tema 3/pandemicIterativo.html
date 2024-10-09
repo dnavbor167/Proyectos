@@ -5,9 +5,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pandemic Iterativo</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        td,
+        tr {
+            border: black 1px solid;
+            padding: 1rem;
+        }
+    </style>
 </head>
 
 <body>
+    <button type="button" onclick="mostrarArray(biocenosis)">Mostrar Original</button>
+    <button type="button" onclick="mostrarArray(biocenosis2)">Mostrar Infectados</button>
     <script>
         let biocenosis = [
             ['P', 'P', 'G', 'H', 'H', 'R'],
@@ -24,29 +38,50 @@
 
         let pandemic = (array, x, y) => {
             let valorActual = array[x][y];
-            
 
-            while (array[x][y] === valorActual) {
+            let flag = 1;
+            while (flag === 1) {
+                flag = 0;
                 let fila = array.length;
-                let columna = array[x].length
+                let columna = array[x].length;
+
                 if (x - 1 >= 0 && array[x - 1][y] === valorActual) { // Arriba
                     array[x - 1][y] = " ";
                     x--;
+                    flag = 1;
                 }
                 if (x + 1 < fila && array[x + 1][y] === valorActual) { // Abajo
                     array[x + 1][y] = " ";
                     x++;
+                    flag = 1;
                 }
                 if (y - 1 >= 0 && array[x][y - 1] === valorActual) { // Izquierda
                     array[x][y--] = " ";
                     y--;
+                    flag = 1;
                 }
                 if (y + 1 < columna && array[x][y + 1] === valorActual) { // Derecha
                     array[x][y + 1] = " ";
                     y++;
+                    flag = 1;
                 }
             }
             return array;
+        }
+
+        let mostrarArray = (array) => {
+            let tabla = document.createElement('table');
+
+            for (let i = 0; i < array.length; i++) {
+                let fila = document.createElement('tr');
+                for (let j = 0; j < array[i].length; j++) {
+                    let celda = document.createElement('td');
+                    celda.appendChild(document.createTextNode(array[i][j]));
+                    fila.appendChild(celda);
+                }
+                tabla.appendChild(fila);
+            }
+            document.body.appendChild(tabla);
         }
 
         console.log(biocenosis);
