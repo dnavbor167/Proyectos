@@ -38,7 +38,7 @@
 
         let pandemic = (array, x, y) => {
             let valorActual = array[x][y];
-
+            
             let flag = 1;
             while (flag === 1) {
                 flag = 0;
@@ -47,24 +47,38 @@
 
                 if (x - 1 >= 0 && array[x - 1][y] === valorActual) { // Arriba
                     array[x - 1][y] = " ";
-                    x--;
                     flag = 1;
                 }
                 if (x + 1 < fila && array[x + 1][y] === valorActual) { // Abajo
                     array[x + 1][y] = " ";
-                    x++;
                     flag = 1;
                 }
                 if (y - 1 >= 0 && array[x][y - 1] === valorActual) { // Izquierda
                     array[x][y--] = " ";
-                    y--;
                     flag = 1;
                 }
                 if (y + 1 < columna && array[x][y + 1] === valorActual) { // Derecha
                     array[x][y + 1] = " ";
-                    y++;
                     flag = 1;
                 }
+
+                //comprobamos que el valor se haya cambiado
+                //si ha cambiado incrementamos o decrementamos x e y
+                if (flag === 1) {
+                    if (array[x - 1][y] === " ") {
+                        x--;
+                    }
+                    if (array[x + 1][y] === " ") {
+                        x++;
+                    }
+                    if (array[x][y - 1] === " ") {
+                        y--;
+                    }
+                    if (array[x][y + 1] === " ") {
+                        y++;
+                    }
+                }
+
             }
             return array;
         }
