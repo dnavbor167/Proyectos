@@ -41,7 +41,7 @@
                         echo "<span class='error'> *No se ha subido el archivo seleccionado al servidor* </span>";
                     } else if(!tiene_extension($_FILES["foto"]["name"])) {
                         echo "<span class='error'> *Has seleccionado un fichero sin extensión* </span>";
-                    } else if(!getimagesize($_FILES["foto"]["temp_name"])) {
+                    } else if(!getimagesize($_FILES["foto"]["tmp_name"])) {
                         echo "<span class='error'> *No has seleccionado un fichero imagen* </span>";
                     } else {
                         echo "<span class='error'> *El fichero seleccionado es mayor a 500KB* </span>";
