@@ -1,11 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Angry Bats Recursivo</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            margin-bottom: 1rem;
+        }
+
+        td, tr {
+            border: black 1px solid;
+            padding: 1rem;
+        }
+    </style>
 </head>
+
 <body>
+    <p id="txt"></p>
+    <button type="button" onclick="mostrarArray(matriz)">Mostrar</button>
+    <button type="button" onclick="mostrarArray(matriz2)">Mostrar Resuelto</button>
     <script>
         var matriz = [
             ["P", "P", "G", "H", "H", "R"],
@@ -15,19 +31,66 @@
             ["R", "R", "H", "H", "G", "P"]
         ];
 
+        var matriz2 = JSON.parse(JSON.stringify(matriz));
+
         //Murcielagos se transmiten la enfermedad entre sí pero NO MUEREN
         //Humanos son infectados por los murciélagos y MUEREN
         //todos los demás no pasa nada ni se contagia
 
-        let angrybats = (fila, columna) => {
+        let angrybats = (array, fila, columna) => {
             //definimos las filas y las columnas bien, para ello creamos
             //una variable con el valor correcto de la fila o columna (ya que estas empiezan en 1)
             let filaOriginal = fila - 1;
             let columnaOriginal = columna - 1;
 
-            if (fila)
+            // si se sale de los límites lo devuelve para que se salga de la función
+            if (filaOriginal < 0 || filaOriginal >= array.length || columnaOriginal < 0 || columnaOriginal >= array[filaOriginal].length) {
+                return;
+            }
 
+            console.log(filaOriginal + " " + columnaOriginal);
+            //Si en la posición del array es un humano (h) directamente se elimina
+            if (array[filaOriginal][columnaOriginal].toLowerCase() === "h") {
+                array[filaOriginal][columnaOriginal] = " ";
+            }
+
+            //Controlamos que no se salga y si es o murciélago (m) o humano (h) llamamos de nuevo a la función (recursividad)
+            if (filaOriginal - 1 >= 0 && (array[filaOriginal - 1][columnaOriginal] === "m" || array[filaOriginal - 1][columnaOriginal].toLowerCase() === "h")) {
+                angrybats(array, filaOriginal - 1, columnaOriginal);
+            }
+            if (filaOriginal + 1 < array.length && (array[filaOriginal + 1][columnaOriginal] === "m" || array[filaOriginal + 1][columnaOriginal].toLowerCase() === "h")) {
+                angrybats(array, filaOriginal + 1, columnaOriginal);
+            }
+            if (columnaOriginal - 1 >= 0 && (array[filaOriginal][columnaOriginal - 1] === "m" || array[filaOriginal][columnaOriginal - 1].toLowerCase() === "h")) {
+                angrybats(array, filaOriginal, columnaOriginal - 1);
+            }
+            if (columnaOriginal + 1 < array[filaOriginal].length && (array[filaOriginal][columnaOriginal + 1] === "m" || array[filaOriginal][columnaOriginal + 1].toLowerCase() === "h")) {
+                angrybats(array, filaOriginal, columnaOriginal + 1);
+            }
+
+            //devolvemos el array
+            return array;
+        }
+
+        //cuando uso funciones de tipo arrow, recordar que solo se pueden llamar despues de haber creado la función
+        angrybats(matriz2, 3, 3);
+
+        //mostrar una matriz por tabla
+        let mostrarArray = (array) => {
+            let tabla = document.createElement('table');
+
+            for (let i = 0; i < array.length; i++) {
+                let fila = document.createElement('tr');
+                for (let j = 0; j < array[i].length; j++) {
+                    let celda = document.createElement('td');
+                    celda.appendChild(document.createTextNode(array[i][j]));
+                    fila.appendChild(celda);
+                }
+                tabla.appendChild(fila);
+            }
+            document.body.appendChild(tabla);
         }
     </script>
 </body>
+
 </html>
