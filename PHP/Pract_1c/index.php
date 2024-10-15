@@ -3,6 +3,11 @@
     {  
         return substr("TRWAGMYFPDXBNJZSQVHLCKEO", $dni % 23, 1); 
     }
+    //Modo miguelAngel:
+    //function dni_bien_escrito($texto) {
+        //$dni = strtoupper($texto);
+        //return strlen($dni) == 9 && is_numeric(substr($dni, 0, 8)) && substr($dni,-1)>="A" && substr($dni,-1)>="Z";
+    //}
 
     function dni_valido($texto) {
         $valido = true;

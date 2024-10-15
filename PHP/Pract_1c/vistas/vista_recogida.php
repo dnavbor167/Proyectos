@@ -21,13 +21,13 @@
         //OJO PORQUE TENGO QUE DARLE PERMISOS TOTALES A AL CARPETA DESTENIO sudo chmod 777 -R 'CARPETA DESTINO'
         @$var = move_uploaded_file($_FILES["foto"]["tmp_name"],"images/".$nombre_imagen);
         if (!$var) {
-            echo "<p>Error al vender tus datos en la deep web</p>";
+            echo "<p>Error al cargar la imagen en el servidor</p>";
         } else {
             echo "<p><strong>Nombre Original: </strong>".$_FILES["foto"]["name"]."</p>";
             echo "<p><strong>Tipo: </strong>".$_FILES["foto"]["type"]."</p>";
             echo "<p><strong>Tamaño: </strong>".$_FILES["foto"]["size"]."</p>";
             echo "<p><strong>Archivo subido temporalmente: </strong>".$_FILES["foto"]["tmp_name"]."</p>";
-            echo "<p><img src='images/".$nombre_imagen."' alt='Imagen' title='Imagen subida'</p>";
+            echo "<p><img src='images/".$nombre_imagen."' alt='Imagen' title='Imagen subida' width='300px'></p>";
         }
     }
 
