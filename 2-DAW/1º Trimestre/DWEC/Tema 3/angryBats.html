@@ -11,7 +11,8 @@
             margin-bottom: 1rem;
         }
 
-        td, tr {
+        td,
+        tr {
             border: black 1px solid;
             padding: 1rem;
         }
@@ -19,6 +20,7 @@
 </head>
 
 <body>
+    <h1>Angry Bats</h1>
     <p id="txt"></p>
     <button type="button" onclick="mostrarArray(matriz)">Mostrar</button>
     <button type="button" onclick="mostrarArray(matriz2)">Mostrar Resuelto</button>
@@ -26,8 +28,8 @@
         var matriz = [
             ["P", "P", "G", "H", "H", "R"],
             ["P", "P", "G", "H", "H", "G"],
-            ["P", "G", "m", "H", "H", "G"],
-            ["G", "R", "m", "H", "G", "G"],
+            ["P", "G", "M", "H", "H", "G"],
+            ["G", "R", "M", "H", "G", "G"],
             ["R", "R", "H", "H", "G", "P"]
         ];
 
@@ -36,36 +38,40 @@
         //Murcielagos se transmiten la enfermedad entre sí pero NO MUEREN
         //Humanos son infectados por los murciélagos y MUEREN
         //todos los demás no pasa nada ni se contagia
+        
 
         let angrybats = (array, fila, columna) => {
-            //definimos las filas y las columnas bien, para ello creamos
-            //una variable con el valor correcto de la fila o columna (ya que estas empiezan en 1)
-            let filaOriginal = fila - 1;
-            let columnaOriginal = columna - 1;
-
             // si se sale de los límites lo devuelve para que se salga de la función
-            if (filaOriginal < 0 || filaOriginal >= array.length || columnaOriginal < 0 || columnaOriginal >= array[filaOriginal].length) {
+            if (fila < 0 || fila >= array.length || columna < 0 || columna >= array[fila].length) {
                 return;
             }
 
-            console.log(filaOriginal + " " + columnaOriginal);
+            let valorActual = array[fila][columna];
+            if (valorActual !== "H" && valorActual !== "M") {
+                return;
+            }
             //Si en la posición del array es un humano (h) directamente se elimina
-            if (array[filaOriginal][columnaOriginal].toLowerCase() === "h") {
-                array[filaOriginal][columnaOriginal] = " ";
+            if (valorActual === "H") {
+                array[fila][columna] = " ";
             }
 
-            //Controlamos que no se salga y si es o murciélago (m) o humano (h) llamamos de nuevo a la función (recursividad)
-            if (filaOriginal - 1 >= 0 && (array[filaOriginal - 1][columnaOriginal] === "m" || array[filaOriginal - 1][columnaOriginal].toLowerCase() === "h")) {
-                angrybats(array, filaOriginal - 1, columnaOriginal);
+            if (valorActual === "M") {
+                array[fila][columna] = "m";
             }
-            if (filaOriginal + 1 < array.length && (array[filaOriginal + 1][columnaOriginal] === "m" || array[filaOriginal + 1][columnaOriginal].toLowerCase() === "h")) {
-                angrybats(array, filaOriginal + 1, columnaOriginal);
+            
+
+            //Llamamos a la recursión para estas posiciones
+            if (fila - 1 >= 0 && (array[fila-1][columna] === "H" || array[fila-1][columna] === "M")) {
+                angrybats(array, fila - 1, columna); // Arriba
             }
-            if (columnaOriginal - 1 >= 0 && (array[filaOriginal][columnaOriginal - 1] === "m" || array[filaOriginal][columnaOriginal - 1].toLowerCase() === "h")) {
-                angrybats(array, filaOriginal, columnaOriginal - 1);
+            if (fila + 1 < array.length && (array[fila+1][columna] === "H" || array[fila+1][columna] === "M")) {
+                angrybats(array, fila + 1, columna); // Abajo
             }
-            if (columnaOriginal + 1 < array[filaOriginal].length && (array[filaOriginal][columnaOriginal + 1] === "m" || array[filaOriginal][columnaOriginal + 1].toLowerCase() === "h")) {
-                angrybats(array, filaOriginal, columnaOriginal + 1);
+            if (columna - 1 >= 0 && (array[fila][columna-1] === "H" || array[fila][columna-1] === "M")) {
+                angrybats(array, fila, columna - 1); // Izquierda
+            }
+            if (columna + 1 < array[fila].length && (array[fila][columna+1] === "H" || array[fila][columna+1] === "M")) {
+                angrybats(array, fila, columna + 1); // Derecha
             }
 
             //devolvemos el array
