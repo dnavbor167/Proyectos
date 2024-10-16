@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luis Candela Iterativo</title>
+</head>
+
+<body>
+    <script>
+        let mapa = [
+            ['*', '', '', '', '', ''],
+            ['*', '', '', '', '', ''],
+            ['*', '', '', '', '', ''],
+            ['*', '', '', '', '', ''],
+            ['*', '*', '*', '*', '*', '*']
+        ];
+
+        let luisCandelas = (array, x, y) => {
+            //controlamos de que la x e y no se salgan del parametro
+            if (x < 0 || x >= array.length || y < 0 || y >= array[x].length) {
+                return;
+            }
+
+            //si la posicion es igual a "" se acaba
+            if (array[x][y]=== "") {
+                return;
+            }
+
+            //si está en la última posicion significa que somos libres
+            if (x === array.length-1 && y === array[x].length-1) {
+                return "Somos libres";
+            }
+
+            if (x - 1 >= 0 && array[x-1][y] === "*") {
+                luisCandelas(array, x - 1, y); // Arriba
+            }
+            if (x + 1 < array.length && array[x+1][y] === "*") {
+                luisCandelas(array, x + 1, y); // Abajo
+            }
+            if (y - 1 >= 0 && array[x][y-1] === "*") {
+                luisCandelas(array, x, y - 1); // Izquierda
+            }
+            if (y + 1 < array[x].length && array[x][y+1] === "*") {
+                luisCandelas(array, x, y + 1); // Derecha
+            }
+
+        }
+        console.log(luisCandelas(mapa,0,0));
+
+    </script>
+</body>
+
+</html>
