@@ -37,35 +37,46 @@
 
 
         let pandemic = (array, x, y) => {
-            let valorActual = array[x][y];
-             
-            let flag = 1;
-            while (flag === 1) {
+            let flag = 0;
+            if (array[x][y] === "H") {
+                array[x][y] = " ";
+                flag = 1;
+            }
+
+            while (flag) {
                 flag = 0;
-                let fila = array.length;
-                let columna = array[x].length;
-                console.log(x + ", " + y);
-                if (x - 1 >= 0 && array[x - 1][y] === valorActual) { // Arriba
-                    array[x - 1][y] = " ";
-                    x--;
-                    flag = 1;
-                }
-                if (x + 1 < fila && array[x + 1][y] === valorActual) { // Abajo
-                    array[x + 1][y] = " ";
-                    x++;
-                    flag = 1;
-                }
-                if (y - 1 >= 0 && array[x][y - 1] === valorActual) { // Izquierda
-                    array[x][y--] = " ";
-                    y--;
-                    flag = 1;
-                }
-                if (y + 1 < columna && array[x][y + 1] === valorActual) { // Derecha
-                    array[x][y + 1] = " ";
-                    y++;
-                    flag = 1;
+                for (let i = 0; i < array.length; i++) {
+                    for (let j = 0; j < array[i].length; j++) {
+                        if (array[i][j] === " ") {
+                            //arriba
+                            if (i - 1 >= 0 && array[i - 1][j] === "H") {
+                                array[i - 1][j] = " ";
+                                flag = 1;
+                            }
+
+                            //abajo
+                            if (i + 1 < array.length && array[i + 1][j] === "H") {
+                                array[i + 1][j] = " ";
+                                flag = 1;
+                            }
+
+                            //izquierda
+                            if (j - 1 >= 0 && array[i][j - 1] === "H") {
+                                array[i][j - 1] = " ";
+                                flag = 1;
+                            }
+
+                            //derecha
+                            if (j + 1 < array[i].length && array[i][j + 1] === "H") {
+                                array[i][j + 1] = " ";
+                                flag = 1;
+                            }
+                        }
+
+                    }
                 }
             }
+
             return array;
         }
 
