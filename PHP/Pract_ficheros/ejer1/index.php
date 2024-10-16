@@ -33,8 +33,9 @@
     </form>
 
     <?php 
-        if (isset($_POST["numero"])) {
-            $nombre_archivo = "tabla_".$_POST["numero"].".txt";
+        if (isset($_POST["btnCrear"]) && !$error_tabla) {
+            $nombre_archivo = "Tablas/tabla_".$_POST["numero"].".txt";
+
             //si no existe el archivo pasado
             if (!file_exists($nombre_archivo)) {
                 @$file = fopen($nombre_archivo, "w");
