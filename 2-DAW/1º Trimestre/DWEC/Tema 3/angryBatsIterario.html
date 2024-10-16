@@ -1,11 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Angry Bats Iterativo</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            margin-bottom: 1rem;
+        }
+
+        td,
+        tr {
+            border: black 1px solid;
+            padding: 1rem;
+        }
+    </style>
 </head>
+
 <body>
     <h1>AngryBats Iterativo</h1>
+    <p id="txt"></p>
+    <button type="button" onclick="mostrarArray(matriz)">Mostrar</button>
+    <button type="button" onclick="mostrarArray(matriz2)">Mostrar Resuelto</button>
+
+    <script>
+        var matriz = [
+            ["M", "P", "G", "H", "H", "R"],
+            ["P", "H", "G", "H", "H", "G"],
+            ["P", "G", "M", "H", "H", "G"],
+            ["G", "R", "M", "H", "G", "G"],
+            ["R", "R", "H", "H", "G", "P"]
+        ];
+
+        var matriz2 = JSON.parse(JSON.stringify(matriz));
+
+        let angryBats = (array, x, y) => {
+            //idea función, cambio la posición primera por otro valor
+            //y luego cuando lo recorra si las adyacentes son H las cambio por  
+            //y luego la recorro una vez mas y elimino todos esos valores
+
+            let valorActual = array[x][y];
+
+            let flag = 0;
+            if (valorActual === "H") {
+                array[x][y] = " ";
+                flag = 1;
+            }
+
+            if (valorActual === "M") {
+                array[x][y] = "m";
+                flag = 1;
+            }
+
+            while (flag) {
+                flag = 0;
+                for (let i = 0; i < array.length; i++) {
+                    for (let j = 0; j < array[i].length; j++) {
+                        if (array[i][j] === " " || array[i][j] === "m") {
+                            //arriba
+                            if (i - 1 >= 0) {
+                                if (array[i - 1][j] === "M") {
+                                    array[i - 1][j] = "m";
+                                    flag = 1;
+                                }
+                                if (array[i - 1][j] === "H") {
+                                    array[i - 1][j] = " ";
+                                    flag = 1;
+                                }
+                            }
+
+                            //abajo
+                            if (i + 1 < array.length) {
+                                if (array[i + 1][j] === "M") {
+                                    array[i + 1][j] = "m";
+                                    flag = 1;
+                                }
+                                if (array[i + 1][j] === "H") {
+                                    array[i + 1][j] = " ";
+                                    flag = 1;
+                                }
+                            }
+
+                            //izquierda
+                            if (j - 1 >= 0) {
+                                if (array[i][j - 1] === "M") {
+                                    array[i][j - 1] = "m";
+                                    flag = 1;
+                                }
+                                if (array[i][j - 1] === "H") {
+                                    array[i][j - 1] = " ";
+                                    flag = 1;
+                                }
+                            }
+
+                            //derecha
+                            if (j + 1 < array[i].length) {
+                                if (array[i][j + 1] === "M") {
+                                    array[i][j + 1] = "m";
+                                    flag = 1;
+                                }
+                                if (array[i][j + 1] === "H") {
+                                    array[i][j + 1] = " ";
+                                    flag = 1;
+                                }
+                            }
+                        }
+
+                    }
+                }
+            }
+
+            return array;
+        }
+
+        angryBats(matriz2, 2, 2);
+
+        let mostrarArray = (array) => {
+            let tabla = document.createElement('table');
+
+            for (let i = 0; i < array.length; i++) {
+                let fila = document.createElement('tr');
+                for (let j = 0; j < array[i].length; j++) {
+                    let celda = document.createElement('td');
+                    celda.appendChild(document.createTextNode(array[i][j]));
+                    fila.appendChild(celda);
+                }
+                tabla.appendChild(fila);
+            }
+            document.body.appendChild(tabla);
+        }
+    </script>
 </body>
+
 </html>
