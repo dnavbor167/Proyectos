@@ -6,7 +6,7 @@
     }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +14,7 @@
     <style>.error{color:red;}</style>
 </head>
 <body>
-    <form action="index.php" method="post" enctype="multipart/form-data">
+    <form action="ejer3.php" method="post" enctype="multipart/form-data">
         <label for="numero">Introduzca un número entre 1 y el 10 (Ambos Inclusivos) </label>
         <input type="text" name="numero" id="numero">
         <?php 
@@ -53,9 +53,13 @@
                 die("<p class='error'>Error al leer el fichero</p>");
             }
 
-            fseek($file,$_POST["numero_linea"]-1);
-            $linea = fgets($file);
-            echo $linea;
+            $contador = 0;
+            while ($linea = fgets($file)) {
+                $contador++;
+                if ($contador == $_POST["numero_linea"]) {
+                    echo "<p>".$linea."</p>";
+                }
+            }
 
             fclose($file);
         } 

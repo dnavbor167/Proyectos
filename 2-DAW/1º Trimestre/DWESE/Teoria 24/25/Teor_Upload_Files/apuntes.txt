@@ -1,0 +1,2 @@
+SI EL TIPO DE ARCHIVO SUBIDO NO ES DE TEXTO PLANO:
+$_FILES["fichero"]["type"] != "text/plain";

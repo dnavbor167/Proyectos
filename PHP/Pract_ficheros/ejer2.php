@@ -4,7 +4,7 @@
     }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,7 +12,7 @@
     <style>.error{color:red;}</style>
 </head>
 <body>
-    <form action="index.php" method="post" enctype="multipart/form-data">
+    <form action="ejer2.php" method="post" enctype="multipart/form-data">
         <label for="numero">Introduzca un número entre 1 y el 10 (Ambos Inclusivos) </label>
         <input type="text" name="numero" id="numero">
         <?php 

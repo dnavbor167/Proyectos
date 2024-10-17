@@ -4,7 +4,7 @@
     }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,7 +16,7 @@
     </style>
 </head>
 <body>
-    <form action="index.php" method="post" enctype="multipart/form-data">
+    <form action="ejer1.php" method="post" enctype="multipart/form-data">
         <label for="numero">Introduzca u número entre el 1 y el 10 (Ambos inclusivos)</label>
         <input type="text" name="numero" id="numero">
         <?php 
@@ -45,7 +45,7 @@
                 }
 
                 for ($i = 1; $i <= 10; $i++) {
-                    $multiplicacion = $i . " x " . $_POST["numero"] . " = " . $i*$_POST["numero"];
+                    $multiplicacion =  $_POST["numero"] . " x " . $i . " = " . $i*$_POST["numero"];
                     fputs($file, $multiplicacion . ($i == 10 ? '' : PHP_EOL));
                 }
                 fclose($file);

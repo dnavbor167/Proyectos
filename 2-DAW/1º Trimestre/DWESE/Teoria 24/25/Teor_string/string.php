@@ -32,6 +32,9 @@
         //substr(texto, donde empiezo, cuantos cojo)
         //mejor echar un vistazo, porque tiene muchas funcionalidades
         substr($texto1, 3, 5);
+
+        //Cuenta las palabras de un texto por lo que es muy útil
+        str_word_count($texto);
     ?>
 </body>
 </html>
