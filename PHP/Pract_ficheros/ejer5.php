@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ejercicio 5</title>
-    <style>.error{color:red;}</style>
+    <style>
+        .error{color:red;}
+        table,th,td{border:solid 1px black;}
+        table{width:80%;margin:0;border-collapse:collapse;margin-top:2em;text-align: center;}
+    </style>
 </head>
 <body>
     <?php 
@@ -26,7 +30,7 @@
                 }
                 $contador_fila++;
 
-                
+
             }
 
             $contador++;
