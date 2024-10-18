@@ -6,7 +6,7 @@
     <title>Ejercicio 5</title>
     <style>
         .error{color:red;}
-        table,th,td{border:solid 1px black;padding: 0.6em;rem;}
+        table,th,td{border:solid 1px black;padding: 0.6em;}
         table{width:80%;margin:0;border-collapse:collapse;margin-top:2em;text-align: center;}
     </style>
 </head>
