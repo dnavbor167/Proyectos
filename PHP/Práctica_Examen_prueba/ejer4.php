@@ -1,0 +1,1 @@
+El txt viene primero el nombre, luego vienen de tres en tres los datos de los profesores (dia, hora, grupo)
