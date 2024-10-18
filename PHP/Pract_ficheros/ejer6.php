@@ -90,9 +90,6 @@
                 echo "</tr>";
             }
             $contador_linea++;
-
-
-
         }
         echo "</table>";
         fclose($file);

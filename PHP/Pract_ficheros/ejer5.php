@@ -31,22 +31,19 @@
                         echo "<th>".$linea_separada[$i]."</th>";
                         $contador_primera_linea++;
                 }
-            echo "</tr>";
+                echo "</tr>";
             } else {
                 echo "<tr>";
                 for($j = 0; $j < $contador_primera_linea; $j++) {
                     if ($j == 0) {
                         echo "<th>".$linea_separada[$j]."</th>";
                     } else {
-                        echo "<td>".$linea_separada[$j]."</td>";
+                        echo "<td>".(isset($linea_separada[$j]) ? $linea_separada[$j]: "")."</td>";
                     }
                 }
-            echo "</tr>";
+                echo "</tr>";
             }
             $contador_linea++;
-
-            
-
         }
         echo "</table>";
         fclose($file);
