@@ -18,15 +18,17 @@
         No importan las mayúsculas y minúsculas en*/
 
         var ciudades = [{ Nombre: "Estepona", CodPostal: 29680 }, { Nombre: "Malaga", CodPostal: 12345 }, { Nombre: "Manilva", CodPostal: 54321 }, { Nombre: "Fuengirola", CodPostal: 11111 }];
-        const encontrar = ciudades.find((valor) => {
-            let codigo = document.getElementById("codP");
-            return valor.CodPostal === codigo.toUpperCase();
-        });
+        let buscarPoblacion = () => {
+            const encontrar = ciudades.find((valor) => {
+                let codigo = document.getElementById("codP").value;
+                return valor.CodPostal === parseInt(codigo.trim());
+            });
 
-        if (encontrar) {
-            document.getElementById("name").innerHTML = encontrar.CodPostal + " - " + encontrar.Nombre;
-        } else {
-            document.getElementById("name").innerHTML = "No encontrado";
+            if (encontrar) {
+                document.getElementById("name").innerHTML = encontrar.CodPostal + " - " + encontrar.Nombre;
+            } else {
+                document.getElementById("name").innerHTML = "No encontrado";
+            }
         }
     </script>
 
