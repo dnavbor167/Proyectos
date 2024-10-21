@@ -24,7 +24,7 @@
 
     <?php 
         if (isset($_POST["btnContar"])) {
-            echo "<p>Hay ".my_strlen($_POST["texto"])." palabras</p>";
+            echo "<p>El número de caracteres tecleados ha sido de: ".my_strlen($_POST["texto"])."</p>";
         }
     ?>
 </body>

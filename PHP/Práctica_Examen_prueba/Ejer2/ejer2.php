@@ -9,7 +9,7 @@
         return $respuesta;
     }
     if (isset($_POST["btnSubir"])) {
-        $error_fichero = $_FILES["fichero"]["error"] || !extension_txt($_FILES["fichero"]["name"]) || $_FILES["fichero"]["size"] > 1024 * 1024;
+        $error_fichero = $_FILES["fichero"]["error"] || !extension_txt($_FILES["fichero"]["name"]) || $_FILES["fichero"]["size"] > 1000 * 1024;
     }
 ?>
 <!DOCTYPE html>
