@@ -21,6 +21,8 @@
                 placeholder="Email" 
                 autofocus 
                 required
+                maxlength="30"
+                aria-label="El usuario introduce un mail"
                 pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" 
                 title="Introduce un correo electrónico válido">
             <input type="password" name="pass" id="pass" 
@@ -28,6 +30,7 @@
                 required 
                 minlength="8" 
                 maxlength="16"
+                aria-label="El usuario introduce contraseña"
                 pattern="(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]+"
                 title="Introduce una contraseña entre 8 y 16 caracteres">
             <a href="#">Recuperar contraseña</a>

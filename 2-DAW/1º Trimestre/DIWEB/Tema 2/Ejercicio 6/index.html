@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reserva de cita</title>
+</head>
+
+<body>
+    <main>
+        <h2>Reserva de Cita</h2>
+        <form action="index.html" method="post">
+            <label for="nombre">*Nombre</label>
+            <input type="text" name="nombre" id="nombre" required maxlength="25" autofocus
+                pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ]+" title="Introduce un nombre válido">
+
+            <label for="apellido">*Apellidos</label>
+            <input type="text" name="apellido" id="apellido" required pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ]+" maxlength="30"
+                title="Introduce un apellido válido">
+
+            <label for="telefono">*Teléfono</label>
+            <div>
+                <select name="bandera" id="bandera" required title="Elegir pais">
+                    <option value="" disabled selected></option>
+                    <option value="espanya">🇪🇸 +34</option>
+                    <option value="francia">🇫🇷 +33</option>
+                    <option value="inglaterra">🏴󠁧󠁢󠁥󠁮󠁧󠁿 +44</option>
+                </select>
+                <input type="tel" name="telefono" id="telefono" 
+                    placeholder="612 34 56 78"
+                    pattern="\d{3} \d{2} \d{2} \d{2}" 
+                    required 
+                    title="El formato del teléfono debe ser 612 34 56 78">
+            </div>
+
+
+            <label for="mail">*Email</label>
+            <input type="email" name="mail" id="mail" placeholder="Email" required maxlength="30"
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Introduce un correo electrónico válido">
+
+            <label for="punto">*Sellecciona tu punto de venta</label>
+            <select name="punto" id="punto" required title="Introducir un punto de venta">
+                <option value="" disable selected></option>
+                <option value="madrid">Madrid</option>
+                <option value="zaragoza">Zaragoza</option>
+                <option value="sevilla">Sevilla</option>
+                <option value="malaga">Málaga</option>
+                <option value="bilbao">Bilbao</option>
+                <option value="cordoba">Córdoba</option>
+                <option value="santander">Santander</option>
+                <option value="leon">Leon</option>
+                <option value="orense">Orense</option>
+                <option value="ponferrada">Ponferrada</option>
+                <option value="aranjuez">Aranjuez</option>
+            </select>
+
+            <label for="vestido">*Tipo de Vestido</label>
+            <select name="vestido" id="vestido">
+                <option value="vestido-novia">Vestido de Novia</option>
+                <option value="vestido-fiesta">Vestido de Fiesta</option>
+            </select>
+
+            <label for="cita">*Fecha de cita</label>
+            <input type="date" name="cita" id="cita" required min="2024-10-22" title="Seleccionar el día actual">
+
+            <input type="submit" formnovalidate="formnovalidate" value="Submit without validation">
+        </form>
+    </main>
+</body>
+
+</html>
