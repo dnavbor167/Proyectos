@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar sesión</title>
+    <style>
+        input:invalid {
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Iniciar sesión</h1>
+    </header>
+
+    <main>
+        <form action="index.html" method="post">
+            <input type="email" name="mail" id="mail" 
+                placeholder="Email" 
+                autofocus 
+                required
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" 
+                title="Introduce un correo electrónico válido">
+            <input type="password" name="pass" id="pass" 
+                placeholder="Contraseña" 
+                required 
+                minlength="8" 
+                maxlength="16"
+                pattern="(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]+"
+                title="Introduce una contraseña entre 8 y 16 caracteres">
+            <a href="#">Recuperar contraseña</a>
+            <input type="submit" formnovalidate="formnovalidate" value="Iniciar sesión">
+        </form>
+    </main>
+</body>
+</html>
