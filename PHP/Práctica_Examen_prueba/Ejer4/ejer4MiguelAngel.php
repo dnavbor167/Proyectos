@@ -53,9 +53,11 @@ if (isset($_POST["btnSubir"])) {
             <select name="profesor" id="profesor">
                 <?php 
                     while ($linea = fgets($fd)) {
-                        $opcion = explode("\t", $linea);
-                        
-                        echo "<option value='".$opcion[0]."'>".$opcion[0]."</option>";
+                        $datos_linea = explode("\t", $linea);
+                        if (isset($_POST["profesor"]) && $_POST["profesor"] == $datos_linea[0])
+                            echo "<option selected value='".$datos_linea[0]."'>".$datos_linea[0]."</option>";
+                        else
+                            echo "<option value='".$datos_linea[0]."'>".$datos_linea[0]."</option>";
                     }
                 ?>
             </select>
