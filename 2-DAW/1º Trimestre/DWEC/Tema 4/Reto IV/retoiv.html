@@ -52,13 +52,11 @@
         };
 
         //Debemos calcular la nota media total de todas las asignaturas y de todos los alumnos, solo ha de tener 3 lineas
-        const todasNotas = valumnos.alumnos.map((value) => Object.values(value.notas));
+        const todasNotas = valumnos.alumnos.map((value) => Object.values(value.notas)).flat();
         const sumaNotas = todasNotas.reduce((acumulador, valorActual) => acumulador + valorActual, 0);
         const mediaTotal = sumaNotas / todasNotas.length; 
-        console.log(todasNotas)
-        console.log(sumaNotas)
-        console.log(todasNotas.length)
-        console.log("La media de todas las notas de los alumnos es: " + mediaTotal);
+
+        console.log("La media de todas las notas de los alumnos es: " + mediaTotal.toFixed(2));
 
     </script>
 </body>
