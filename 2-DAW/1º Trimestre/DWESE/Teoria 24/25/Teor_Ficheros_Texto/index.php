@@ -8,7 +8,7 @@
 <body>
     <?php 
         //Función para abrir un fichero
-        //Parámetros => ruta y modo(r,w,a)
+        //Parámetros => ruta y modo(r,w,a) TAMBIEN ESTA EL r+ QUE ES LECTURA Y ESCRITURA
         //si yo pongo w elimina todo lo que haya y poner algo nuevo
         //a para añadir
         //si le pongo como parametro un valor que no existe y le pongo w
@@ -87,6 +87,8 @@
         echo "<h3>Lectura de una web</h3>";
         $web = file_get_contents("https://www.google.com");
         echo $web;
+        //para escribir todo en un fichero
+        file_put_contents();
 
         //Para saber si existe un archivo:
         file_exists("direccion");
