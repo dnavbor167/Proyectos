@@ -21,6 +21,7 @@ ul {
 ul.menu {
     background-color: #ACACAC;
     border: 1px solid #FFF;
+    display: flex;
 }
 
 ul.menu>li {
