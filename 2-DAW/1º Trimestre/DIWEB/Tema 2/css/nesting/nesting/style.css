@@ -1,0 +1,120 @@
+:root{
+    /* Paleta de colores */
+    --color-green: hsl(120, 100%, 80%);
+    --color-lighgray: #eee;
+    --color-dark: #222;
+    --color-black: #000;
+
+    /* Estilos del tema */
+    --theme-primary: var(--color-green);
+    --theme-secondary: var(--color-lighgray);
+    --theme-background:var(--color-dark);
+    --theme-text: var(--color-lighgray);
+
+    /* Formulario */
+    --acent: var(--theme-primary);
+    --bg-form: transparent;
+    --form-shadow: inset 0 -10px 8px -12px var(--theme-primary), inset 2px 2px 5px 3px #000; /* El sombreado se va a aplicar por dentro*/
+
+    /* Iconos */
+    --icon-size: max(2rem, 4cqw);
+    --icon-shadow: drop-shadow(0 0 2px var(--theme-primary)); /*Filtro para que el sombreado se ajuste a la figura*/
+    --icon-shadow-hover: drop-shadow(0 0 2px var(--theme-primary)) drop-shadow(0 0 4px var(--theme-primary));
+}
+
+*,
+*::after,
+*::before{
+    box-sizing: border-box;
+}
+
+
+/*UTILIDADES*/
+/*Para ocultar el radio button */
+.check-toggle,
+.visually-hidden{
+    /* display:none; eliminamos el radio button del DOM y esto no es accesible. Un screen reader no podría chequear ese elemento*/
+    position: absolute;
+    width: 2px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0); /*recorta 1px de ancho y oculta visualmente el radio button*/
+}
+
+body{
+    background-color: var(--theme-background);
+    color: var(--theme-text);
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+ }
+ a{
+    color: var(--theme-primary);
+ }
+
+ h2{
+    text-align: center;
+    margin-block: 4rem; /*margin top y botton a la vez*/
+}
+
+/*******************/
+/* LEARNINGS */
+/*******************/
+
+.learnings-selector{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+
+    & label{ /* NESTING: Equivale a .learnings-selector label. Nos permite escribir en SAAS en nativo*/
+        cursor: pointer;
+        &:hover {
+            filter: invert(1); /*Invierte el color; funciona muy bien de blanco a negro*/ 
+        }
+        &:has(+input:checked) {  /*Cuando la etiqueta label tenga un elemento adyacente que se un input que esté checked. El estilo se aplica en el label cuando está hover*/
+           filter: invert(0.5);
+           
+        }
+    }
+}
+
+.learnings{
+    max-width: 80vw;
+    margin: 5rem auto;
+}
+.learnings .learnings-list{
+    display: grid;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.learnings:has(#list:checked) .learnings-list{
+    grid-template-columns: max-content;
+}
+
+
+.learnings:has(#grid:checked) .learnings-list{
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /*Mientras quepan elementos distribuye los elementos en columnas de como minimo 200px y max 1fr*/
+}
+
+.learnings-list li{
+    position: relative;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 2rem;
+    border: 2px solid var(--theme-primary);
+    border-radius: 4px;
+    &:hover{
+        background-color: var(--theme-primary);
+        color: var(--theme-background);
+    }
+    &:has(input:checked){ /*Este estilo se le aplica al li*/
+        background-color: var(--theme-primary);
+        color: var(--theme-background);
+    }
+    & label{ /*El li que tenga un label dentro */
+       cursor: pointer;
+    }
+}

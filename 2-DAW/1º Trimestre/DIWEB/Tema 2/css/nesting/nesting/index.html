@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html lang="es">
+    <head>
+        <title>Novedades sobre CSS3</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <section id="learnings" class="learnings">
+            <h2>Nesting nativo de CSS3</h2>
+
+            <div class="learnings-selector">
+                <label for="list"><img src="icons/list.svg" alt="List viwe"></label>
+                <input type="radio" aria-label="List view" name="view" id="list" class="visually-hidden" checked>
+                <label for="grid"><img src="icons/grid.svg" alt="Grid viwe"></label>
+                <input type="radio" aria-label="Grid view" name="view" id="grid" class="visually-hidden">
+            </div>
+
+            <ul class="learnings-list">
+                <li>
+                    <label for="learnings-placeholder">:placeholder</label>
+                    <input type="checkbox" name="" id="learnings-placeholder" class="visually-hidden">
+                </li>
+                <li>
+                    <label for="learnings-has">:has</label>
+                    <input type="checkbox" name="" id="learnings-has" class="visually-hidden">
+                </li>
+                <li>
+                    <label for="learnings-id">:is</label>
+                    <input type="checkbox" name="" id="learnings-id" class="visually-hidden">
+                </li>
+                <li>
+                    <label for="learnings-nesting">Nesting</label>
+                    <input type="checkbox" name="" id="learnings-nesting" class="visually-hidden">
+                </li>
+                <li>
+                    <label for="learnings-vars">Custom Properties</label>
+                    <input type="checkbox" name="" id="learnings-vars" class="visually-hidden">
+                </li>
+            </ul>
+        </section>
+    </body>
+</html>
