@@ -22,8 +22,51 @@
                 return;
             }
 
-            
+            //si encuentra una R retorna para que no siga 
+            if (array[x][y] === "R" || array[x][y] === "*") {
+                return;
+            }
+
+            //si es un espacio o una A lo cambiaomos por asterisco
+            if (array[x][y] === "A") {
+                array[x][y] = "*";
+            }
+
+            if (x > 0 && (array[x - 1][y] === "A")) { //arriba
+                ganador(array, x - 1, y);
+            }
+
+            if (x < array.length - 1 && (array[x + 1][y] === "A")) { //abajo
+                ganador(array, x + 1, y);
+            }
+
+            if (y > 0 && (array[x][y - 1] === "A")) { //izquierda
+                ganador(array, x, y - 1);
+            }
+
+            if (y < array[x].length - 1 && (array[x][y + 1] === "A")) { //derecha
+                ganador(array, x, y + 1);
+            }
+
+            return RusosAlemanes(array);
+
         }
+
+        function RusosAlemanes(array) {
+            let contador = 0;
+
+            for (let i = 0; i < array.length; i++) {
+                for (let j = 0; j < array[i].length; j++) {
+                    if (array[i][j] === "A") {
+                        contador++;
+                    }
+                }
+            }
+
+            return contador > 0 ? "Los Rusos han ganado" : "Los Alemanes han ganado";
+        }
+
+        console.log(ganador(mapa, 0, 0));
     </script>
 </body>
 
