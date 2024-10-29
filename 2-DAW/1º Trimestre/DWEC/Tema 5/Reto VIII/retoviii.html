@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reto VIII</title>
+</head>
+
+<body>
+    <h1>retos JavaScript</h1>
+    <ul id="carrakos"> </ul>
+
+    <script>
+
+        var carrakos = ["Chevrolet", "Tesla", "BMW", ["Honda", "Infiniti", ["Lexus", "Mercedes", "Kia"], "Hyunday"], ["Mazda", "Mercedes", "Jeep", ["KTM", "Nissan", "Isuzu"]]];
+
+        carrakos.map(f => {
+            let lista = document.createElement("li");
+            let contenido = document.createTextNode(f);
+            let listaDeshordenada = document.createElement("ul");
+            if (Array.isArray(f)) {
+                f.map(f2 => {
+                    let subList = document.createElement("li");
+                    let subText = document.createTextNode(f2);
+                    subList.appendChild(subText);
+                    listaDeshordenada.appendChild(subList);
+                });
+                lista.appendChild(listaDeshordenada);
+            } else {
+                let contenido = document.createTextNode(f);
+                lista.appendChild(contenido);
+            }
+
+            document.getElementById("carrakos").appendChild(lista);
+        });
+
+
+    </script>
+</body>
+
+</html>
