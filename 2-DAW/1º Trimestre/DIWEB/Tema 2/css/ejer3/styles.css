@@ -22,6 +22,10 @@ ul.menu {
     background-color: #ACACAC;
     border: 1px solid #FFF;
     display: flex;
+    flex-direction: row-reverse;
+    /*Cuando no haya espacio en el eje transversal:
+    Se va para abajo cuando no quepa*/
+    flex-wrap: wrap;
 }
 
 ul.menu>li {
