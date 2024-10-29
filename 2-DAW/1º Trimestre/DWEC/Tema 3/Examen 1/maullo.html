@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maullo</title>
+</head>
+
+<body>
+    <script>
+        let maullo = [
+            ['X', '', '', 'X', 'X', ''],
+            ['X', '', '', '', 'X', ''],
+            ['X', '', '', '', 'X', 'X'],
+            ['X', 'X', '', '', '', ''],
+            ['', 'X', 'X', 'X', 'X', 'X']];
+        const maxx = maullo.length;
+        const maxy = maullo[0].length;
+
+
+        //función principal, para que siempre que la llamemos se haga una copia
+        //de la matriz original y para que el contador se restablezca
+        function maulloF(x, y) {
+            //copiamos la matriz para no modificar la original
+            const maulloCopia = JSON.parse(JSON.stringify(maullo));
+
+            //inicializamos un contador para poder contar las X
+            let contador = 0;
+
+            //Creamos esta función donde estará la recursividad
+            function numTrincheras(x, y) {
+                //si está fuera del rango de la matriz (fuera de los límites)
+                //devuelve y no sigue la función
+                if (x < 0 || x >= maxx || y < 0 || y >= maxy) {
+                    return;
+                }
+                if (maulloCopia[x][y] !== "X") {
+                    return contador;
+                }
+
+                //si es igual a X incrementamos en 1 el contador y cambiamos
+                //dicho valor para que no vuelva a contarlo o cree vucle infinito
+                if (maulloCopia[x][y] === "X") {
+                    contador++;
+                    maulloCopia[x][y] = "*";
+                }
+
+                //iniciamos recursividad para mirar:
+                //arriba, abajo, izquierda y derecha
+
+                if (x - 1 >= 0 && maulloCopia[x - 1][y] === "X") {
+                    numTrincheras(x - 1, y); //arriba
+                }
+                if (x + 1 < maxx && maulloCopia[x + 1][y] === "X") {
+                    numTrincheras(x + 1, y); //abajo
+                }
+                if (y - 1 >= 0 && maulloCopia[x][y - 1] === "X") {
+                    numTrincheras(x, y - 1); //izquierda
+                }
+                if (y + 1 < maxy && maulloCopia[x][y + 1] === "X") {
+                    numTrincheras(x, y + 1); //derecha
+                }
+                return contador;
+            }
+            //devolvemos la función recursiva con los parametros pasados 
+            //a la función padre
+            return numTrincheras(x, y);
+        }
+
+        console.log("Hay una trinchera de " + maulloF(0, 0) + " metros de longitud");
+        console.log("Hay una trinchera de " + maulloF(0, 1) + " metros de longitud");
+        console.log("Hay una trinchera de " + maulloF(0, 4) + " metros de longitud");
+        console.log("Hay una trinchera de " + maulloF(2, 4) + " metros de longitud");
+
+        console.log("PRUEBAS:");
+
+        console.log("Hay una trinchera de " + maulloF(3, 1) + " metros de longitud");
+        console.log("Hay una trinchera de " + maulloF(4, 1) + " metros de longitud");
+        console.log("Hay una trinchera de " + maulloF(4, 5) + " metros de longitud");
+        console.log("Hay una trinchera de " + maulloF(3, 3) + " metros de longitud");
+
+    </script>
+</body>
+
+</html>
