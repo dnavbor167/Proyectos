@@ -112,7 +112,7 @@ if (isset($_POST["btnSubir"])) {
                 echo "<th>" . HORAS[$j] . "</th>";
                 for ($y = 0; $y < count(DIAS) - 1; $y++) {
                     if ($j == 4)
-                        echo "<td collspan='5'></td>";
+                        echo "<td colspan='5'></td>";
                     else
                         echo "<td></td>";
                 }
