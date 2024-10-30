@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reto VIII</title>
+    <title>Retos 9</title>
 </head>
 
 <body>
@@ -13,7 +13,8 @@
 
     <script>
 
-        var carrakos = ["Chevrolet", "Tesla", "BMW", ["Honda", "Infiniti", ["Lexus", "Mercedes", "Kia"], "Hyunday"], ["Mazda", "Mercedes", "Jeep", ["KTM", "Nissan", "Isuzu"]]];
+        let carrakos = ["Chevrolet", "Tesla", "BMW", ["Honda", "Infiniti", ["Lexus", "Mercedes", "Kia"], "Hyunday"], ["Mazda", "Mercedes", "Jeep", ["KTM", "Nissan", "Isuzu"]]];
+        let xungos = [{ nombre: "Bruce Lee", carros: ["Chevrolet", "Tesla", "BMW"] }, { nombre: "YakiChan", carros: ["Lexus", "Mercedes", "Kia"] }]
 
         function nodosRecursivo(array, ulRecursivo) {
             array.map(f => {
@@ -23,15 +24,15 @@
                     nodosRecursivo(f, ulDeshordenado);
                 } else {
                     let lista = document.createElement("li");
-                    let contenido = document.createTextNode(f);
-                    lista.appendChild(contenido);
+                    let propietarios = xungos.filter(x => x.carros.includes(f)).map(n => n.nombre);
+                    let contenido = propietarios.length > 0 ? f + " de " + propietarios : f;
+                    lista.appendChild(document.createTextNode(contenido));
                     ulRecursivo.appendChild(lista);
                 }
             });
         }
 
         nodosRecursivo(carrakos, document.getElementById("carrakos"));
-
 
     </script>
 </body>
