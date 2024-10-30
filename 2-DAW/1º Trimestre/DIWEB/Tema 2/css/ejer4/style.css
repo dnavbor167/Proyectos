@@ -11,18 +11,15 @@ a {
     color: white;
 }
 
-ul {
+ul.menu {
     list-style-type: none;
     padding: 0;
     margin: 0;
-}
-
-ul.menu {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     background-color: #27A2db;
 }
+
 ul.menu>li {
     border-top: solid .3px rgb(189, 188, 188);
     padding: 1rem;
@@ -34,6 +31,7 @@ ul.menu>li {
         flex-direction: row;
         justify-content: space-evenly;
     }
+
     ul.menu>li {
         border: none;
     }

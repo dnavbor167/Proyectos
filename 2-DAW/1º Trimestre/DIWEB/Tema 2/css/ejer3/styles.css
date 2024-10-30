@@ -22,10 +22,12 @@ ul.menu {
     background-color: #ACACAC;
     border: 1px solid #FFF;
     display: flex;
-    flex-direction: row-reverse;
+    flex-flow: row wrap;
     /*Cuando no haya espacio en el eje transversal:
     Se va para abajo cuando no quepa*/
-    flex-wrap: wrap;
+    justify-content: space-evenly;
+    height: 60vh;
+    align-items: stretch;
 }
 
 ul.menu>li {
@@ -33,4 +35,9 @@ ul.menu>li {
     margin: .62rem;
     border: 1px solid #FFF;
     padding: .62rem;
+}
+
+ul.menu>li:nth-child(1) {
+    background-color: red;
+    align-items: flex-start;
 }
