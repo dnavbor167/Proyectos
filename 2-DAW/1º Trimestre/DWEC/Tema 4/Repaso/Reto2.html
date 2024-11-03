@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reto 1 repaso</title>
+</head>
+
+<body>
+    <h1>retos JavaScript</h1>
+    <script>
+        var cars = ["Saab", "Volvo", "BMW", ["Honda", "Toyota", ["Lexus", "Mercedes", "Lada"], "Hyunday"]];
+        var carrakos = ["Chevrolet", "Tesla", "BMW", ["Honda", "Infiniti", ["Lexus", "Mercedes", "Kia"], "Hyunday"], ["Mazda", "Mercedes", "Jeep", ["KTM", "Nissan", "Isuzu"]]];
+        //Alguien sabe hacer una lista única de coches con los dos arrays (sin repeticiones)?
+        const result = cars.flat(2).concat(carrakos.flat(2)).sort().filter((valor, indice, array) => array.indexOf(valor) === indice);
+
+        //Alguien sabría decirme los coches de carrakos que no estén en cars?
+        const result2 = carrakos.flat(2).filter((valor) => !cars.flat(2).includes(valor));
+
+        var cars = ["Saab", "Volvo", "BMW", ["Honda", "Toyota", ["Lexus", "Mercedes", "Lada"], "Hyunday"]];
+        var buddies = [{ firstName: "Chuck", lastName: "Norris", car: "Honda" }, { firstName: "Yakie", lastName: "Chang", car: "BMV" }, { firstName: "Bruce", lastName: "Lee", car: "Honda" }, { firstName: "Steven", lastName: "Seagal", car: "Lada" }];
+        //-Nombre y apellidos de los buddies que usan un Honda
+
+        //-Marcas utilizadas por los buddies
+
+        //-Marcas no utilizadas por los buddies.
+
+        //-Cuantas marcas han sido utilizadas
+
+        //-Cuantas marcas no han sido utilizadas
+
+
+    </script>
+
+</body>
+
+</html>
