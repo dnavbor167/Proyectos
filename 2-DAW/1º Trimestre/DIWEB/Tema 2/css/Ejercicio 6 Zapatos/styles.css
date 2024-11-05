@@ -1,0 +1,38 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    padding: 0;
+}
+
+img {
+    width: 100%;
+    height: auto;
+}
+
+section#ofertas, article.item-oferta {
+    display: flex;
+    flex-flow: column;
+}
+
+.item-oferta h3,
+.item-oferta p,
+.item-oferta button.boton-cesta {
+    text-align: center;
+}
+
+button.boton-cesta {
+    margin-top: auto;
+}
+
+.item-oferta h3,
+.item-oferta p,
+.item-oferta img {
+    order: -1;
+}
+
+article {
+    border: 1px solid black;
+    border-radius: 20px;
+}
