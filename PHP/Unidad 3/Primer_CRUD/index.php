@@ -36,10 +36,12 @@ if (isset($_POST["btnContAgregar"])) {
     }
 
     $error_nombre = $_POST["nombre"] == "";
-    $error_usuario = $_POST["usuario"] == "" || $usuario_repetido > 0; // No se puede repetir
+    $error_usuario = $_POST["usuario"] == "" || mysqli_fetch_row($usuario_repetido)[0] > 0; // No se puede repetir
     $error_contrasenya = $_POST["clave"] == "";
-    $error_email = $_POST["email"] == "" || !filter_var($_POST["email"], FILTER_VALIDATE_EMAIL || $email_repetido > 0); //No se puede repetir
+    $error_email = $_POST["email"] == "" || !filter_var($_POST["email"], FILTER_VALIDATE_EMAIL) || mysqli_fetch_row($email_repetido)[0] > 0; //No se puede repetir
     $error_form = $error_nombre || $error_usuario || $error_contrasenya || $error_email;
+    mysqli_free_result($usuario_repetido);
+    mysqli_free_result($email_repetido);
 
     if (!$error_form) {
         try {

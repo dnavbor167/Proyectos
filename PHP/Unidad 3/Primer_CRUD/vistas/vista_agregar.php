@@ -7,7 +7,7 @@
     </p>
     <p>
         <label for="usuario">Usuario:</label>
-        <input type="text" name="usuario" id="usuario" value="<?php if (isset($_POST["usuario"])) echo $_POST["usuario"]; ?>" />
+        <input type="text" name="usuario" id="usuario" value="<?php if (isset($_POST["usuario"]) && !$err) echo $_POST["usuario"]; ?>" />
         <?php
         if (isset($_POST["btnContAgregar"]) && $error_usuario) {
             if ($_POST["usuario"] == "")

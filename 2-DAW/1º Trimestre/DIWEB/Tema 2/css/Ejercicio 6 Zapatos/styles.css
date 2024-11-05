@@ -11,9 +11,14 @@ img {
     height: auto;
 }
 
-section#ofertas, article.item-oferta {
+section#ofertas, article.item-oferta  {
     display: flex;
     flex-flow: column;
+    gap: 1rem;
+}
+
+h3 {
+    padding-top: 2rem;
 }
 
 .item-oferta h3,
@@ -22,12 +27,7 @@ section#ofertas, article.item-oferta {
     text-align: center;
 }
 
-button.boton-cesta {
-    margin-top: auto;
-}
-
 .item-oferta h3,
-.item-oferta p,
 .item-oferta img {
     order: -1;
 }
@@ -35,4 +35,29 @@ button.boton-cesta {
 article {
     border: 1px solid black;
     border-radius: 20px;
+}
+
+button.boton-cesta {
+    padding: .5rem 2rem;
+    background-color: orange;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    flex: 0 40%;
+    align-self: center;
+    margin-top: auto;
+    margin-bottom: 2rem;
+    box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.5);
+}
+
+@media(min-width: 600px) {
+    section#ofertas {
+        flex-flow: row;
+    }
+
+    button.boton-cesta {
+        flex: 0;
+    }
 }
