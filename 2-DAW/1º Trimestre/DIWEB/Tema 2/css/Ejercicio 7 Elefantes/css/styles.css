@@ -168,12 +168,14 @@ article.news-art {
     display: none;
   }
   section#principal {
-    flex-flow: row;
+    flex-flow: row wrap;
   }
 
   section#principal h2, section#principal article#primerElemento {
-    flex: 100%;
+    flex: 0 0 100%;
   }
 
-
+  section#principal article.news-art {
+    flex: 0 0 50%;
+  }
 }
