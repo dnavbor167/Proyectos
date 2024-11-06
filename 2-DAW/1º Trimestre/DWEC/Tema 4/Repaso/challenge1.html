@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Challenge 1</title>
+</head>
+<body>
+    <script>
+        //¿Serías capaz en un array de nombres de localizar la persona más popular?
+        const array = ["ana", "fran", "juan", "ana", "juan", "ana", "pedro"]
+
+        const popular = array.map(n => array.filter(v => n == v).length)
+        console.log(popular)
+    </script>
+</body>
+</html>
