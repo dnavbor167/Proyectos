@@ -6,9 +6,13 @@ body {
     padding: 0;
 }
 
-img {
-    width: 100%;
-    height: auto;
+.item-oferta img {
+        max-width: 100%;
+}
+
+div#contenido {
+    display: flex;
+    flex-flow: column;
 }
 
 section#ofertas, article.item-oferta  {
@@ -17,8 +21,9 @@ section#ofertas, article.item-oferta  {
     gap: 1rem;
 }
 
-h3 {
-    padding-top: 2rem;
+article.item-oferta {
+    padding: 1rem;
+    max-width: 25rem;
 }
 
 .item-oferta h3,
@@ -52,7 +57,7 @@ button.boton-cesta {
     box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.5);
 }
 
-@media(min-width: 600px) {
+@media(min-width: 500px) {
     section#ofertas {
         flex-flow: row;
     }
