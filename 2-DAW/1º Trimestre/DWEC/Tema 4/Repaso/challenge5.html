@@ -4,13 +4,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Challenge 4</title>
+    <title>Challenge 5</title>
 </head>
 
 <body>
-    <h1>Cuenta elemento no repetidos de un array</h1>
+    <h1>Challenge V</h1>
     <script>
-        
+        let letras = "Buenos días hoy es lunes"
+        let invertida = "";
+        letras.split(" ")
+            .map(letra => {
+                let letReversa = ""
+                for (let i = letra.length - 1; i >= 0; i--) {
+                    letReversa += letra[i];
+                }
+                invertida += letReversa + " "
+            })
+
+            console.log(invertida)
     </script>
 </body>
 

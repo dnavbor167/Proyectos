@@ -8,7 +8,36 @@
 <body>
     <script>
         //¿Serías capaz en un array de nombres de localizar las TRES  personas más populares?
+        const array = ["ana", "fran", "juan", "ana", "juan", "ana", "pedro"]
+        let nomPop1 = "";
+        let nomPop2 = "";
+        let nomPop3 = "";
+
+        let numPop1 = 0;
+        let numPop2 = 0;
+        let numPop3 = 0;
         
+        array.map(nombre => {
+            let popular = array.filter(mP => mP == nombre).length;
+            if (popular > numPop1) {
+                numPop1 = popular
+                nomPop1 = nombre
+            }
+            if (popular > numPop2 && popular < numPop1) {
+                numPop2 = popular
+                nomPop2 = nombre
+            }
+            if (popular > numPop3 && popular < numPop2) {
+                numPop3 = popular
+                nomPop3 = nombre
+            }  
+        })
+
+        console.log("Popular 1: " + nomPop1 + " sale: " + numPop1)
+        console.log("Popular 2: " + nomPop2 + " sale: " + numPop2)
+        console.log("Popular 3: " + nomPop3 + " sale: " + numPop3)
+
+
     </script>
 </body>
 </html>
