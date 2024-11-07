@@ -7,7 +7,7 @@
     </p>
     <p>
         <label for="usuario">Usuario:</label>
-        <input type="text" name="usuario" id="usuario" value="<?php if (isset($_POST["usuario"]) && !$err) echo $_POST["usuario"]; ?>" />
+        <input type="text" name="usuario" id="usuario" value="<?php if (isset($_POST["usuario"])) echo $_POST["usuario"]; ?>" />
         <?php
         if (isset($_POST["btnContAgregar"]) && $error_usuario) {
             if ($_POST["usuario"] == "")
@@ -19,14 +19,14 @@
     </p>
     <p>
         <label for="clave">Contraseña:</label>
-        <input type="password" name="clave" id="clave" value="<?php if (isset($_POST["clave"])) echo $_POST["clave"]; ?>" />
+        <input type="password" name="clave" id="clave"/>
         <?php if (isset($_POST["btnContAgregar"]) && $error_contrasenya) echo "<span class='error'>* Campo vacío *</span>"; ?>
     </p>
     <p>
         <label for="email">Email:</label>
         <input type="text" name="email" id="email" value="<?php if (isset($_POST["email"])) echo $_POST["email"]; ?>" />
         <?php
-        if (isset($_POST["btnContAgregar"]) && $error_form) {
+        if (isset($_POST["btnContAgregar"]) && $error_email) {
             if ($_POST["email"] == "") {
                 echo "<span class='error'>* Campo vacío *</span>";
             } else if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
