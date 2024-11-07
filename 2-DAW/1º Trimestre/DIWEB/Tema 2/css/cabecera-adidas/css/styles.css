@@ -1,0 +1,125 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 16px;
+    color: black;
+    background-color: white;
+}
+
+ul {
+    padding-left: 0;
+    list-style: none;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+header {
+    display: flex;
+    flex-flow: column;
+}
+
+header > p {
+    display: flex;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    justify-content: center;
+    margin-top: 0;
+    margin-bottom: 0;
+    background-color: black;
+    color: white;
+    font-weight: bold;
+}
+
+header > p > span:nth-child(1) {
+    display: none;
+}
+
+header > div:nth-child(2) {
+    display: flex;
+    align-items: center;
+    padding: .5rem 0;
+    padding-top: .8rem;
+}
+
+header > div:nth-child(2) > svg:nth-child(1) {
+    width: 4.5rem;
+    height: 2.5rem;
+    order: 3;
+    margin-left: auto;
+    margin-right: auto;
+    flex: 1;
+}
+
+header > div:nth-child(2) > nav#main-menu {
+    display: flex;
+    flex-flow: column;
+    order: 1;
+}
+
+header > div:nth-child(2) > nav#main-menu > label {
+    font-size: 1.5rem;
+    margin-left: .5rem;
+    margin-right: .5rem;
+}
+
+header > div:nth-child(2) > nav#main-menu > input,
+header > div:nth-child(2) > nav#main-menu > ul {
+    display: none;
+}
+
+header > div:nth-child(2) > div#buscador {
+    display: flex;
+    align-items: center;
+    order: 5;
+}
+
+header > div:nth-child(2) > div#buscador > input {
+    display: none;
+}
+
+header > div:nth-child(2) > div#buscador > svg {
+    width: 2rem;
+    height: auto;
+    fill: black;
+}
+
+header > div:nth-child(2)  > svg#usuario {
+    order: 4;
+    margin-left: auto;
+    width: 2rem;
+    height: auto;
+    fill: black;
+}
+
+header > div:nth-child(2)  > svg#carro {
+    order: 6;
+    margin-left: .5rem;
+    margin-right: .5rem;
+    width: 2rem;
+    height: auto;
+    fill: black;
+}
+
+header > div:nth-child(2)  > svg#corazon {
+    order: 2;
+    width: 1.4rem;
+    height: auto;
+    fill: black;
+}
+
+header > div:nth-child(3) {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #ECEFF1;
+    color: rgb(39, 39, 39);
+}
+
+header > div:nth-child(3) a {
+    color: rgb(39, 39, 39);
+}
