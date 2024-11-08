@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Challenge VII</title>
+</head>
+
+<body>
+    <script>
+        const REYES = ["Chindatore", ["Chindasvinto", "Rencesvinto", "Lautaro"], ["Lauro", "Sisebuto", ["Fracisbuto", "Vigafredo", ["Leovigildo", "Recaredo"]]], "Amalarico II"];
+
+        function ultimaGeneracion(array, generacion) {
+            let maxgen = generacion
+            array.map(e => {
+                if (Array.isArray(e)) {
+                    let auxgen = ultimaGeneracion(e, generacion+1)
+                    if (auxgen > maxgen) maxgen = auxgen
+                }
+            })
+            return maxgen
+        }
+
+        const mostrarUltimaGen = (array, generacion, cual) => {
+            let godos = []
+            array.map(e => {
+                if (Array.isArray(e)) {
+                    godos.push(...mostrarUltimaGen(e,generacion+1,cual))
+                } else {
+                    if (generacion == cual) godos.push(e)
+                }
+            })
+            return godos
+        }
+
+        console.log(ultimaGeneracion(REYES, 1))
+        console.log(mostrarUltimaGen(REYES,1,ultimaGeneracion(REYES,1)))
+    </script>
+</body>
+
+</html>
