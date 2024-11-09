@@ -18,13 +18,13 @@
             { name: "Bob", salary: 4000 },
             { name: "Charlie", salary: 2000 }
         ];
-
-        const aumentoSalario = empleados.filter(s => s.salary < 3000).map(e => ({
-            name: e.name,
-            salary: e.salary * 1.2
-        }))
-
-        console.log(aumentoSalario)
+        const incremento = empleados
+            .filter(s => s.salary < 3000)
+            .map(e => ({
+                name: e.name,
+                salary: e.salary * 1.1
+            }))
+        console.log(incremento)
 
         // Ejemplo 2: Queremos buscar productos y calcular el total del carrito.
         // Enunciado: Tienes un array de productos con propiedades name, price, y inCart.
@@ -34,8 +34,10 @@
             { name: "Phone", price: 500, inCart: false },
             { name: "Tablet", price: 300, inCart: true }
         ];
-        const totalCarrito = products.reduce((acc, val) => acc + val.price, 0);
-        console.log("Total del carrito es de " + totalCarrito + "€")
+        const costoTotal = products
+            .filter(c => c.inCart == true)
+            .reduce((acc, v) => acc + v.price, 0)
+        console.log(costoTotal)
 
         // Ejemplo 3: Se pide calcular el precio total de todos los productos que estén en descuento 
         // previamente descontando un 10 % de su pvp.Tip: usa también reduce
@@ -45,26 +47,31 @@
             { name: "Tablet", price: 300, discounted: true },
             { name: "Monitor", price: 200, discounted: true }
         ];
-        const totalDescuentos = products2.filter(d => d.discounted == true).reduce((acc, v) => acc + v.price, 0)
-        console.log("Total del carrito de descuentos es de " + totalDescuentos + "€")
+        const costoDescuento = products2
+            .filter(d => d.discounted == true)
+            .reduce((acc,v) => acc + v.price, 0)
+        console.log(costoDescuento)
+    
 
         // Ejemplo 4: Encontrar el empleado con el salario más alto en un departamento específico("Engineering")
         const employees = [
             { name: "Alice", salary: 3000, department: "HR" },
             { name: "Bob", salary: 5000, department: "Engineering" },
             { name: "Charlie", salary: 4000, department: "Engineering" },
+            { name: "Dani", salary: 6000, department: "Engineering" },
             { name: "Dave", salary: 3500, department: "HR" }
         ];
+        const engi = employees
+            .filter(d => d.department == "Engineering")
+            .reduce((acc,v) => {
+                if (acc.salary > v.salary) {
+                    return acc
+                } else {
+                    return v
+                }
+            })
+        console.log(engi)
 
-        const salAlto = employees.filter(e => e.department == "Engineering").reduce((max, v) => {
-            if (v.salary > max.salary) {
-                return v
-            } else {
-                return max
-            }
-        })
-
-        console.log(salAlto)
 
     </script>
 </body>

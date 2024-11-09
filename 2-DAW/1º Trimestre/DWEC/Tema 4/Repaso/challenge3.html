@@ -8,17 +8,21 @@
 <body>
     <script>
         //Crea un array que contenga 100 números aleatorios del uno al 1000, pero que no se repita ninguno.
-        let arrAleatorio = [];
+        let cienAleatorio = []
+        while(cienAleatorio.length < 100) {
+            let aleatorio = Math.floor(Math.random() * 1000) + 1
 
-        while (arrAleatorio.length < 100) {
-            let num = Math.floor(Math.random() * 1000) + 1;
-            if (!arrAleatorio.find(e => e == num)) {
-                arrAleatorio.push(num)
+            if (!cienAleatorio.find(n => n == aleatorio)) {
+                cienAleatorio.push(aleatorio)
             }
         }
 
-        console.log(arrAleatorio)
-        
+        console.log(cienAleatorio)
+
+        //comprobar que no se ha repetido 
+        let repetidos = cienAleatorio.filter((e,i,a) => a.indexOf(e) != i).length;
+
+        console.log(repetidos)
     </script>
 </body>
 </html>

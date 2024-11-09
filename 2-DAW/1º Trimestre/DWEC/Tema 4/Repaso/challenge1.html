@@ -11,16 +11,16 @@
     <script>
         //¿Serías capaz en un array de nombres de localizar la persona más popular?
         const array = ["ana", "fran", "juan", "ana", "juan", "ana", "pedro"]
-        let cantidad = 0;
-        let nombre = "";
-        array.map(n => {
-            let pop = array.filter(v => n == v).length;
-            if (pop > cantidad) {
-                cantidad = pop;
-                nombre = n;
+        let nombre = ""
+        let pop = 0;
+        const mostPopular = array.map(n => {
+            let nomRep = array.filter(p => n == p).length
+            if (nomRep > pop) {
+                nombre = n
+                pop = nomRep
             }
         })
-        console.log(nombre + ": " + cantidad)
+        console.log("La persona más popular es: " + nombre + " que ha salido " + pop + " veces")
     </script>
 </body>
 

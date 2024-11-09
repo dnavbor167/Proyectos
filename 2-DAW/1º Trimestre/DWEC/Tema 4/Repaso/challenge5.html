@@ -12,16 +12,15 @@
     <script>
         let letras = "Buenos días hoy es lunes"
         let invertida = "";
-        letras.split(" ")
-            .map(letra => {
-                let letReversa = ""
-                for (let i = letra.length - 1; i >= 0; i--) {
-                    letReversa += letra[i];
-                }
-                invertida += letReversa + " "
-            })
+        letras.split(" ").map(invert => {
+            let palabra = ""
+            for(let i = invert.length - 1; i >= 0; i--) {
+                palabra += invert[i]
+            }
 
-            console.log(invertida)
+            invertida += palabra + " "
+        })
+        console.log(invertida)
     </script>
 </body>
 

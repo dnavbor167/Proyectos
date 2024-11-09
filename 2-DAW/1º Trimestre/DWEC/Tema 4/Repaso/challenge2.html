@@ -9,35 +9,33 @@
     <script>
         //¿Serías capaz en un array de nombres de localizar las TRES  personas más populares?
         const array = ["ana", "fran", "juan", "ana", "juan", "ana", "pedro"]
-        let nomPop1 = "";
-        let nomPop2 = "";
-        let nomPop3 = "";
+       let per1 = ""
+       let per2 = ""
+       let per3 = ""
 
-        let numPop1 = 0;
-        let numPop2 = 0;
-        let numPop3 = 0;
-        
-        array.map(nombre => {
-            let popular = array.filter(mP => mP == nombre).length;
-            if (popular > numPop1) {
-                numPop1 = popular
-                nomPop1 = nombre
+       let num1 = 0
+       let num2 = 0
+       let num3 = 0
+
+       const populars = array.map(n => {
+            let numPop = array.filter(p => n == p).length
+            if (numPop > num1) {
+                per1 = n
+                num1 = numPop
             }
-            if (popular > numPop2 && popular < numPop1) {
-                numPop2 = popular
-                nomPop2 = nombre
+            if (numPop > num2 && numPop < num1) {
+                per2 = n
+                num2 = numPop
             }
-            if (popular > numPop3 && popular < numPop2) {
-                numPop3 = popular
-                nomPop3 = nombre
-            }  
-        })
+            if (numPop > num3 && numPop < num2) {
+                per3 = n
+                num3 = numPop
+            }
+       })
 
-        console.log("Popular 1: " + nomPop1 + " sale: " + numPop1)
-        console.log("Popular 2: " + nomPop2 + " sale: " + numPop2)
-        console.log("Popular 3: " + nomPop3 + " sale: " + numPop3)
-
-
+       console.log("1º Popular es " + per1 + " que ha salido " + num1 + " veces")
+       console.log("2º Popular es " + per2 + " que ha salido " + num2 + " veces")
+       console.log("3º Popular es " + per3 + " que ha salido " + num3 + " veces")
     </script>
 </body>
 </html>
