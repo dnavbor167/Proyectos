@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Challenge 7</title>
+</head>
+
+<body>
+    <script>
+        //Me sabrías decir de este array cual es la última generación:
+        const REYES = ["Chindatore", ["Chindasvinto", "Rencesvinto", "Lautaro"], ["Lauro", "Sisebuto", ["Fracisbuto", "Vigafredo", ["Leovigildo", "Recaredo"]]], "Amalarico II"];
+
+        const ultimaGeneracion = (array, generacion) => {
+            let maxGeneracion = generacion;
+            array.map(e => {
+                if (Array.isArray(e)) {
+                    let aux = ultimaGeneracion(e, generacion + 1)
+                    if (aux > maxGeneracion) maxGeneracion = aux
+                }
+            })
+            return maxGeneracion
+        }
+
+        console.log(ultimaGeneracion(REYES, 1))
+
+        const nombreUltimaGeneracion = (array, generacion, ultimaGen) => {
+            let godos = []
+            array.map(e => {
+                if (Array.isArray(e)) {
+                    godos.push(...nombreUltimaGeneracion(e,generacion + 1, ultimaGen))
+                } else {
+                    if (generacion == ultimaGen) godos.push(e)
+                }
+            })
+            return godos
+        }
+
+        console.log(nombreUltimaGeneracion(REYES, 1, ultimaGeneracion(REYES, 1)))
+    </script>
+</body>
+
+</html>

@@ -23,7 +23,7 @@ header {
     flex-flow: column;
 }
 
-header > p {
+header>p {
     display: flex;
     padding-top: 1rem;
     padding-bottom: 1rem;
@@ -35,18 +35,18 @@ header > p {
     font-weight: bold;
 }
 
-header > p > span:nth-child(1) {
+header>p>span:nth-child(1) {
     display: none;
 }
 
-header > div:nth-child(2) {
+header>div:nth-child(2) {
     display: flex;
     align-items: center;
     padding: .5rem 0;
     padding-top: .8rem;
 }
 
-header > div:nth-child(2) > svg:nth-child(1) {
+header>div:nth-child(2)>svg:nth-child(1) {
     width: 4.5rem;
     height: 2.5rem;
     order: 3;
@@ -55,40 +55,40 @@ header > div:nth-child(2) > svg:nth-child(1) {
     flex: 1;
 }
 
-header > div:nth-child(2) > nav#main-menu {
+header>div:nth-child(2)>nav#main-menu {
     display: flex;
     flex-flow: column;
     order: 1;
 }
 
-header > div:nth-child(2) > nav#main-menu > label {
+header>div:nth-child(2)>nav#main-menu>label {
     font-size: 1.5rem;
     margin-left: .5rem;
     margin-right: .5rem;
 }
 
-header > div:nth-child(2) > nav#main-menu > input,
-header > div:nth-child(2) > nav#main-menu > ul {
+header>div:nth-child(2)>nav#main-menu>input,
+header>div:nth-child(2)>nav#main-menu>ul {
     display: none;
 }
 
-header > div:nth-child(2) > div#buscador {
+header>div:nth-child(2)>div#buscador {
     display: flex;
     align-items: center;
     order: 5;
 }
 
-header > div:nth-child(2) > div#buscador > input {
+header>div:nth-child(2)>div#buscador>input {
     display: none;
 }
 
-header > div:nth-child(2) > div#buscador > svg {
+header>div:nth-child(2)>div#buscador>svg {
     width: 2rem;
     height: auto;
     fill: black;
 }
 
-header > div:nth-child(2)  > svg#usuario {
+header>div:nth-child(2)>svg#usuario {
     order: 4;
     margin-left: auto;
     width: 2rem;
@@ -96,7 +96,7 @@ header > div:nth-child(2)  > svg#usuario {
     fill: black;
 }
 
-header > div:nth-child(2)  > svg#carro {
+header>div:nth-child(2)>svg#carro {
     order: 6;
     margin-left: .5rem;
     margin-right: .5rem;
@@ -105,14 +105,14 @@ header > div:nth-child(2)  > svg#carro {
     fill: black;
 }
 
-header > div:nth-child(2)  > svg#corazon {
+header>div:nth-child(2)>svg#corazon {
     order: 2;
     width: 1.4rem;
     height: auto;
     fill: black;
 }
 
-header > div:nth-child(3) {
+header>div:nth-child(3) {
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -120,6 +120,63 @@ header > div:nth-child(3) {
     color: rgb(39, 39, 39);
 }
 
-header > div:nth-child(3) a {
+header>div:nth-child(3) a {
     color: rgb(39, 39, 39);
+}
+
+@media(min-width: 1024px) {
+    header>p>span:nth-child(1) {
+        display: block;
+    }
+
+    header>div:nth-child(2)>svg:nth-child(1) {
+        width: 4.5rem;
+        height: 2.5rem;
+        order: 1;
+        margin-left: -73rem;
+        margin-right: 0;
+    }
+
+    header>div:nth-child(2)>nav#main-menu {
+        display: none;
+    }
+
+    header>div:nth-child(2)>nav#main-menu>label {
+        font-size: 1.5rem;
+        margin-left: .5rem;
+        margin-right: .5rem;
+    }
+
+    header>div:nth-child(2)>nav#main-menu>input,
+    header>div:nth-child(2)>nav#main-menu>ul {
+        display: none;
+    }
+
+    header>div:nth-child(2)>div#buscador {
+        order: 5;
+    }
+
+    header>div:nth-child(2)>svg#usuario {
+        order: 4;
+        margin-left: auto;
+        width: 2rem;
+        height: auto;
+        fill: black;
+    }
+
+    header>div:nth-child(2)>svg#carro {
+        order: 6;
+        margin-left: .5rem;
+        margin-right: .5rem;
+        width: 2rem;
+        height: auto;
+        fill: black;
+    }
+
+    header>div:nth-child(2)>svg#corazon {
+        order: 2;
+        width: 1.4rem;
+        height: auto;
+        fill: black;
+    }
 }
