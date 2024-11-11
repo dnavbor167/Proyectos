@@ -1,15 +1,63 @@
 <?php
-//conexión con bd
-const SERVIDOR_BD = "localhost";
-const USUARIO_BD = "jose";
-const CLAVE_BD = "josefa";
-const NOMBRE_BD = "bd_cv";
+session_start();
+require "src/funciones_ctes.php";
 
+//conexión con bd
 try {
     @$conexion = mysqli_connect(SERVIDOR_BD, USUARIO_BD, CLAVE_BD, NOMBRE_BD);
     mysqli_set_charset($conexion, "utf8");
 } catch (Exception $e) {
-    die(error_page("Primer CRUD", "<p>No se ha podido conectar a la BD: " . $e->getMessage() . "</p>"));
+    session_destroy();
+    die(error_page("Práctica 8", "<p>No se ha podido conectar a la BD: " . $e->getMessage() . "</p>"));
+}
+
+//Agregar usuario
+if (isset($_POST["btnAgregar"])) {
+    try {
+        $consulta = "insert into `usuarios`(`usuario`, `clave`, `nombre`, `dni`, `sexo`, `foto`) values ('[value-2]','[value-3]','[value-4]','[value-5]','[value-6]','[value-7]')";
+        mysqli_query($conexion, $consulta);
+        $_SESSION["mensaje_accion"]="Usuario insertador con éxito";
+        header("Location:index.php");
+        exit;
+    } catch (Exception $e) {
+        mysqli_close($conexion);
+        session_destroy();
+        die(error_page("Práctica 8", "<p>No se ha podido realizar la inserción: " . $e->getMessage() . "</p>"));
+    }
+}
+
+//Borrar usuario
+if (isset($_POST["btnContBorrar"])) {
+    try {
+        $consulta = "delete from usuarios where id_usuario='" . $_POST["btnContBorrar"] . "'";
+        mysqli_query($conexion, $consulta);
+        $_SESSION["mensaje_accion"]="Usuario borrado con éxito";
+        header("Location:index.php");
+        exit;
+    } catch (Exception $e) {
+        mysqli_close($conexion);
+        session_destroy();
+        die(error_page("Práctica 8", "<p>No se ha podido realizar el borrado: " . $e->getMessage() . "</p>"));
+    }
+}
+
+//Detalles usuario
+if (isset($_POST["btnDetalles"]) || isset($_POST["btnBorrar"]) || isset($_POST["btnEditar"])) {
+    if (isset($_POST["btnDetalles"]))
+        $id_usuario = $_POST["btnDetalles"];
+    elseif (isset($_POST["btnBorrar"]))
+        $id_usuario = $_POST["btnBorrar"];
+    else
+        $id_usuario = $_POST["btnEditar"];
+
+    try {
+        $consulta = "select * from usuarios where id_usuario='" . $id_usuario . "'";
+        $detalle_usuario = mysqli_query($conexion, $consulta);
+    } catch (Exception $e) {
+        mysqli_close($conexion);
+        session_destroy();
+        die(error_page("Práctica 8", "<p>No se ha podido realizar la consulta: " . $e->getMessage() . "</p>"));
+    }
 }
 
 //consulta para listar los datos del usuarios
@@ -18,7 +66,8 @@ try {
     $datos_usuarios = mysqli_query($conexion, $consulta);
 } catch (Exception $e) {
     mysqli_close($conexion);
-    die(error_page("Primer CRUD", "<p>No se ha podido realizar la consulta: " . $e->getMessage() . "</p>"));
+    session_destroy();
+    die(error_page("Práctica 8", "<p>No se ha podido realizar la consulta: " . $e->getMessage() . "</p>"));
 }
 ?>
 
@@ -40,6 +89,8 @@ try {
         table {
             border-collapse: collapse;
             text-align: center;
+            width: 90%;
+            margin: 0 auto;
         }
 
         .enlace {
@@ -66,22 +117,22 @@ try {
     <h3>Listado de los usuarios</h3>
 
     <?php
+    if (isset($_SESSION["mensaje_accion"])) {
+        echo "<p class='mensaje'>".$_SESSION["mensaje_accion"]."</p>";
+        session_destroy();
+    }
+    if (isset($_POST["btnAgregar"])) {
+        require "vistas/vista_agregar.php";
+    }
+    if (isset($_POST["btnDetalles"])) {
+        require "vistas/vista_detalles.php";
+    }
+    if (isset($_POST["btnBorrar"])) {
+        require "vistas/vista_borrar.php";
+    }
+
     require "vistas/vista_tabla_principal.php";
 
-    if (isset($_POST["btnBorrar"])) {
-        echo "<h2>Borrado del usuario " . $_POST["btnBorrar"] . "</h2>";
-        if (mysqli_num_rows($detalle_usuario) > 0) {
-            $tupla_detalles = mysqli_fetch_assoc($detalle_usuario);
-            echo "<p>¿Estás seguro que quires borrar al usuario <strong>" . $tupla_detalles["nombre"] . "</strong>?</p>";
-            echo "<form action='index.php' method='post'>";
-            echo "<button type='submit' value='" . $_POST["btnBorrar"] . "' name='btnContBorrar'>Continuar</button> ";
-            echo " <button type='submit'>Atrás</button>";
-            echo "</form>";
-        } else {
-            echo "<p>El usuario ya no se encuentra registrado en la BD</p>";
-        }
-        mysqli_free_result($detalle_usuario);
-    }
     ?>
 
 </body>
