@@ -153,6 +153,28 @@
         };
 
         //Se pide que hagas un programa que muestre la media de TODAS las notas de los 3 alumnos que tenemos en nuestro JSON.
+        const todasNotas = valumnos.alumnos.map(n => Object.values(n.notas)).flat(Infinity)
+        const sumaNotas = todasNotas.reduce((acc, e) => acc + e, 0)
+        const mediaTotal = (sumaNotas / todasNotas.length).toFixed(3)
+        console.log("La media total de todas las notas es de " + mediaTotal)
+
+        //Repaso 5
+        console.log("Repaso 5")
+        let frutas = ["aguacate", "pera", "manzana", "naranja", "tomate", "granada", "mango", "litchi", "nispero"];
+        let tropicales = ["aguacate", "mango", "litchi", "nispero"];
+        let tropicStock = [{ fruta: "aguacate", stock: 50 }, { fruta: "mango", stock: 10 }, { fruta: "litchi", stock: 20 }, { fruta: "nispero", stock: 25 }];
+        
+        // frutas del array frutas que sean tropicales
+        const frutTrop = frutas.filter(fT => tropicales.find(t => fT == t))
+        console.log(frutTrop)
+        // frutas del array frutas que NO sean tropicales
+        const frutNoTrop = frutas.filter(fT => !tropicales.find(t => fT == t))
+        console.log(frutNoTrop)
+
+        //Nombre de las frutas con un stock mayor de 21
+        const frutStock = frutas.filter(f => tropicStock.find(s => s.stock > 21 && s.fruta == f))
+        console.log(frutStock)
+
     </script>
 </body>
 
