@@ -16,18 +16,20 @@
         const REYES = ["Chindatore", ["Chindasvinto", "Rencesvinto", "Lautaro"], ["Lauro", "Sisebuto", ["Fracisbuto", "Vigafredo", ["Leovigildo"]]], "Amalarico II"];
         var monguers = []
         let monguersKnown = ["Chindasvinto", "Amalarico II"]
-        function findMonguer(array, genPar) {
-            array.map(r => {
-                if (Array.isArray(r)) {
-                    findMonguer(r, !genPar)
+        function findMonguer(array, par) {
+            // Debemos recorrer cada elemento del array por ende debemos recorrer con un map
+            array.map(e => {
+                //si es un array llamamos a la función de nuevo
+                if (Array.isArray(e)) {
+                    findMonguer(e, !par)
                 } else {
-                    if (monguersKnown.find(fM => fM === r)) {
-                        monguers.push(r)
-                    }else if (genPar) {
-                        monguers.push(r)
+                    //si no lo encuentra en monguresKnown y además es par lo introduce en el nuevo array
+                    if (!monguersKnown.find(m => m == e) && par) {
+                        monguers.push(e)
                     }
                 }
             })
+
         }
         console.log("REYES: " + REYES);
         findMonguer(REYES, false);
