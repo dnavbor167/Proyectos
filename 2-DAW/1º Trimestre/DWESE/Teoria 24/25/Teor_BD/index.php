@@ -132,6 +132,10 @@
     mysqli_close($conexion);
 
     echo "<h2>Cierre de conexión</h2>";
+
+
+    //obtener última id de la conexión de insercion
+    mysqli_insert_id($conexion);
     ?>
 </body>
 
