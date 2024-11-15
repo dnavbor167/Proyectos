@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen 1</title>
+</head>
+
+<body>
+    <h1>retos JavaScript</h1>
+    <script>
+        var ciudades = ["Sevilla", "Vigo", "Leon", ["Caceres", "Marbella", ["Algatocin", "Mijas", "Estepona"], "LosBarrios"]];
+
+        var ciudadakas = ["Chevrolet", "Gaucin", "Leon", ["Caceres", "SanRoque", ["Algatocin", "Mijas", "Algeciras"], "LosBarrios"], ["LaLinea", "Mijas", "LasRozas", ["Majadahonda", "Boadilla", "Mostoles"]]];
+       
+        var newciudades = ["Sevilla", "Vigo", "Leon", ["Caceres", "Marbella", ["Algatocin", "Vigo", "Estepona"], "LosBarrios", "Vigo"]];
+        
+        coleguillas = [{
+            firstName: "Jonny", lastName: "Rambo",
+            car: "Leon"
+        }, {
+            firstName: "Arnold", lastName: "Suarchenager",
+            car: "Caceres"
+        }, {
+            firstName: "Chuck", lastName: "Norris",
+            car: "Caceres"
+        }, {
+            firstName: "Yakie", lastName: "Chang",
+            car: "Leon"
+        }, {
+            firstName: "Bruce", lastName: "Lee",
+            car: "Caceres"
+        }, {
+            firstName: "Steven", lastName: "Seagal",
+            car: "Estepona"
+        }];
+
+        let maleficas = ["Caceres", "Estepona"]
+
+        //EJERCICIO 1
+        const trendy = ciudades.flat(Infinity).filter(c => 
+            coleguillas.filter(cT => c === cT.car).length > 1
+        )
+        console.log("Las ciudades más trendy entre los coleguillas es " + trendy)
+
+        //EJERCICIO 2
+        const ejer2 = newciudades.flat(Infinity).filter(nC => coleguillas.find(c => c.car === nC) && !maleficas.find(m => m === nC))
+        console.log(ejer2)
+
+        //EJERCICIO 3
+        let ciudadMasTrendy = "";
+        const mostTrendy = coleguillas.map(c => c.car).filter(mT => {
+            
+        })
+
+        //EJERCICIO 4
+    </script>
+</body>
+
+</html>

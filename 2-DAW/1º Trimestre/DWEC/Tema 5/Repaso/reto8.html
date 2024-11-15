@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reto 8</title>
+</head>
+
+<body>
+    <h1>retos JavaScript</h1>
+    <button type="submit" id="arbol">Arbolescente</button>
+    <ul id="carrakos"></ul>
+
+    <script>
+
+        var carrakos = ["Chevrolet", "Tesla", "BMW", ["Honda", "Infiniti", ["Lexus", "Mercedes", "Kia"], "Hyunday"], ["Mazda", "Mercedes", "Jeep", ["KTM", "Nissan", "Isuzu"]]];
+
+
+        //Debemos mostrarlo en forma arbolescente por lo que será una funcion recursiva
+        const arbolescente = (array, listaDes) => {
+            array.map(e => {
+                if (Array.isArray(e)) {
+                    const newList = document.createElement("ul")
+                    listaDes.appendChild(newList)
+                    arbolescente(e, newList)
+                } else {
+                    const lista = document.createElement("li")
+                    const contenido = document.createTextNode(e)
+                    lista.appendChild(contenido)
+                    listaDes.appendChild(lista)
+                }
+            })
+        }
+
+        document.getElementById("arbol").addEventListener("click", () => arbolescente(carrakos, document.getElementById("carrakos")))
+
+    </script>
+</body>
+
+</html>

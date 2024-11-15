@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reto 6 repaso</title>
+</head>
+
+<body>
+    <h1>retos JavaScript</h1>
+    <button type="submit" onclick="listFrutras()">Generar lista de frutas</button>
+    <ul id="frutas"> </ul>
+
+    <script>
+
+
+        let frutas = ["aguacate", "pera", "manzana", "naranja", "tomate", "granada", "mango", "litchi", "nispero"];
+        // muestra las frutas como elementos li y su nodo padre será el ul frutas
+
+        const listFrutras = () => {
+            frutas.map(fruts => {
+                let lista = document.getElementById("frutas")
+                let elementosLista = document.createElement("li")
+                let content = document.createTextNode(fruts)
+                elementosLista.appendChild(content)
+                lista.appendChild(elementosLista)
+            })
+        }
+
+
+    </script>
+</body>
+
+</html>

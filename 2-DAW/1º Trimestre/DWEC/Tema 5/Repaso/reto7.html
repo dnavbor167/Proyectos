@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reto 7</title>
+</head>
+
+<body>
+    <h1>retos JavaScript</h1>
+    <button type="submit" onclick="miFuncion()">Lista stock menor a 40</button>
+    <ul id="frutas"> </ul>
+
+    <script>
+
+
+        let frutas = ["aguacate", "pera", "manzana", "naranja", "tomate", "granada", "mango", "litchi", "nispero"];
+        let tropicStock = [{ fruta: "aguacate", stock: 50 }, { fruta: "mango", stock: 10 }, { fruta: "litchi", stock: 20 }, { fruta: "nispero", stock: 25 }];
+
+        // muestra las frutas tropicales con stock menor a 40 como elementos li y su nodo padre será el ul frutas
+        const miFuncion = () => {
+            frutas.filter(f => tropicStock.find(s => s.stock < 40 && f == s.fruta)).map(e => {
+                const lista = document.getElementById("frutas")
+                const elementos = document.createElement("li")
+                const contenido = document.createTextNode(e)
+                elementos.appendChild(contenido)
+                lista.appendChild(elementos)
+            })
+        }
+
+    </script>
+
+</body>
+
+</html>
