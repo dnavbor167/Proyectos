@@ -4,6 +4,8 @@ const USUARIO_BD="jose";
 const CLAVE_BD="josefa";
 const NOMBRE_BD="bd_cv";
 
+const NOMBRE_IMAGEN_DEFECTO_BD="no_imagen.jpg";
+
 function error_page($title,$body)
 {
     return '<!DOCTYPE html>
@@ -38,5 +40,33 @@ function repetido($conexion,$tabla,$columna,$valor,$columna_clave=null,$valor_cl
     return $respuesta;
 }
 
+
+function tiene_extension($texto)
+{
+    $array_nombre=explode(".",$texto);
+    if(count($array_nombre)<=1)
+        $respuesta=false;
+    else
+        $respuesta=end($array_nombre);
+
+    return $respuesta;
+
+}
+function LetraNIF($dni) 
+{  
+     return substr("TRWAGMYFPDXBNJZSQVHLCKEO", $dni % 23, 1); 
+} 
+
+function dni_valido($texto)
+{
+   $dni=strtoupper($texto);
+   return LetraNIF(substr($dni,0,8))==substr($dni,-1);
+}
+
+function dni_bien_escrito($texto)
+{
+   $dni=strtoupper($texto);
+   return strlen($dni)==9 && is_numeric(substr($dni,0,8)) && substr($dni,-1)>="A" && substr($dni,-1)<="Z";
+}
 
 ?>

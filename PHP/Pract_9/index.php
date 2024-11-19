@@ -1,7 +1,5 @@
 <?php
-//Por si reutilizo código hay que ponerle un nombre único sino puede ser que se guarde
-//las session y cuando hagas otra se habra sesión directamente si hay abierta
-session_name("Primer Login");
+session_name("Practica_9");
 session_start();
 require "src/funciones_ctes.php";
 
@@ -25,7 +23,7 @@ if (isset($_SESSION["usuario"])) {
         require "vistas/vista_admin.php";
 
 
-    mysqli_close($conexion);
+    
 } else {
     require "vistas/vista_login.php";
 }

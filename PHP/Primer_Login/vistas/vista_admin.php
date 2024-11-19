@@ -20,5 +20,6 @@
     <div>
         Bienvenido <strong><?php echo $_SESSION["usuario"] ?></strong> - <form class="enlinea" action="index.php" method="post"><button class="enlace" type="submit" name="btnCerrarSesion">Salir</button></form>
     </div>
+    <h3>Eres Admin</h3>
 </body>
 </html>
