@@ -1,0 +1,48 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+main, form {
+    display: flex;
+    flex-flow: column;
+}
+
+main {
+    max-width: 75vw;
+    align-items: center;
+}
+
+main h2 {
+    text-align: center;
+}
+
+form input, select {
+    margin-bottom: 1rem;
+    padding: .5rem 0;
+}
+
+form input {
+    padding: .5rem 0;
+}
+
+form input[type="submit"] {
+    background-color: black;
+    color: white;
+    align-self: center;
+    border: none;
+    padding: 1rem 2rem;
+}
+
+form div input, form div select {
+    border: none;
+    padding: 0;
+}
+
+form div {
+    border: 1px solid gray;
+    vertical-align: middle;
+}
