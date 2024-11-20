@@ -14,6 +14,7 @@ main, form {
 main {
     max-width: 75vw;
     align-items: center;
+    margin: 0 auto;
 }
 
 main h2 {
@@ -23,6 +24,10 @@ main h2 {
 form input, select {
     margin-bottom: 1rem;
     padding: .5rem 0;
+}
+
+select {
+    background-color: white;
 }
 
 form input {
@@ -39,10 +44,19 @@ form input[type="submit"] {
 
 form div input, form div select {
     border: none;
-    padding: 0;
+    margin: 0;
 }
 
 form div {
     border: 1px solid gray;
-    vertical-align: middle;
+    display: flex;
+    align-items: center;
 }
+
+ form div select {
+    flex: 0 0 20%;
+ }
+
+ form div input {
+    flex: 1;
+ }
