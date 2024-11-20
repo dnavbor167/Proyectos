@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form>
+        <h3>Introduzca usuario y password</h3>
+        <input type="text" name="usuario" id="usuario">
+        <br>
+        <input type="password" name="clave" id="clave">
+        <br>
+        <button onclick="muestraSugerencia(document.getElementById('usuario').value , document.getElementById('clave').value)">Log In</button>
+    </form>
+    <p id="elemento"></p>
+    <script>
+        function muestraSugerencia(usuario, clave) {
+            //IMPORTANTÍSIMOPONER LO SIGUIENTE PARA EVITAR QUE CUANDO PULSE EL BOTÓN SE RECARGUE LA PÁGINA BORRANDO LOS DATOS
+            event.preventDefault();
+            if (clave.length == 0 || usuario.length == 0) {
+                document.getElementById("elemento").innerHTML = "Introduce un usuario o una contraseña";
+                return;
+            } else {
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.getElementById("elemento").innerHTML = this.responseText;
+                    }
+                };
+                xmlhttp.open("GET", "http://localhost/Proyectos/2-DAW/1%C2%BA%20Trimestre/DWEC/Tema%207/AJAX/Reto2//getSugerencia.php?param1=" + usuario + "&param2=" + clave, true);
+                xmlhttp.send();
+            }
+        }
+    </script>
+</body>
+
+</html>
