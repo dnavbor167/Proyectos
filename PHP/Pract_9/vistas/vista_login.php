@@ -32,6 +32,7 @@ if (isset($_POST["btnLogin"])) {
                 exit;
             } else {
                 $error_usuario = true;
+                mysqli_close($conexion);
             }
         } catch (Exception $e) {
             mysqli_close($conexion);
@@ -84,7 +85,10 @@ if (isset($_POST["btnLogin"])) {
             }
             ?>
         </p>
-        <p><button type="submit" name="btnLogin">Login</button></p>
+        <p>
+            <button type="submit" name="btnLogin">Login</button>
+            <button type="submit" name="btnRegistro">Registrarse</button>
+        </p>
     </form>
 
     <?php 

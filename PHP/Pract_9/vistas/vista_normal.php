@@ -13,6 +13,10 @@
             text-decoration: underline;
             cursor: pointer;
         }
+        .mensaje {
+            font-size: 1.25rem;
+            color: blue
+        }
     </style>
 </head>
 <body>
@@ -21,5 +25,10 @@
         Bienvenido <strong><?php echo $_SESSION["usuario"] ?></strong> - <form class="enlinea" action="index.php" method="post"><button class="enlace" type="submit" name="btnCerrarSesion">Salir</button></form>
     </div>
     <h3>Eres normal</h3>
+    <?php 
+    if (isset($_SESSION["mensaje_accion"])) {
+        echo "<p class='mensaje'>".$_SESSION["mensaje_accion"]."</p>";
+    }
+    ?>
 </body>
 </html>

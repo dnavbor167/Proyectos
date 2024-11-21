@@ -22,8 +22,9 @@ if (isset($_SESSION["usuario"])) {
     else
         require "vistas/vista_admin.php";
 
-
-    
-} else {
+    mysqli_close($conexion);
+} else if (isset($_POST["btnRegistro"]) || (isset($_POST["btnConRegistro"])))
+    require "vistas/vista_registro.php";
+else {
     require "vistas/vista_login.php";
 }
