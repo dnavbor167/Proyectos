@@ -13,10 +13,10 @@ try {
 //consulta para ver los horarios de los profesores
 if (isset($_POST["btnVerHorario"])) {
     try {
-        $consulta = "select * from horario_lectivo where usuario = '".$_POST["nom_user"]."'"; //falla aqui
+        $consulta = "select * from horario_lectivo join grupos on horario_lectivo.grupo = grupos.id_grupo where usuario = " . $_POST["nom_user"] . " order by dia asc, hora asc";
         $result_horario_profesor = mysqli_query($conexion, $consulta);
     } catch (Exception $e) {
-        mysqli_close($conexion);
+        mysqli_free_result($result_horario_profesor);
         die(error_page("Examen Año pasado", "<p>No se ha podido cargar la BD: " . $e->getMessage() . "</p>"));
     }
 }
@@ -26,7 +26,7 @@ try {
     $consulta = "select * from usuarios";
     $result_datos_usuario = mysqli_query($conexion, $consulta);
 } catch (Exception $e) {
-    mysqli_close($conexion);
+    mysqli_free_result($result_datos_usuario);
     die(error_page("Examen Año pasado", "<p>No se ha podido cargar la BD: " . $e->getMessage() . "</p>"));
 }
 
@@ -52,10 +52,15 @@ try {
             margin: 0 auto;
             text-align: center
         }
-        .enlace{
-            background:none;
-            border:none;
-            color:blue;
+
+        h3 {
+            text-align: center;
+        }
+
+        .enlace {
+            background: none;
+            border: none;
+            color: blue;
             text-decoration: underline;
             cursor: pointer;
         }
@@ -69,6 +74,11 @@ try {
     require "vistas/vista_seleccion.php";
 
     if (isset($_POST["btnVerHorario"])) {
+        $horarios = [];
+        while ($tupla_horario_tabla = mysqli_fetch_assoc($result_horario_profesor)) {
+            $horarios[] = $tupla_horario_tabla;
+        }
+
         echo "<h3>Horario del Profesor: " . $nombre_profesor . "</h3>";
         echo "<table>";
         echo "<tr>";
@@ -77,24 +87,28 @@ try {
         }
         echo "</tr>";
 
-        for ($horario = 0; $horario < count(HORAIO_SEMANA); $horario++) {
+        for ($horario = 1; $horario < count(HORAIO_SEMANA); $horario++) {
             echo "<tr>";
             echo "<th>" . HORAIO_SEMANA[$horario] . "</th>";
             if ($horario == 3)
-                echo "<td colspan='5'></td>";
+                echo "<td colspan='5'>RRECREO</td>";
             else {
-                for ($clases = 0; $clases < 5; $clases++) {
-                    echo "<td><form action='index.php' method='post'><button type='submit' class='enlace' name='btnEditar'>Editar</button></form></td>";
+                for ($clases = 1; $clases < 6; $clases++) {
+                    echo "<td>";
+                    $contenido_celda = [];
+                    foreach ($horarios as $tupla_horario_tabla) {
+                        if ($tupla_horario_tabla["dia"] == $clases && $tupla_horario_tabla["hora"] == $horario) {
+                            $contenido_celda[] = $tupla_horario_tabla["nombre"];
+                        }
+                    }
+                    echo implode("/", $contenido_celda);
+                    echo "<form action='index.php' method='post'><button type='submit' class='enlace' name='btnEditar'>Editar</button></form></td>";
                 }
             }
 
             echo "</tr>";
         }
         echo "</table>";
-
-        while($tupla_horario_prof=mysqli_fetch_assoc($result_horario_profesor)) {
-            echo "<p>".$tupla_horario_prof["hora"]."</p>";
-        }
     }
     ?>
 
