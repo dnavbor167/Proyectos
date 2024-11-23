@@ -5,6 +5,7 @@
         while ($tupla_usuarios = mysqli_fetch_assoc($result_datos_usuario)) {
             if (isset($_POST["btnVerHorario"]) && $_POST["nom_user"] == $tupla_usuarios["id_usuario"]) {
                 $nombre_profesor = $tupla_usuarios["nombre"];
+                $usuario_id = $tupla_usuarios["usuario"];
                 echo "<option selected value='" . $tupla_usuarios["id_usuario"] . "'>" . $tupla_usuarios["nombre"] . "</option>";
             } else
                 echo "<option value='" . $tupla_usuarios["id_usuario"] . "'>" . $tupla_usuarios["nombre"] . "</option>";

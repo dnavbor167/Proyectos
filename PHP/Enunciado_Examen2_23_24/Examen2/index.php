@@ -10,6 +10,8 @@ try {
     die(error_page("Examen Año pasado", "<p>No se ha podido cargar la BD: " . $e->getMessage() . "</p>"));
 }
 
+//edicion de los horarios
+
 //consulta para ver los horarios de los profesores
 if (isset($_POST["btnVerHorario"])) {
     try {
@@ -45,6 +47,9 @@ try {
         td {
             border: 1px solid black
         }
+        th {
+            background-color: lightgray;
+        }
 
         table {
             border-collapse: collapse;
@@ -64,6 +69,11 @@ try {
             text-decoration: underline;
             cursor: pointer;
         }
+
+        .tabla_editar {
+            width: 20rem;
+            margin: 0;
+        }
     </style>
 </head>
 
@@ -74,40 +84,16 @@ try {
     require "vistas/vista_seleccion.php";
 
     if (isset($_POST["btnVerHorario"])) {
-        $horarios = [];
-        while ($tupla_horario_tabla = mysqli_fetch_assoc($result_horario_profesor)) {
-            $horarios[] = $tupla_horario_tabla;
-        }
+        $_SESSION["profesor"] = $_POST["nom_user"];
+        require "vistas/vista_tabla_horario.php";
+    }
 
-        echo "<h3>Horario del Profesor: " . $nombre_profesor . "</h3>";
-        echo "<table>";
-        echo "<tr>";
-        for ($dias = 0; $dias < count(DIAS_SEMANA); $dias++) {
-            echo "<th>" . DIAS_SEMANA[$dias] . "</th>";
-        }
-        echo "</tr>";
-
-        for ($horario = 1; $horario < count(HORAIO_SEMANA); $horario++) {
-            echo "<tr>";
-            echo "<th>" . HORAIO_SEMANA[$horario] . "</th>";
-            if ($horario == 3)
-                echo "<td colspan='5'>RRECREO</td>";
-            else {
-                for ($clases = 1; $clases < 6; $clases++) {
-                    echo "<td>";
-                    $contenido_celda = [];
-                    foreach ($horarios as $tupla_horario_tabla) {
-                        if ($tupla_horario_tabla["dia"] == $clases && $tupla_horario_tabla["hora"] == $horario) {
-                            $contenido_celda[] = $tupla_horario_tabla["nombre"];
-                        }
-                    }
-                    echo implode("/", $contenido_celda);
-                    echo "<form action='index.php' method='post'><button type='submit' class='enlace' name='btnEditar'>Editar</button></form></td>";
-                }
-            }
-
-            echo "</tr>";
-        }
+    if (isset($_POST["btnEditar"])) {
+        $hora_dia = explode("|", $_POST["btnEditar"]);
+        echo "<h2>Editando la ".$hora_dia[0]."º hora (".HORAIO_SEMANA[$hora_dia[0]].") del ".DIAS_SEMANA[$hora_dia[1]]."</h2>";
+        echo "<table class='tabla_editar'>";
+        echo "<tr><th>Grupo</th><th>Acción</th></tr>";
+        echo "<tr><td></td></tr>";
         echo "</table>";
     }
     ?>
