@@ -83,8 +83,7 @@ try {
     <?php
     require "vistas/vista_seleccion.php";
 
-    if (isset($_POST["btnVerHorario"])) {
-        $_SESSION["profesor"] = $_POST["nom_user"];
+    if (isset($_POST["btnVerHorario"]) || isset($_POST["nom_user"])) {
         require "vistas/vista_tabla_horario.php";
     }
 

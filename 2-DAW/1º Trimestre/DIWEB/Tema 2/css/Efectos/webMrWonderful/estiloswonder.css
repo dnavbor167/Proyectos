@@ -39,18 +39,6 @@ header {
 
 }
 
-@keyframes desaparecer {
-
-	0%,
-	100% {
-		opacity: 1;
-	}
-
-	50% {
-		opacity: 0;
-	}
-}
-
 /*La hamburguesa la colocamos al principio*/
 header>nav#menu-principal {
 	display: flex;
@@ -74,14 +62,30 @@ header>nav#menu-principal label span.hamburguer-line {
 	width: 100%;
 	border-radius: 5px;
 	height: .2rem;
+	transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 header>nav#menu-principal label span:nth-child(1) {
 	top: 0;
+	/*transform: rotate(35deg);*/
+	/*AQUÍ FUNCIONA PERO CUANDO LO APLICO EN EL CHECKED NO VALE*/
 }
 
-header>nav#menu-principal label span:nth-child(2) {
+header>nav#menu-principal label span:nth-child(3) {
 	top: 2.2rem;
+}
+
+input#hamburguesa:checked+label .hamburguer-line:nth-child(1) {
+	transform: rotate(45deg);
+}
+
+input#hamburguesa:checked+label .hamburguer-line:nth-child(2) {
+	opacity: 0;
+	/* Desaparece la línea del medio */
+}
+
+input#hamburguesa:checked+label .hamburguer-line:nth-child(3) {
+	transform: rotate(-45deg) translateY(-50%);
 }
 
 header>nav#menu-principal>label>span {
@@ -95,6 +99,10 @@ header>nav#menu-principal>input {
 	display: none;
 }
 
+input#hamburguesa:checked+label span:nth-child(3) {
+	transform: rotate(-35deg);
+}
+
 /*El menu principal es flexible*/
 header>nav#menu-principal>ul#menu {
 	display: none;
@@ -106,11 +114,6 @@ header>nav#menu-principal>ul#menu {
 /*El menu principal se muestra si esta cjecked o no*/
 input#hamburguesa:checked+ul#menu {
 	display: block;
-	animation: desaparecer 2s infinite;
-}
-
-input#hamburguesa:checked+label span:nth-child(2) {
-	animation: desaparecer 2s;
 }
 
 /*En segunda posición está el buscador*/
