@@ -27,7 +27,7 @@ for ($horario = 1; $horario < count(HORAIO_SEMANA); $horario++) {
                 }
             }
             echo implode("/", $contenido_celda);
-            echo "<form action='index.php' method='post'><button type='submit' class='enlace' value='" . $clases . "|" . $horario .  "' name='btnEditar'>Editar</button></form></td>";
+            echo "<form action='index.php' method='post'><input type='hidden' name='nom_user' value='".$_POST["nom_user"]."'><button type='submit' class='enlace' value='" . $clases . "|" . $horario .  "' name='btnEditar'>Editar</button></form></td>";
         }
     }
 

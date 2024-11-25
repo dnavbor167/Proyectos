@@ -13,7 +13,7 @@ try {
 //edicion de los horarios
 
 //consulta para ver los horarios de los profesores
-if (isset($_POST["btnVerHorario"])) {
+if (isset($_POST["nom_user"])) {
     try {
         $consulta = "select * from horario_lectivo join grupos on horario_lectivo.grupo = grupos.id_grupo where usuario = " . $_POST["nom_user"] . " order by dia asc, hora asc";
         $result_horario_profesor = mysqli_query($conexion, $consulta);
