@@ -15,7 +15,7 @@ echo "</tr>";
 for ($horario = 1; $horario < count(HORAIO_SEMANA); $horario++) {
     echo "<tr>";
     echo "<th>" . HORAIO_SEMANA[$horario] . "</th>";
-    if ($horario == 3)
+    if ($horario == 4)
         echo "<td colspan='5'>RRECREO</td>";
     else {
         for ($clases = 1; $clases < 6; $clases++) {
