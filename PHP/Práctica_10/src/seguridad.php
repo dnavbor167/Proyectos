@@ -39,3 +39,4 @@ if (time() - $_SESSION["ultm_accion"] > INACTIVIDAD * 60) {
 }
 
 $_SESSION["ultm_accion"] = time();
+?>

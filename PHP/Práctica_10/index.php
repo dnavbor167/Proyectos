@@ -199,61 +199,63 @@ if (isset($_POST["btnLogin"])) {
     if (isset($_SESSION["usuario"])) {
         require "src/seguridad.php";
         if ($datos_usuario_log["tipo"] == "normal") {
-        if (isset($_POST["profesor"])) {
-            echo "<h3 class='centrado'>Horario del Profesor:" . $nombre_profesor . "</h3>";
-            echo "<table class='centrado'>";
-            echo "<tr>";
-            echo "<th></th>";
-            for ($i = 1; $i <= count(DIAS); $i++)
-                echo "<th>" . DIAS[$i] . "</th>";
-            echo "</tr>";
-
-            for ($hora = 1; $hora <= count(HORAS); $hora++) {
+            echo "HOla" . isset($_POST["profesor"]);
+            if (isset($_POST["profesor"])) {
+                echo "hola";
+                echo "<h3 class='centrado'>Horario del Profesor:" . $nombre_profesor . "</h3>";
+                echo "<table class='centrado'>";
                 echo "<tr>";
-                echo "<th>" . HORAS[$hora] . "</th>";
-                if ($hora == 4) {
-                    echo "<td colspan='5'>RECREO</td>";
-                } else {
-                    for ($dia = 1; $dia <= count(DIAS); $dia++) {
-                        echo "<td>";
-                        if (isset($horario[$dia][$hora])) {
-                            echo $horario[$dia][$hora];
-                        }
-                        echo "<form action='index.php' method='post'>";
-                        echo "<input type='hidden' name='dia' value='" . $dia . "'/>";
-                        echo "<input type='hidden' name='hora' value='" . $hora . "'/>";
-                        echo "<input type='hidden' name='profesor' value='" . $_POST["profesor"] . "'/>";
-                        echo "</form>";
-                        echo "</td>";
-                    }
-                }
-
+                echo "<th></th>";
+                for ($i = 1; $i <= count(DIAS); $i++)
+                    echo "<th>" . DIAS[$i] . "</th>";
                 echo "</tr>";
-            }
-            echo "</table>";
-        }else {
-    ?>
-            <h1>Examen2 PHP</h1>
-            <h2>Horario de los Profesores</h2>
-            <form action="index.php" method="post">
-                <p>
-                    <label for="profesor">Horario del Profesor: </label>
-                    <select name="profesor" id="profesor">
-                        <?php
-                        while ($tupla = mysqli_fetch_assoc($result_profesores)) {
-                            if (isset($_POST["profesor"]) && $_POST["profesor"] == $tupla["id_usuario"]) {
-                                echo "<option selected value='" . $tupla["id_usuario"] . "'>" . $tupla["nombre"] . "</option>";
-                                $nombre_profesor = $tupla["nombre"];
-                            } else
-                                echo "<option value='" . $tupla["id_usuario"] . "'>" . $tupla["nombre"] . "</option>";
+
+                for ($hora = 1; $hora <= count(HORAS); $hora++) {
+                    echo "<tr>";
+                    echo "<th>" . HORAS[$hora] . "</th>";
+                    if ($hora == 4) {
+                        echo "<td colspan='5'>RECREO</td>";
+                    } else {
+                        for ($dia = 1; $dia <= count(DIAS); $dia++) {
+                            echo "<td>";
+                            if (isset($horario[$dia][$hora])) {
+                                echo $horario[$dia][$hora];
+                            }
+                            echo "<form action='index.php' method='post'>";
+                            echo "<input type='hidden' name='dia' value='" . $dia . "'/>";
+                            echo "<input type='hidden' name='hora' value='" . $hora . "'/>";
+                            echo "<input type='hidden' name='profesor' value='" . $_POST["profesor"] . "'/>";
+                            echo "</form>";
+                            echo "</td>";
                         }
-                        mysqli_free_result($result_profesores);
-                        ?>
-                    </select>
-                    <button type="submit" name="btnVerHorario">Ver Horario</button>
-                </p>
-            </form>
+                    }
+                    echo "</tr>";
+                }
+                echo "</table>";
+            } else {
+    ?>
+                <h1>Examen2 PHP</h1>
+                <h2>Horario de los Profesores</h2>
+                <form action="index.php" method="post">
+                    <p>
+                        <label for="profesor">Horario del Profesor: </label>
+                        <select name="profesor" id="profesor">
+                            <?php
+                            while ($tupla = mysqli_fetch_assoc($result_profesores)) {
+                                if (isset($_POST["profesor"]) && $_POST["profesor"] == $tupla["id_usuario"]) {
+                                    echo "<option selected value='" . $tupla["id_usuario"] . "'>" . $tupla["nombre"] . "</option>";
+                                    $nombre_profesor = $tupla["nombre"];
+                                } else
+                                    echo "<option value='" . $tupla["id_usuario"] . "'>" . $tupla["nombre"] . "</option>";
+                            }
+                            mysqli_free_result($result_profesores);
+                            ?>
+                        </select>
+                        <button type="submit" name="btnVerHorario">Ver Horario</button>
+                    </p>
+                </form>
         <?php
+            }
             if (isset($_POST["profesor"])) {
                 echo "<h3 class='centrado'>Horario del Profesor:" . $nombre_profesor . "</h3>";
                 echo "<table class='centrado'>";
@@ -372,7 +374,6 @@ if (isset($_POST["btnLogin"])) {
         ?>
     <?php
     }
-
     ?>
 </body>
 
