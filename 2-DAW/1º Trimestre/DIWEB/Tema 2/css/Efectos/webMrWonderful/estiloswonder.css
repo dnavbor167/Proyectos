@@ -58,34 +58,40 @@ header>nav#menu-principal label {
 header>nav#menu-principal label span.hamburguer-line {
 	background-color: gray;
 	position: absolute;
-	top: 1.14583rem;
-	width: 100%;
-	border-radius: 5px;
+	top: 1.14rem;
+	width: 2.2rem;
+	border-radius: .3rem;
 	height: .2rem;
-	transition: transform 0.3s ease, opacity 0.3s ease;
+	transition: background 0s .25s;
 }
 
-header>nav#menu-principal label span:nth-child(1) {
+header>nav#menu-principal label span.hamburguer-line:nth-child(1) {
 	top: 0;
+	transition: top .25s ease .25s, transform .25s ease 0s;
 	/*transform: rotate(35deg);*/
 	/*AQUÍ FUNCIONA PERO CUANDO LO APLICO EN EL CHECKED NO VALE*/
 }
 
-header>nav#menu-principal label span:nth-child(3) {
+header>nav#menu-principal label span.hamburguer-line:nth-child(3) {
 	top: 2.2rem;
+	transition: top .25s ease .25s, transform .25s ease 0s;
 }
 
-input#hamburguesa:checked+label .hamburguer-line:nth-child(1) {
+input#hamburguesa:checked ~ label span.hamburguer-line:nth-child(1) {
 	transform: rotate(45deg);
+	top: 1.14rem;
+	transition-delay: 0s, .25s;
 }
 
-input#hamburguesa:checked+label .hamburguer-line:nth-child(2) {
-	opacity: 0;
+input#hamburguesa:checked ~ label span.hamburguer-line:nth-child(2) {
+	background: none;
 	/* Desaparece la línea del medio */
 }
 
-input#hamburguesa:checked+label .hamburguer-line:nth-child(3) {
-	transform: rotate(-45deg) translateY(-50%);
+input#hamburguesa:checked ~ label span.hamburguer-line:nth-child(3) {
+	top: 1.14rem;
+	transition-delay: 0s, .25s;
+	transform: rotate(-45deg);
 }
 
 header>nav#menu-principal>label>span {
@@ -95,12 +101,8 @@ header>nav#menu-principal>label>span {
 }
 
 /*El input de la hamburguesa tiene que estar oculto*/
-header>nav#menu-principal>input {
+header>nav#menu-principal input {
 	display: none;
-}
-
-input#hamburguesa:checked+label span:nth-child(3) {
-	transform: rotate(-35deg);
 }
 
 /*El menu principal es flexible*/
@@ -112,7 +114,7 @@ header>nav#menu-principal>ul#menu {
 }
 
 /*El menu principal se muestra si esta cjecked o no*/
-input#hamburguesa:checked+ul#menu {
+input#hamburguesa:checked ~ ul#menu {
 	display: block;
 }
 
