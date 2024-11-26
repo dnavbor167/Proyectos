@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen 2 RA6</title>
+</head>
+
+<body>
+    <h1>Lista 1</h1>
+    <ol id="lista1">
+        <li>Perico</li>
+        <li>Juanico</li>
+        <ul>
+            <li>Roman</li>
+            <li>Marco</li>
+            <li>Rodrigo</li>
+        </ul>
+        <li>Jose</li>
+        <li>Lorenzo</li>
+        <ul>
+            <li>Dimas</li>
+            <li>Gestas</li>
+            <li>Malakatos</li>
+            <li>jose</li>
+        </ul>
+        <li>Sofoclis</li>
+    </ol>
+
+    <h1>Lista 2</h1>
+    <ol id="lista2">
+        <li>Periquin</li>
+        <li>Juanele</li>
+        <li>Jose</li>
+    </ol>
+
+    <script>
+        const marcarConC = (obj) => {
+            let tieneC = false;
+            const arrayNombres = listaArray(document.getElementById("lista2"))
+            for (let i = 0; i < obj.children.length; i++) {
+                marcarConC(obj.children[i]);
+                if (arrayNombres.find(e => e.toUpperCase() == obj.children[i].innerHTML.toUpperCase())) {
+                    tieneC = true;
+                }
+            }
+
+            for (let i = 0; i < obj.children.length; i++) {
+                if (tieneC && obj.children[i].tagName == "LI") {
+                    obj.children[i].innerHTML += "(C)"
+                }
+            }
+
+
+        }
+
+        const listaArray = (obj) => {
+            let array = [];
+            for (let i = 0; i < obj.children.length; i++) {
+                listaArray(obj.children[i])
+                array.push(obj.children[i].innerHTML)
+            }
+            return array
+        }
+
+        marcarConC(document.getElementById("lista1"))
+    </script>
+</body>
+
+</html>
