@@ -127,6 +127,7 @@ if (isset($_POST["btnLogin"])) {
                 //El usuario se encuentra registrado y tengo que iniciar sesión
                 mysqli_close($conexion);
                 $_SESSION["usuario"] = $_POST["usuario"];
+                $_POST["profesor"] = $_SESSION["usuario"];
                 $_SESSION["clave"] = md5($_POST["clave"]);
                 $_SESSION["ultm_accion"] = time();
                 header("Location:index.php");
@@ -142,10 +143,6 @@ if (isset($_POST["btnLogin"])) {
         }
     }
 }
-
-
-
-mysqli_close($conexion);
 
 ?>
 <!DOCTYPE html>
@@ -201,9 +198,40 @@ mysqli_close($conexion);
     //SI EXISTE SESION
     if (isset($_SESSION["usuario"])) {
         require "src/seguridad.php";
-        if ($datos_usuario_log["tipo"] == "normal")
-            echo "CAMBIAR";
-        else {
+        if ($datos_usuario_log["tipo"] == "normal") {
+        if (isset($_POST["profesor"])) {
+            echo "<h3 class='centrado'>Horario del Profesor:" . $nombre_profesor . "</h3>";
+            echo "<table class='centrado'>";
+            echo "<tr>";
+            echo "<th></th>";
+            for ($i = 1; $i <= count(DIAS); $i++)
+                echo "<th>" . DIAS[$i] . "</th>";
+            echo "</tr>";
+
+            for ($hora = 1; $hora <= count(HORAS); $hora++) {
+                echo "<tr>";
+                echo "<th>" . HORAS[$hora] . "</th>";
+                if ($hora == 4) {
+                    echo "<td colspan='5'>RECREO</td>";
+                } else {
+                    for ($dia = 1; $dia <= count(DIAS); $dia++) {
+                        echo "<td>";
+                        if (isset($horario[$dia][$hora])) {
+                            echo $horario[$dia][$hora];
+                        }
+                        echo "<form action='index.php' method='post'>";
+                        echo "<input type='hidden' name='dia' value='" . $dia . "'/>";
+                        echo "<input type='hidden' name='hora' value='" . $hora . "'/>";
+                        echo "<input type='hidden' name='profesor' value='" . $_POST["profesor"] . "'/>";
+                        echo "</form>";
+                        echo "</td>";
+                    }
+                }
+
+                echo "</tr>";
+            }
+            echo "</table>";
+        }else {
     ?>
             <h1>Examen2 PHP</h1>
             <h2>Horario de los Profesores</h2>
