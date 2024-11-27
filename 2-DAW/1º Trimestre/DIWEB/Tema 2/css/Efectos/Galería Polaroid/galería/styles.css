@@ -1,0 +1,66 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background-image: url(Texture-background/99.jpg);
+}
+
+img {
+    width: 18rem;
+    height: auto;
+    margin: 1rem 1rem 0 1rem;
+}
+
+div.row > div.large-12 {
+    padding: 1rem 0;
+}
+
+div.row > div.large-12 > ul.polaroids {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    gap: 2.5rem;
+    padding-left: 0;
+    list-style-type: none;
+} 
+
+div.row > div.large-12 > ul.polaroids li {
+    flex: 0 0 20rem;
+    background-color: white;
+    transition-duration: .5s;
+}
+
+
+/*Decirle que despues de la a ponerle el title*/
+div.row>div.columns>ul.polaroids>li>a[title]::after {
+	content: attr(title);
+	padding: 1.5rem 0;
+    font-size: 1.5rem;
+}
+
+div.row>div.columns>ul.polaroids>li>a {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+}
+
+div.row>div.columns>ul.polaroids>li:nth-child(2n+1) {
+    transform: rotate(2.5deg);
+}
+
+div.row>div.columns>ul.polaroids>li:nth-child(3n+1) {
+    transform: rotate(-2.5deg);
+}
+
+div.row>div.columns>ul.polaroids>li:nth-child(5n+0) {
+    transform: rotate(5deg);
+}
+
+div.row>div.columns>ul.polaroids>li:hover {
+    transform: scale(1.1);
+    transition-duration: .5s;
+}
