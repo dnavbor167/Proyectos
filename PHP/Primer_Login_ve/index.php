@@ -1,5 +1,7 @@
 <?php
-session_name("Practica_9");
+//Por si reutilizo código hay que ponerle un nombre único sino puede ser que se guarde
+//las session y cuando hagas otra se habra sesión directamente si hay abierta
+session_name("Primer_Login_Ve");
 session_start();
 require "src/funciones_ctes.php";
 
@@ -19,12 +21,13 @@ if (isset($_SESSION["usuario"])) {
     //Muestro vista después de login
     if ($datos_usuario_log["tipo"] == "normal")
         require "vistas/vista_normal.php";
-    else
-        require "vistas/vista_admin.php";
+    else {
+        mysqli_close($conexion);
+        header("Location:admin/index.php");
+        exit;
+    }
 
     mysqli_close($conexion);
-} else if (isset($_POST["btnRegistro"]) || (isset($_POST["btnConRegistro"])))
-    require "vistas/vista_registro.php";
-else {
+} else {
     require "vistas/vista_login.php";
 }

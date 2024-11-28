@@ -11,6 +11,7 @@ try {
 try {
     $consulta = "select * from usuarios where usuario = '" . $_SESSION["usuario"] . "' and clave = '" . $_SESSION["clave"] . "'";
     $datos_usuarios = mysqli_query($conexion, $consulta);
+    $usuario_admin_normal = mysqli_fetch_assoc($datos_usuarios);
 } catch (Exception $e) {
     mysqli_close($conexion);
     session_destroy();
@@ -21,7 +22,7 @@ if (mysqli_num_rows($datos_usuarios) <= 0) {
     mysqli_free_result($datos_usuarios);
     session_unset();
     $_SESSION["mensaje_seguridad"] = "Usted ya no se encuentra registrado en la base de datos";
-    header("Location:index.php");
+    header("Location:../index.php");
     exit;
 } else {
     $datos_usuario_log = mysqli_fetch_assoc($datos_usuarios);
@@ -34,7 +35,7 @@ if (mysqli_num_rows($datos_usuarios) <= 0) {
 if (time() - $_SESSION["ultm_accion"] > INACTIVIDAD * 60) {
     session_unset();
     $_SESSION["mensaje_seguridad"] = "Su tiempo de sesión ha expirado";
-    header("Location:index.php");
+    header("Location:../index.php");
     exit;
 }
 
