@@ -180,3 +180,9 @@ footer > small {
     font-size: 1.1rem;
     align-self: normal;
 }
+
+@media(min-width: 768px) {
+    main section#sec-hombre article.item-sec {
+        flex: 0 0 33%;
+    }
+}
