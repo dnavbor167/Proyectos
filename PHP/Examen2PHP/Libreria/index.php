@@ -141,6 +141,7 @@ try {
         require "vistas/vista_login.php";
         if (isset($_SESSION["mensaje"])) {
             echo "<p class='mensaje'>" . $_SESSION["mensaje"] . "</p>";
+            session_destroy();
         }
         //esto se mostra siempre menos en modo admin
         require "vistas/vista_lista_libros.php";
