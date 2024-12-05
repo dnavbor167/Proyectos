@@ -1,0 +1,293 @@
+:root {
+    --primary: #0795e6;
+    --secondary: #6c757d;
+    --gray-dark: #424950;
+    --gray-light: #443a40;
+    --light: #f8f9fa;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Noto Sans", serif;
+    font-size: 14px;
+}
+
+/***** VERSIÓN DE MÓVIL *****/
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    color: var(--primary);
+}
+
+/*Cabecera*/
+header#header-web {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1rem;
+}
+
+/*Tamaño al logo*/
+header#header-web img#logo {
+    width: 10rem;
+}
+
+/*Aumentamos el tamaño de la hamburguesa y cambiamor el color*/
+header#header-web nav#menu-principal>label>span {
+    font-size: 1.2rem;
+    color: var(--primary);
+    padding-left: 1rem;
+    font-weight: 400;
+}
+
+/*display flex al corazón y a la cesta*/
+header#header-web nav#bloque-iconos {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+}
+
+header#header-web nav#bloque-iconos a#whishes,
+header#header-web nav#bloque-iconos a#shopping-bag {
+    width: 2rem;
+}
+
+/*Hacemos el buscador*/
+header#header-web div.search-container {
+    display: flex;
+    flex-wrap: row wrap;
+    align-items: center;
+    justify-content: space-between;
+    flex: 100%;
+    text-align: center;
+    padding: .7rem 1rem;
+    border: none;
+    background-color: var(--primary);
+    background-color: rgba(7, 149, 230, 0.1);
+    border-radius: 10px;
+    margin: .5rem 2rem;
+}
+
+header#header-web div.search-container input {
+    background-color: none;
+    border: none;
+    background-color: rgba(7, 149, 230, 0);
+    width: 90%;
+}
+
+header#header-web nav#menu-principal>input:checked + ul {
+    display: flex;
+    flex-flow: row wrap;
+    position: absolute;
+    justify-content: flex-end;
+    z-index: 1;
+}
+
+header#header-web nav#menu-principal>input + ul li:nth-child(1) {
+    text-align: right;
+}
+
+header#header-web nav#menu-principal>input + ul li {
+    background-color: white;
+    flex: 0 0 100%;
+    padding: 1rem;
+    border-bottom: solid 1px var(--light);
+}
+
+header#header-web div.search-container input:focus {
+    outline: none;
+}
+
+header#header-web div.search-container input::placeholder {
+    color: black;
+}
+
+/*Hacemos el section*/
+section#sec-vaiana {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+section#sec-vaiana header#header-vaiana {
+    flex: 0 0 100%;
+    margin-bottom: 3rem;
+}
+
+section#sec-vaiana header#header-vaiana picture img,
+section#sec-vaiana article.articulos img {
+    width: 100%;
+}
+
+section#sec-vaiana header#header-vaiana h2,
+section#sec-vaiana header#header-vaiana p {
+    text-align: center;
+}
+
+section#sec-vaiana header#header-vaiana h2 {
+    font-weight: 400;
+}
+
+section#sec-vaiana header#header-vaiana p  {
+    margin: 0 2rem;
+}
+
+section#sec-vaiana article.articulos {
+    display: flex;
+    flex-flow: column wrap;
+    flex: 0 0 50%;
+    padding: 0 1rem;
+    margin-bottom: 2rem;
+}
+
+section#sec-vaiana article.articulos a h3 {
+    text-align: center;
+    font-weight: 500;
+}
+
+section#sec-vaiana article.articulos > img.icon {
+    width: 2rem;
+    align-self: self-end;
+}
+
+section#sec-vaiana article.articulos p {
+    margin-top: auto;
+    text-align: center;
+}
+
+
+/*Hacemos el footer*/
+footer#foot-vaiana {
+    display: flex;
+    flex-flow: column wrap;
+    background-color: var(--light);
+}
+
+footer#foot-vaiana nav#menu-secondary ul {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+footer#foot-vaiana nav#menu-secondary ul li {
+    flex: 0 0 100%;
+    padding: 2rem;
+    border-bottom: solid 1px black;
+}
+
+footer#foot-vaiana div#languaje {
+    margin: 1rem 0;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+}
+
+footer#foot-vaiana div#languaje img {
+    border: 1px solid black;
+    border-radius: 100px;
+    margin-left: 1rem;
+    margin-right: .5rem;
+    width: 3rem;
+}
+
+footer#foot-vaiana nav#menu-secondary2 ul {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+footer#foot-vaiana nav#menu-secondary2 ul li {
+    padding: .5rem 1rem;
+   
+}
+
+footer#foot-vaiana nav#menu-secondary2 ul li a {
+    border-right: 1px solid black;
+    margin: .5rem 0;
+    padding-right: 1rem;
+    vertical-align: middle;
+    font-size: .7rem;
+}
+
+footer#foot-vaiana small {
+    padding: 0 .2rem;
+}
+
+footer#foot-vaiana nav#menu-social ul li a span{
+    display: none;
+}
+
+footer#foot-vaiana nav#menu-social ul li a img,
+footer#foot-vaiana div#payment img {
+    width: 2rem;
+}
+
+footer#foot-vaiana nav#menu-social ul {
+    margin: 2rem 0;
+    display: flex;
+    flex-flow: row wrap;
+}
+
+footer#foot-vaiana nav#menu-social ul li {
+    margin-left: 1rem;
+}
+
+footer#foot-vaiana div#payment {
+    display: flex;
+    flex: row wrap;
+    justify-content: space-around;
+    margin-bottom: .5rem;
+}
+
+/*Aplicamos display none*/
+header#header-web nav#menu-principal>input,
+header#header-web nav#menu-principal>ul {
+    display: none;
+}
+
+header#header-web nav#bloque-iconos a span,
+header#header-web nav#bloque-iconos a#user-login {
+    display: none;
+}
+
+
+
+/***** VERSIÓN DE TABLET *****/
+@media (min-width:700px) {
+    section#sec-vaiana article.articulos {
+        flex: 0 0 33%;
+    }
+}
+
+
+/***** VERSIÓN DE ESCRITORIO *****/
+@media (min-width:1165px) {
+    section#sec-vaiana>header#header-vaiana {
+        position: relative;
+    }
+
+    section#sec-vaiana>header#header-vaiana>h2,
+    section#sec-vaiana>header#header-vaiana>p {
+        position: absolute;
+    }
+
+    footer#foot-vaiana small {
+        padding: 1rem 10rem;
+        align-self: center;
+    }
+
+    section#sec-vaiana article.articulos {
+        flex: 0 0 25%;
+    }
+}

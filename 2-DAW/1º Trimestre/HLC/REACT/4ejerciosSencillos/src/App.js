@@ -3,43 +3,51 @@ import './App.css';
 import { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button } from 'reactstrap';
-import React, { useState } from 'react';
 import { Alert } from 'reactstrap';
 
 class App extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            alertVisible: false,
+            infoToggleVisible: false,
+            alertToggleVisible: false,
         }
 
     }
+    toggleInfo = () => {
+        this.setState({ infoToggleVisible: !this.state.infoToggleVisible });
+    }
 
+    toggleAlert = () => {
+        this.setState({ alertToggleVisible: !this.state.alertToggleVisible });
+    }
     render() {
         return (
             <div className="App">
                 <header className="App-header">
                     <img src={logo} className="App-logo" alt="logo" />
-                    <Button color="danger" onClick={()=>AlertDanger(this.setState{})}>
+                    <Button color="info" onClick={this.toggleInfo}>
                         Click Me
                     </Button>
+                    <Button color="danger" onClick={this.toggleAlert}>
+                        Click Me
+                    </Button>
+                    <Alert
+                        color="info"
+                        isOpen={this.state.infoToggleVisible}
+                        toggle={this.toggleAlert}>
+                        I am an alert and I can be dismissed!
+                    </Alert>
+                    <Alert
+                        color="danger"
+                        isOpen={this.state.alertToggleVisible}
+                        toggle={this.toggleAlert}>
+                        I am an alert and I can be dismissed!
+                    </Alert>
                 </header>
             </div>
         );
     }
 }
-
-function AlertDanger(props) {
-    const [visible, setVisible] = useState(true);
-
-    const onDismiss = () => setVisible(false);
-
-    return (
-        <Alert color="info" isOpen={visible}>
-            I am an alert and I can be dismissed!
-        </Alert>
-    );
-}
-
 
 export default App;

@@ -184,5 +184,6 @@ footer > small {
 @media(min-width: 768px) {
     main section#sec-hombre article.item-sec {
         flex: 0 0 33%;
+        background-color: var(--coloazul);
     }
 }
