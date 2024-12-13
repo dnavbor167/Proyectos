@@ -1,7 +1,7 @@
 <?php
 //Por si reutilizo código hay que ponerle un nombre único sino puede ser que se guarde
 //las session y cuando hagas otra se habra sesión directamente si hay abierta
-session_name("Primer Login");
+session_name("Primer_Login");
 session_start();
 require "src/funciones_ctes.php";
 
