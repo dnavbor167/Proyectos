@@ -46,8 +46,59 @@
         echo "<p>El nombre del usuario logueado es: <strong>".$tupla["nombre"]."</stron></p>";
     }
 
-    //Cerrar una conexión:
-    $conexion = null;
+    try{
+        $consulta="select * from usuarios";
+        $sentencia=$conexion->prepare($consulta);
+        $sentencia->execute();
+
+    }
+    catch(PDOException $e)
+    {
+        $senetencia=null;
+        $conexion=null;
+        die("<p>No he podido conectarse a la base de batos: ".$e->getMessage()."</p></body></html>");
+    }
+
+    if($sentencia->rowCount()<=0)
+    {
+        echo "<p>No hay usuarios en la BD</p>";
+    }
+    else
+    {
+        $usuarios=$sentencia->fetchAll(PDO::FETCH_ASSOC);// PDO::FETCH_NUM, PDO::FETCH_OBJECT
+        echo "<h3>Listado de los usuarios</h3>";
+        echo "<ol>";
+        foreach($usuarios as $tupla)
+        {
+            echo "<li>".$tupla["nombre"]."</li>";
+        }
+        echo "</ol>";
+    }
+
+    $nombre="Pepe Castro";
+    $usuario="pepe88";
+    $clave=md5("123456");
+    $email="sdjfhds@jsj.es";
+
+
+    try{
+        $consulta="insert into usuarios(nombre,usuario,clave,email) values(?,?,?,?)";
+        $sentencia=$conexion->prepare($consulta);
+        $sentencia->execute([$nombre,$usuario,$clave,$email]);
+    }
+    catch(PDOException $e)
+    {
+        $sentencia=null;
+        $conexion=null;
+        die("<p>No he podido conectarse a la base de batos: ".$e->getMessage()."</p></body></html>");
+    }
+
+    echo "<p>Usuario insertado con éxito con la id_usuario:<strong>".$conexion->lastInsertId()."</strong></p>";//equ. mysli_insert_id($conexion)
+
+    //Cerramos sentencia
+    $sentencia=null;
+    //Cerramos conexión
+    $conexion=null;
 
     ?>
 </body>
