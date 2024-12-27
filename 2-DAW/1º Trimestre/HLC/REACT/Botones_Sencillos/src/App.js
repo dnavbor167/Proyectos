@@ -28,7 +28,7 @@ class App extends Component {
         <Botoncillo
           color={this.state.listColores[0]}
           pos={0}
-          contarNumeros={(n, e) => this.handleOnClick(n)}
+          contarNumeros={(n) => this.handleOnClick(n)}
         />
         <Botoncillo
           color={this.state.listColores[1]}
