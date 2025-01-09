@@ -21,7 +21,7 @@
         return $respuesta;
     }
 
-    define("DIR_SERV","http://localhost/Proyectos/2-DAW/2Trimestre/DWESE/Teoria24/25/Teor_SW/API/");
+    define("DIR_SERV","http://localhost/Proyectos/2-DAW/2Trimestre/DWESE/Teoria24/25/Teor_SW/API");
    
     $url=DIR_SERV."/saludo";
     $respuesta=consumir_servicios_REST($url,"GET");
@@ -44,6 +44,25 @@
     $url=DIR_SERV."/saludo";
     $datos_env["nombre"]="María del Carmen";
     $respuesta=consumir_servicios_REST($url,"POST",$datos_env);
+    $obj=json_decode($respuesta);
+    if(!$obj)
+        die("<p>Error consumiendo el servicio: ".$url."<p></body></html>");
+
+    echo "<p>El mensaje recibido tras llamar al servicio web: <strong>'".$url."'</strong> ha sido: ".$obj->mensaje."</p>";
+
+    //Método delete:
+    $url=DIR_SERV."/borrar_saludo/45";
+    $respuesta=consumir_servicios_REST($url,"DELETE");
+    $obj=json_decode($respuesta);
+    if(!$obj)
+        die("<p>Error consumiendo el servicio: ".$url."<p></body></html>");
+    
+    echo "<p>El mensaje recibido tras llamar al servicio web: <strong>'".$url."'</strong> ha sido: ".$obj->mensaje."</p>";
+
+    //Método put
+    $url=DIR_SERV."/cambiar_saludo/48";
+    $datos_env["name"]="Juan Pepe";
+    $respuesta=consumir_servicios_REST($url,"PUT",$datos_env);
     $obj=json_decode($respuesta);
     if(!$obj)
         die("<p>Error consumiendo el servicio: ".$url."<p></body></html>");
