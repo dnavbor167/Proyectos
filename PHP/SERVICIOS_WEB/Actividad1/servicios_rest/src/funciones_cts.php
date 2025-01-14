@@ -47,7 +47,7 @@ function obtener_producto($cod)
 
     //Consulta:
     try {
-        $consulta = "select * from producto where cod = ?";
+        $consulta = "select producto.*, familia.nombre as nombre_familia from producto, familia where producto.familia=familia.cod and producto.cod = ?";
         $sentencia = $conexion->prepare($consulta);
         $sentencia->execute([$cod]);
     } catch (PDOException $e) {
@@ -142,7 +142,8 @@ function borrar_producto($cod)
         return $respuesta;
     }
     $respuesta["mensaje"] = "El producto ha sido borrado correctamente correctamente";
-
+    $sentencia = null;
+    $conexion = null;
     return $respuesta;
 }
 

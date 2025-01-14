@@ -1,18 +1,43 @@
 <?php
-function consumir_servicios_REST($url, $metodo, $datos = null)
-{
-    $llamada = curl_init();
-    curl_setopt($llamada, CURLOPT_URL, $url);
-    curl_setopt($llamada, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($llamada, CURLOPT_CUSTOMREQUEST, $metodo);
-    if (isset($datos))
-        curl_setopt($llamada, CURLOPT_POSTFIELDS, http_build_query($datos));
-    $respuesta = curl_exec($llamada);
-    curl_close($llamada);
-    return $respuesta;
+require "src/funciones_ctes.php";
+session_name("Servicios_Web");
+session_start();
+
+if (isset($_POST["btnBorrarDef"])) {
+    $url = DIR_SERV . "/producto/borrar/" . $_POST["btnBorrarDef"];
+    $respuesta = consumir_servicios_REST($url, "DELETE");
+    $json_eliminar = json_decode($respuesta, true);
+    if (!$json_eliminar)
+        die(error_page("Actividad 2", "<p>Error consumiendo el servico rest: <strong>" . $url . "</strong></p>"));
+
+    if (isset($json_eliminar["error"]))
+        die(error_page("Actividad 2", "<p>" . $json_eliminar["error"] . "</p>"));
+
+    $_SESSION["mensaje"] = "Producto borrado con éxito";
 }
 
-define("DIR_SERV", "http://localhost/Proyectos/PHP/SERVICIOS_WEB/Actividad1/servicios_rest");
+if (isset($_POST["btnDetalles"])) {
+    $url = DIR_SERV . "/producto/" . $_POST["btnDetalles"];
+    $respuesta = consumir_servicios_REST($url, "GET");
+    $json_detalles = json_decode($respuesta, true);
+    if (!$json_detalles)
+        die(error_page("Actividad 2", "<p>Error consumiendo el servico rest: <strong>" . $url . "</strong></p>"));
+
+    if (isset($json_detalles["error"]))
+        die(error_page("Actividad 2", "<p>" . $json_detalles["error"] . "</p>"));
+}
+
+
+//Esto se va a hacer siempre
+$url = DIR_SERV . "/productos";
+$respuesta = consumir_servicios_REST($url, "GET");
+$json_productos = json_decode($respuesta, true);
+if (!$json_productos)
+    die(error_page("Actividad 2", "<p>Error consumiendo el servico rest: <strong>" . $url . "</strong></p>"));
+
+if (isset($json_productos["error"]))
+    die(error_page("Actividad 2", "<p>" . $json_productos["error"] . "</p>"));
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -20,7 +45,7 @@ define("DIR_SERV", "http://localhost/Proyectos/PHP/SERVICIOS_WEB/Actividad1/serv
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prueba de los Servicios Actividad 1</title>
+    <title>Actividad 2</title>
     <style>
         table,
         td,
@@ -51,49 +76,49 @@ define("DIR_SERV", "http://localhost/Proyectos/PHP/SERVICIOS_WEB/Actividad1/serv
             text-decoration: underline;
             cursor: pointer;
         }
+
+        #borrarId {
+            text-align: center;
+            margin: 1rem auto;
+        }
+
+        .sesionEnlace {
+            text-align: center;
+            color: blue;
+            font-size: 1rem;
+        }
     </style>
 </head>
 
 <body>
-
+    <h1 class="centrado txt_centrado">Listado de los productos</h1>
     <?php
-    echo "<h1>Listado de los Productos</h1>";
 
-    //Obtener información
-    if (isset($_POST["btnInfoProducto"])) {
+    if (isset($_SESSION["mensaje"])) {
+        echo "<p class='sesionEnlace'>" . $_SESSION["mensaje"] . "</p>";
+        session_destroy();
     }
 
-    $url = DIR_SERV . "/producto/" . $_POST["btnInfoProducto"];
-    $respuesta = consumir_servicios_REST($url, "GET");
+    if (isset($_POST["btnBorrar"]))
+        require "vistas/vista_borrar.php";
 
-    $obj = json_decode($respuesta, true);
-    if (!$obj)
-        die("<p>Error consumiendo el servicio web <strong>" . $url . "</strong></p></body></html>");
+    if (isset($_POST["btnDetalles"]))
+        require "vistas/vista_detalles.php";
 
-    if (isset($obj["error"]))
-        die("<p>" . $obj->error . "</p></body></html>");
-    
+    if (isset($_POST["btnCrearProducto"]))
+        require "vistas/vista_agregar.php";
 
-    $url = DIR_SERV . "/productos";
-    $respuesta = consumir_servicios_REST($url, "GET");
-    //Si le pongo true en json_decode en vez de hacerme el array como si fuese un objeto, lo pone como array asociativo
-    //en vez de llamarlo como $obj->error se llamaría como $obj["error"]
-    $obj = json_decode($respuesta, true);
-    if (!$obj)
-        die("<p>Error consumiendo el servicio web <strong>" . $url . "</strong></p></body></html>");
 
-    if (isset($obj["error"]))
-        die("<p>" . $obj->error . "</p></body></html>");
 
-    echo "<table>";
+    echo "<table id='tb_pricipal'>";
     echo "<tr><th>Código</th><th>Nombre Corto</th><th>PVP</th><th><form action='index.php' method='post'><button class='enlace' name='btnCrearProducto'>Producto+</button></form></th></tr>";
 
-    foreach ($obj["productos"] as $tupla) {
+    foreach ($json_productos["productos"] as $tupla) {
         echo "<tr>";
-        echo "<td><form action='index.php' method='post'><button class='enlace' name='btnInfoProducto' value='" . $tupla[$cod] . "'>" . $tupla["cod"] . "</button></form></td>";
+        echo "<td><form action='index.php' method='post'><button class='enlace' name='btnDetalles' type='submit' value='" . $tupla["cod"] . "'>" . $tupla["cod"] . "</button></form></td>";
         echo "<td>" . $tupla["nombre_corto"] . "</td>";
         echo "<td>" . $tupla["PVP"] . "</td>";
-        echo "<td><form action='index.php' method='post'><button class='enlace' name='btnBorrar' value='" . $tupla[$cod] . "'>Borrar</button> - <button class='enlace' name='btnEditar' value='" . $tupla[$cod] . "'>Editar</button></form></td>";
+        echo "<td><form action='index.php' method='post'><button type='submit' class='enlace' name='btnBorrar' value='" . $tupla["cod"] . "'>Borrar</button> - <button type='submit' class='enlace' name='btnEditar' value='" . $tupla["cod"] . "'>Editar</button></form></td>";
         echo "</tr>";
     }
 
