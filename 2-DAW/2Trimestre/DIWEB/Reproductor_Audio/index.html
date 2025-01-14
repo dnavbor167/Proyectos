@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reproductor de Audio Personalizado</title>
+    <script src="https://kit.fontawesome.com/875ca5d3a7.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/funciones-reproductor-audio.js"></script>
+</head>
+
+<body>
+    <audio id="audio">
+        <source src="audio/hotel-california.ogg" type="audio/ogg">
+        <source src="audio/hotel-california.mp3" type="audio/mpeg">
+    </audio>
+
+    <div id="contentAudio">
+        <button aria-label="reproducir" id="reproducir"><i id="btnPlay" class="fa-solid fa-play"></i></button>
+        <button aria-label="parar" id="parar"><i class="fa-solid fa-stop"></i></button>
+        <button aria-label="restart" id="restart"><i class="fa-solid fa-redo"></i></button>
+        <button aria-label="volume-down" id="volume-down"><i class="fa-solid fa-volume-down"></i></button>
+        <button aria-label="volume-up" id="volume-up"><i class="fa-solid fa-volume-up"></i></button>
+    </div>
+</body>
+</html>
