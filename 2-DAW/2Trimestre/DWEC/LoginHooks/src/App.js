@@ -19,14 +19,16 @@ class App extends Component {
   }
 
   userLogin(telefono, password) {
-    if (telefono === "" && password === "") {
+    if (telefono === "" || password === "") {
       this.setState({ info: "Campos vacíos" })
+      return "Campos vacíos"
     } else if (telefono === "dani@gmail.com" && password === "1234") {
       this.setState({ logged: true })
+      return ""
     } else {
       this.setState({ info: "Datos Incorrectos" })
+      return "Datos Incorrectos"
     }
-    return this.state.info
   }
 
   render() {
@@ -40,8 +42,6 @@ class App extends Component {
     }
     return (
       <div className="App">
-        <Menu menuItem={this.state.menuItem}
-          changeMenu={(item) => this.changeMenu(item)} />
         {obj}
       </div>
     );

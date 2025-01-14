@@ -18,7 +18,8 @@ export default function AppLogin(props) {
     }
 
     const clicla = () => {
-        setInfo(props.userLogin(telefono, password)) 
+        let result = props.userLogin(telefono, password)
+        setInfo(result) 
     }
 
     return (
