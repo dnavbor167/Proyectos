@@ -13,6 +13,11 @@ function consumir_servicios_REST($url, $metodo, $datos = null)
 }
 
 define("DIR_SERV", "http://localhost/Proyectos/PHP/SERVICIOS_WEB/Actividad1/servicios_rest");
+
+//controlamos los errores del formulario
+if (isset($_POST["btnInsertar"])) 
+    $error_form = $_POST["cod"] = "" || $_POST["nombre"] = "" || $_POST["nombre_corto"] = "" || $_POST["descripcion"] = "" || $_POST["pvp"] = "" || $_POST["familia"] = "";
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -26,6 +31,7 @@ define("DIR_SERV", "http://localhost/Proyectos/PHP/SERVICIOS_WEB/Actividad1/serv
 <body>
     <h1>Productos de la Tienda</h1>
     <?php
+    //Ejercicio A
     $url = DIR_SERV . "/productos";
     $respuesta = consumir_servicios_REST($url, "GET");
     //Si le pongo true en json_decode en vez de hacerme el array como si fuese un objeto, lo pone como array asociativo
@@ -49,7 +55,22 @@ define("DIR_SERV", "http://localhost/Proyectos/PHP/SERVICIOS_WEB/Actividad1/serv
     }
 
     echo "</table>";
+
+    // Ejercicio C
+    $url = DIR_SERV . "/producto/insertar";
+    $respuesta = consumir_servicios_REST($url, "POST");
+
+    echo '<form action="index.php" method="post" placeholder="">';
+    echo '<input type="text" name="cod" id="cod">';
+    echo '<input type="text" name="nombre" id="nombre">';
+    echo '<input type="text" name="nombre_corto" id="nombre_corto">';
+    echo '<input type="text" name="descripcion" id="descripcion">';
+    echo '<input type="text" name="pvp" id="pvp">';
+    echo '<input type="text" name="familia" id="familia">';
+    echo '<button type="submit" name="btnInsertar">Insertar</button>';
     ?>
+   
+    </form>
 </body>
 
 </html>

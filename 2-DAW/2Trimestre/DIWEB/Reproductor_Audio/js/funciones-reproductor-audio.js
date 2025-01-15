@@ -12,11 +12,11 @@ reproducir.onclick = function (ev) {
     if (!isPaused) {
         audio.play();
         btnPlay.classList.remove("fa-play");
-        btnPlay.classList.add("fa-solid fa-pause");
+        btnPlay.classList.add("fa-pause");
     } else {
         audio.pause();
         btnPlay.classList.remove("fa-pause");
-        btnPlay.classList.add("fa-solid fa-play");
+        btnPlay.classList.add("fa-play");
     }
 
     isPaused = !isPaused;
@@ -25,16 +25,16 @@ reproducir.onclick = function (ev) {
 parar.onclick = function (ev) {
     audio.pause();
     audio.currentTime = 0;
-    btnPlay.classList.remove("fa-solid fa-pause");
-    btnPlay.classList.add("fa-solid fa-play");
+    btnPlay.classList.remove("fa-pause");
+    btnPlay.classList.add("fa-play");
     isPaused = false;
 };
 
 restart.onclick = function (ev) {
     audio.currentTime = 0;
     audio.play();
-    btnPlay.classList.remove("fa-solid fa-play");
-    btnPlay.classList.add("fa-solid fa-pause");
+    btnPlay.classList.remove("fa-play");
+    btnPlay.classList.add("fa-pause");
     isPaused = true;
 };
 
