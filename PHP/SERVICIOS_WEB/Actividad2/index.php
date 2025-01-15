@@ -3,6 +3,16 @@ require "src/funciones_ctes.php";
 session_name("Servicios_Web");
 session_start();
 
+if (isset($_POST["btnCrearProducto"])) {
+    $url = DIR_SERV . "/familias";
+    $respuesta = consumir_servicios_REST($url, "GET");
+    $json_familias = json_decode($respuesta, true);
+    if (!$json_familias)
+        die(error_page("Actividad 2", "<p>Error consumiendo el servico rest: <strong>" . $url . "</strong></p>"));
+    if (isset($json_familias["error"]))
+        die(error_page("Actividad 2", "<p>" . $json_familias["error"] . "</p>"));
+}
+
 if (isset($_POST["btnBorrarDef"])) {
     $url = DIR_SERV . "/producto/borrar/" . $_POST["btnBorrarDef"];
     $respuesta = consumir_servicios_REST($url, "DELETE");
@@ -108,6 +118,9 @@ if (isset($json_productos["error"]))
     if (isset($_POST["btnCrearProducto"]))
         require "vistas/vista_agregar.php";
 
+    if (isset($_POST["btnEditar"])) {
+        require "vistas/vista_editar.php";
+    }
 
 
     echo "<table id='tb_pricipal'>";

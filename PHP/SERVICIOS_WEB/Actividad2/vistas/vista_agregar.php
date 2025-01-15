@@ -21,7 +21,11 @@
 
     <label for="familia">Seleccione una familia:</label>
     <select name="familia" id="familia">
-        
+        <?php 
+        foreach($json_familias["familias"] as $tupla) {
+            echo "<option value='".$tupla["cod"]."'>".$tupla["cod"]."</option>";
+        }
+        ?>
     </select> <br><br>
 
     <button type="submit">Volver</button>
