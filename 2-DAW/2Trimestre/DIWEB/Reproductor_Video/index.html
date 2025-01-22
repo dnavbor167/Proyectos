@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reproductor de Video </title>
+    <script src="https://kit.fontawesome.com/875ca5d3a7.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
@@ -14,19 +16,20 @@
             <source src="video/videos/trailer.webm" type='video/webm; codecs="vp8, vorbis"' />
             <source src="video/videos/trailer.ogv" type='video/ogg; codecs="theora, vorbis"' />
             <object data="video/videos/trailer.swf" aria-label="trailer_swf">
-                <embed src="video/videos/trailer.swf" type="application/x-shockwave-flash" allowfullscreen="true" allowscriptaccess="always">
+                <embed src="video/videos/trailer.swf" type="application/x-shockwave-flash" allowfullscreen="true"
+                    allowscriptaccess="always">
             </object>
         </video>
         <div class="controls">
-            <button id="reproducir"><i id="btnPlay" class="fas fa-play"></i></button>
-            <button id="parar"><i class="fas fa-stop"></i></button>
-            <button id="restart"><i class="fas fa-redo"></i></button>
-            <button id="atras"><i class="fas fa-backward"></i></button>
-            <button id="adelante"><i class="fas fa-forward"></i></button>
-            <button id="lento"><i class="fas fa-angle-double-left"></i></button>
-            <button id="rapido"><i class="fas fa-angle-double-right"></i></button>
-            <button id="mute"><i id="btnMute" class="fas fa-volume-up"></i></button>
-            <button id="fullscreen"><i class="fas fa-expand"></i></button>
+            <button id="reproducir" aria-label="reproducir"><i id="btnPlay" class="fas fa-play"></i></button>
+            <button id="parar" aria-label="parar"><i class="fas fa-stop"></i></button>
+            <button id="restart" aria-label="restart"><i class="fas fa-redo"></i></button>
+            <button id="atras" aria-label="atras"><i class="fas fa-backward"></i></button>
+            <button id="adelante" aria-label="adelante"><i class="fas fa-forward"></i></button>
+            <button id="lento" aria-label="lento"><i class="fas fa-angle-double-left"></i></button>
+            <button id="rapido" aria-label="rapido"><i class="fas fa-angle-double-right"></i></button>
+            <button id="mute" aria-label="mute"><i id="btnMute" class="fas fa-volume-up"></i></button>
+            <button id="fullscreen" aria-label="fullscreen"><i class="fas fa-expand"></i></button>
             <input type="range" id="barraTiempo" value="0" min="0" max="100">
             <span id="tiempo">0:00/0:00</span>
             <input type="range" id="volume" value="1" min="0" max="1" step="0.1">

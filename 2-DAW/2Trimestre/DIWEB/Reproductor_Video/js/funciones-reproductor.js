@@ -98,10 +98,14 @@ mute.onclick = function (ev) {
         video.muted = false;
         btnMute.classList.remove("fa-volume-off");
         btnMute.classList.add("fa-deaf");
+        video.volume = 1
+        volume.value = 1
     } else {
         video.muted = true;
         btnMute.classList.remove("fa-deaf");
         btnMute.classList.add("fa-volume-off");
+        video.volume = 0
+        volume.value = 0
     }
 };
 

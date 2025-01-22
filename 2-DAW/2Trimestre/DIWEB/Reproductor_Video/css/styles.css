@@ -1,0 +1,93 @@
+* {
+    box-sizing: border-box;
+}
+
+button {
+    border: none;
+    background: none;
+    border-radius: 10px;
+}
+
+button:hover {
+    background-color: lightslategray;
+}
+
+button,
+span {
+    padding: .8rem;
+}
+
+input {
+    padding: 0;
+    margin: .8rem;
+}
+
+video {
+    border-radius: 20px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+div.video-container {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+#video {
+    flex: 0 0 60%;
+}
+
+.controls {
+    flex: 0 0 100%;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    
+}
+
+button i {
+    font-size: 1.5rem;
+}
+
+#parar {
+    order: 1;
+}
+
+#barraTiempo {
+    order: 2;
+}
+
+#tiempo {
+    order: 3;
+}
+
+#mute {
+    order: 4;
+}
+
+#volume {
+    order: 5;
+}
+
+#restart {
+    order: 6;
+}
+
+#atras {
+    order: 7;
+}
+
+#adelante {
+    order: 8;
+}
+
+#lento {
+    order: 9;
+}
+
+#rapido {
+    order: 10;
+}
+
+#fullscreen {
+    order: 11;
+}
