@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reproductor de Video </title>
+</head>
+
+<body>
+    <div class="video-container">
+        <video id="video" poster="video/trailer.png" width="500" tabindex="0" preload="metadata">
+            <source src="video/videos/trailer.mp4" type="video/mp4" />
+            <source src="video/videos/trailer.webm" type='video/webm; codecs="vp8, vorbis"' />
+            <source src="video/videos/trailer.ogv" type='video/ogg; codecs="theora, vorbis"' />
+            <object data="video/videos/trailer.swf" aria-label="trailer_swf">
+                <embed src="video/videos/trailer.swf" type="application/x-shockwave-flash" allowfullscreen="true" allowscriptaccess="always">
+            </object>
+        </video>
+        <div class="controls">
+            <button id="reproducir"><i id="btnPlay" class="fas fa-play"></i></button>
+            <button id="parar"><i class="fas fa-stop"></i></button>
+            <button id="restart"><i class="fas fa-redo"></i></button>
+            <button id="atras"><i class="fas fa-backward"></i></button>
+            <button id="adelante"><i class="fas fa-forward"></i></button>
+            <button id="lento"><i class="fas fa-angle-double-left"></i></button>
+            <button id="rapido"><i class="fas fa-angle-double-right"></i></button>
+            <button id="mute"><i id="btnMute" class="fas fa-volume-up"></i></button>
+            <button id="fullscreen"><i class="fas fa-expand"></i></button>
+            <input type="range" id="barraTiempo" value="0" min="0" max="100">
+            <span id="tiempo">0:00/0:00</span>
+            <input type="range" id="volume" value="1" min="0" max="1" step="0.1">
+        </div>
+    </div>
+    <script src="js/funciones-reproductor.js"></script>
+</body>
+
+</html>
