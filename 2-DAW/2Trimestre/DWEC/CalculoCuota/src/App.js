@@ -3,12 +3,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Component, useState } from 'react';
 import {
   Alert, Row, Col, UncontrolledAccordion, AccordionItem, AccordionHeader, AccordionBody, Input, Button, Modal, ModalHeader, ModalBody, ModalFooter, FormGroup, Label
- } from 'reactstrap';
- 
+} from 'reactstrap';
+
 const VentanaModal = (props) => {
   const [cantidad, setCantidad] = useState('');
   const [meses, setMeses] = useState('');
   const [tae, setTae] = useState('');
+  const [alert, setAlert] = useState(false);
 
   const { className } = props;
 
@@ -28,17 +29,26 @@ const VentanaModal = (props) => {
   }
 
   const datos = () => {
-    console.log({cantidad,meses,tae})
     //comprobamos de que sean correctos los datos (estén llenos y sean numeros)
-    if (cantidad !== '' && !isNaN(cantidad) && meses !== '' && !isNaN(meses)) {
-
+    if (cantidad !== '' && !isNaN(cantidad) && cantidad > 0 && meses > 0 && meses !== '' && !isNaN(meses) && tae !== "") {
+      setAlert(false);
+      return { cantidadPropuesta: cantidad, mesesPropuestos: meses, taePropuesto: tae }
     } else {
-      <Alert color="warning">
-        Debes rellenar todos los campos
-      </Alert>
+      setAlert(true);
+      return false;
     }
   }
- 
+
+  const mostrarAlerta = () => {
+    if (alert) {
+      return (
+        <Alert color="danger">
+          Debes rellenar todos los campos
+        </Alert>
+      )
+    }
+  }
+
   return (
     <div>
       <Modal isOpen={props.mostrar} toggle={props.toggle} className={className} onEntering={"//ESTO SE EJECUTA CUANDO MUESTRAS LA VENTANA"}>
@@ -63,24 +73,32 @@ const VentanaModal = (props) => {
             </Col>
           </FormGroup>
           <FormGroup row>
-          <Label sm={2} > TAE: </Label>
+            <Label sm={2} > TAE: </Label>
             <Col sm={10}>
               <Input onChange={handleChange} onClick={handleChange}
                 id="tae"
                 name="tae"
                 type="select"
+                value={tae}
               >
-                <option>5%</option>
-                <option>6%</option>
-                <option>7%</option>
-                <option>8%</option>
-                <option>9%</option>
+                <option value="">Seleccione TAE</option>
+                <option value='5'>5%</option>
+                <option value='6'>6%</option>
+                <option value='7'>7%</option>
+                <option value='8'>8%</option>
+                <option value='9'>9%</option>
               </Input>
             </Col>
           </FormGroup>
+          {mostrarAlerta()}
         </ModalBody>
         <ModalFooter>
-          <Button color="primary" onClick={()=>props.aceptar(datos())}>{props.botonAceptar}</Button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <Button color="primary" onClick={() => {
+            const isValid = datos();
+            if (isValid !== false) {
+              props.aceptar(datos())
+            }
+          }}>{props.botonAceptar}</Button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </ModalFooter>
       </Modal>
     </div>
@@ -89,36 +107,41 @@ const VentanaModal = (props) => {
 
 
 class App extends Component {
-  constructor(props){
+  constructor(props) {
     super(props)
     this.state = {
-      isOpen:false,
+      isOpen: false,
     }
   }
-  
-  setIsOpen(d){
-    if (d===undefined) return;
-    this.setState({isOpen:d})
-  }
-  
-  aceptar(datos){
-    console.log(datos)
-    this.toggleModal();
+
+  setIsOpen(d) {
+    if (d === undefined) return;
+    this.setState({ isOpen: d })
   }
 
-  toggleModal(){this.setIsOpen(!this.state.isOpen)}
+  aceptar(datos) {
+    console.log(datos)
+    this.toggleModal();
+    return (
+      <Alert>
+        Para la cantidad de {datos.cantidadPropuesta} con {datos.mesesPropuestos} meses y con un tae del {datos.taePropuesto}
+      </Alert>
+    )
+  }
+
+  toggleModal() { this.setIsOpen(!this.state.isOpen) }
 
   render() {
     return (
       <div className="App">
-        <Button onClick={()=>{this.toggleModal()}}>
+        <Button onClick={() => { this.toggleModal() }}>
           Dale
         </Button>
-        <VentanaModal 
-            aceptar={(datos)=>this.aceptar(datos)}
-            mostrar={this.state.isOpen}
-            botonAceptar={"Calcular"}
-            titulo={"CALCULO DE TU CUOTA"}
+        <VentanaModal
+          aceptar={(datos) => this.aceptar(datos)}
+          mostrar={this.state.isOpen}
+          botonAceptar={"Calcular"}
+          titulo={"CALCULO DE TU CUOTA"}
         />
       </div>
     );
