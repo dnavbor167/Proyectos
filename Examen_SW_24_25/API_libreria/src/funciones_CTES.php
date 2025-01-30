@@ -215,8 +215,8 @@ function repetido_agregar($libro)
 
     try {
         $consulta = "select * from ".$libro["tabla"]." where ".$libro["columna"]." = ?";
-        $sentencia = $conexion->prepare($libro["valor"]);
-        $sentencia->execute($libro);
+        $sentencia = $conexion->prepare($consulta);
+        $sentencia->execute([$libro["valor"]]);
     } catch (PDOException $e) {
         $sentencia = null;
         $conexion = null;

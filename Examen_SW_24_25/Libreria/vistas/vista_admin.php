@@ -29,10 +29,12 @@ if (isset($_POST["btnBorrarSi"])) {
     }
 
     $_SESSION["mensaje"] = $json_borrar_libro["mensaje"];
+    header("location:index.php");
+    exit;
 }
 if (isset($_POST["btnAgregar"])) {
     //Controlamos errores formulario agregar
-    $error_referencia = $_POST["referencia"] == "" || $_POST["referencia"] == 0;
+    $error_referencia = $_POST["referencia"] == "" || $_POST["referencia"] <= 0 || !is_numeric($_POST["referencia"]);
     //comprobamos si está repetido o no la referencia llamando al servicio creado
 
     if (!$error_referencia) {
@@ -67,7 +69,7 @@ if (isset($_POST["btnAgregar"])) {
     $error_titulo = $_POST["titulo"] == "";
     $error_autor = $_POST["autor"] == "";
     $error_descripcion = $_POST["descripcion"] == "";
-    $error_precio = $_POST["precio"] == "";
+    $error_precio = $_POST["precio"] == "" || $_POST["precio"] <= 0 || !is_numeric($_POST["precio"]);
     $errores_form_agregar = $error_referencia || $error_titulo || $error_autor || $error_descripcion || $error_precio;
 }
 
@@ -75,11 +77,11 @@ if (isset($_POST["btnAgregar"])) {
 if (isset($_POST["btnAgregar"]) && !$errores_form_agregar) {
     $headers[] = "Authorization: Bearer " . $_SESSION["token"];
     $url = DIR_SERV . "/crearLibro";
-    $datos_env[] = $_POST["referencia"];
-    $datos_env[] = $_POST["titulo"];
-    $datos_env[] = $_POST["autor"];
-    $datos_env[] = $_POST["descripcion"];
-    $datos_env[] = $_POST["precio"];
+    $datos_env["referencia"] = $_POST["referencia"];
+    $datos_env["titulo"] = $_POST["titulo"];
+    $datos_env["autor"] = $_POST["autor"];
+    $datos_env["descripcion"] = $_POST["descripcion"];
+    $datos_env["precio"] = $_POST["precio"];
     $respuesta = consumir_servicios_JWT_REST($url, "POST", $headers, $datos_env);
     $json_crear_libro = json_decode($respuesta, true);
     if (!$json_crear_libro) {
@@ -104,6 +106,8 @@ if (isset($_POST["btnAgregar"]) && !$errores_form_agregar) {
         exit;
     }
     $_SESSION["mensaje"] = $json_crear_libro["mensaje"];
+    header("location:index.php");
+    exit;
 }
 ?>
 <!DOCTYPE html>

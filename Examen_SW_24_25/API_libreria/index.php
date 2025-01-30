@@ -68,11 +68,11 @@ $app->post("/crearLibro", function ($request) {
     if (is_array($test)) {
         if (isset($test["usuario"])) {
             if ($test["usuario"]["tipo"] == "admin") {
-                $libro[] = $request->Param("referencia");
-                $libro[] = $request->Param("titulo");
-                $libro[] = $request->Param("autor");
-                $libro[] = $request->Param("descripcion");
-                $libro[] = $request->Param("precio");
+                $libro[] = $request->getParam("referencia");
+                $libro[] = $request->getParam("titulo");
+                $libro[] = $request->getParam("autor");
+                $libro[] = $request->getParam("descripcion");
+                $libro[] = $request->getParam("precio");
                 echo json_encode(agregar_Libro($libro));
             } else {
                 echo json_encode(array("no_auth" => "No tienes permiso para usar el servicio"));
