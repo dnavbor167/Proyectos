@@ -25,7 +25,7 @@
     <label for="autor">Autor:</label>
     <input type="text" name="autor" id="autor" value="<?php if (isset($_POST["btnAgregar"]) && !isset($error_autor)) echo $_POST["autor"] ?>">
     <?php
-    if (isset($_POST["btnAgregar"]) && $_POST["autor"] == "") {
+    if (isset($_POST["btnAgregar"]) && $error_autor) {
         echo "<span class='error'>* Campo vacío *</span>";
     }
     ?>
@@ -34,7 +34,7 @@
     <label for="descripcion">Descripción</label>
     <input type="text" name="descripcion" id="descripcion" value="<?php if (isset($_POST["btnAgregar"]) && !isset($error_descripcion)) echo $_POST["descripcion"] ?>">
     <?php
-    if (isset($_POST["btnAgregar"]) && $_POST["descripcion"] == "") {
+    if (isset($_POST["btnAgregar"]) && $error_descripcion) {
         echo "<span class='error'>* Campo vacío *</span>";
     }
     ?>
@@ -44,7 +44,7 @@
     <input type="text" name="precio" id="precio" value="<?php if (isset($_POST["btnAgregar"]) && !isset($error_precio)) echo $_POST["precio"] ?>">
 
     <?php
-    if (isset($_POST["btnAgregar"]) && $_POST["precio"] == "") {
+    if (isset($_POST["btnAgregar"]) && $error_precio) {
         echo "<span class='error'>* Campo vacío *</span>";
     }
     ?>
