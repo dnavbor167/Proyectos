@@ -43,10 +43,16 @@ const VentanaModal = (props) => {
     if (alert) {
       return (
         <Alert color="danger">
-          Debes rellenar todos los campos
+          Debes completar los campos bien
         </Alert>
       )
     }
+  }
+
+  const restablecerDatos = () => {
+    setCantidad('');
+    setMeses('');
+    setTae('');
   }
 
   return (
@@ -98,6 +104,7 @@ const VentanaModal = (props) => {
             if (isValid !== false) {
               props.aceptar(datos())
             }
+            restablecerDatos()
           }}>{props.botonAceptar}</Button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </ModalFooter>
       </Modal>
@@ -111,6 +118,8 @@ class App extends Component {
     super(props)
     this.state = {
       isOpen: false,
+      datos: { cantidad: "", meses: "", tae: "" },
+      alerta: false,
     }
   }
 
@@ -122,11 +131,27 @@ class App extends Component {
   aceptar(datos) {
     console.log(datos)
     this.toggleModal();
-    return (
-      <Alert>
-        Para la cantidad de {datos.cantidadPropuesta} con {datos.mesesPropuestos} meses y con un tae del {datos.taePropuesto}
-      </Alert>
-    )
+    let copiaDatos = this.state.datos
+    copiaDatos = { cantidad: datos.cantidadPropuesta, meses: datos.mesesPropuestos, tae: datos.taePropuesto }
+    this.setState({ datos: copiaDatos, alerta: !this.state.alerta })
+  }
+
+  calcularCuota() {
+    let r = this.state.datos.tae / (100 * 12)
+
+    let c = (this.state.datos.cantidad * r/ (1 - Math.pow(1 + r, -24))).toFixed(2)
+
+    return c
+  }
+
+  alerta() {
+    if (this.state.alerta) {
+      return (
+        <Alert>
+          Para la cantidad de {this.state.datos.cantidad} con {this.state.datos.meses} meses y con un tae del {this.state.datos.tae} tenemos una cuota de {this.calcularCuota()}
+        </Alert>
+      )
+    }
   }
 
   toggleModal() { this.setIsOpen(!this.state.isOpen) }
@@ -134,7 +159,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Button onClick={() => { this.toggleModal() }}>
+        <Button onClick={() => { this.toggleModal(); if (this.state.alerta) this.setState({ alerta: false }) }}>
           Dale
         </Button>
         <VentanaModal
@@ -143,6 +168,8 @@ class App extends Component {
           botonAceptar={"Calcular"}
           titulo={"CALCULO DE TU CUOTA"}
         />
+        <br />
+        {this.alerta()}
       </div>
     );
   }
