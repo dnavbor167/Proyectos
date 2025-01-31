@@ -6,13 +6,10 @@
 	<meta charset="utf-8">
 	<script src="jquery-3.7.1.min.js"></script>
 	<script>
-
 		$(function () {
-			$("ul#menu > li").mouseenter(
-				function () {
-					$(this).css('background-color', "lightblue");
-				}
-			);
+			$("ul#menu > li").on("mouseenter", function (e) {
+				$(this).css('background-color', "lightblue");
+			});
 			$("ul#menu > li").mouseleave(
 				function () {
 					$(this).css('background-color', "white");
