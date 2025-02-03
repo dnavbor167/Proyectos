@@ -167,6 +167,7 @@ class App extends Component {
           mostrar={this.state.isOpen}
           botonAceptar={"Calcular"}
           titulo={"CALCULO DE TU CUOTA"}
+          toggle = {()=>this.toggleModal()}
         />
         <br />
         {this.alerta()}
