@@ -1,0 +1,63 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 14px;
+  color: black;
+  background-color: white;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+a:link {
+  color: #00acdd;
+}
+
+
+nav ul li {
+  list-style-type: none;
+}
+
+nav ul {
+  padding-left: 0;
+}
+
+nav#main-menu {
+  background-color: #004166;
+  font-weight: bold;
+  border: 2px solid #e6e7e8;
+  border-radius: 5px;
+}
+
+div#content>nav#main-menu>input,
+div#content>nav#main-menu>ul {
+  display: none;
+}
+
+div#content>nav#main-menu>ul {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-evenly;
+}
+
+div#content>nav#main-menu>input:checked+ul {
+  flex-flow: row;
+  justify-content: space-evenly;
+}
+
+section#principal {
+  flex-flow: row wrap;
+}
+
+section#principal h2,
+section#principal article#primerElemento {
+  flex: 0 0 100%;
+}
+
+section#principal article.news-art {
+  flex: 0 0 50%;
+}

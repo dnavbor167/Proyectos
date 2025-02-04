@@ -40,7 +40,7 @@ function ShowProductos(props) {
   return (
     <>
       {props.productos.map(p => (
-        <Productos img={p.imagen} nombre={p.nombre} texto={p.texto} id={p.id} comprar={(id) => this.comprar(id)} />
+        <Productos img={p.imagen} nombre={p.nombre} texto={p.texto} id={p.id} comprar={() => props.comprar(p.id)} />
       ))}
     </>)
 }
@@ -137,7 +137,7 @@ class App extends Component {
     return (
       <>
         <Button color="primary" onClick={() => this.toggleModal()}>Carrito ({this.cantidadProductos()})</Button>
-        <ShowProductos productos={this.state.listaProductos} />
+        <ShowProductos productos={this.state.listaProductos} comprar={(id) => this.comprar(id)} />
         <VentanaModal
           mostrar={this.state.isOpen}
           toggle={() => this.toggleModal()}

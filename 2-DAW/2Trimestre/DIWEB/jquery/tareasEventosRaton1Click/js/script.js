@@ -1,6 +1,6 @@
 $(function () {
     $("article.noticia > img").on("click", function () {
-        $(this).next().css("display", "active");
+        $(this).next().css("display", "block");
     });
 
     $("article.noticia > img").on("dblclick", function () {
