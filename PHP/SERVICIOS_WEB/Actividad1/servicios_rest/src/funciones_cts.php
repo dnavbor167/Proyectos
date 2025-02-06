@@ -108,7 +108,7 @@ function actualizar_producto($datos)
     try {
         $consulta = "update `producto` set `nombre`=?,`nombre_corto`=?,`descripcion`=?,`PVP`=?,`familia`=? WHERE cod = ?";
         $sentencia = $conexion->prepare($consulta);
-        $sentencia->execute([$datos]);
+        $sentencia->execute($datos);
     } catch (PDOException $e) {
         $sentencia = null;
         $conexion = null;
@@ -170,7 +170,7 @@ function obtener_familias()
         return $respuesta;
     }
 
-    $respuesta["familia"] = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+    $respuesta["familias"] = $sentencia->fetchAll(PDO::FETCH_ASSOC);
     $sentencia = null;
     $conexion = null;
     return $respuesta;

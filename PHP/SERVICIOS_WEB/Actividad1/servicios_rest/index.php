@@ -34,7 +34,7 @@ $app->put('/producto/actualizar/{codigo}', function ($request) {
     $datos[] = $request->getParam("nombre");
     $datos[] = $request->getParam("nombre_corto");
     $datos[] = $request->getParam("descripcion");
-    $datos[] = $request->getParam("pvp");
+    $datos[] = $request->getParam("PVP");
     $datos[] = $request->getParam("familia");
     $datos[] = $request->getAttribute("codigo");
     echo json_encode(actualizar_producto($datos));
