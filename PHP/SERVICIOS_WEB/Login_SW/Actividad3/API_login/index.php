@@ -3,18 +3,16 @@
 require __DIR__ . '/Slim/autoload.php';
 require "src/funciones_ctes.php";
 
-$app= new \Slim\App;
+$app = new \Slim\App;
 
 
-$app->post("/login",function($request){
+$app->post("/login", function ($request) {
 
-    $usuario=$request->getParam("usuario");
-    $clave=$request->getParam("clave");
+    $usuario = $request->getParam("usuario");
+    $clave = $request->getParam("clave");
 
 
-    echo json_encode(login($usuario,$clave));
+    echo json_encode(login($usuario, md5($clave)));
 });
 
 $app->run();
-
-?>

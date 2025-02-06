@@ -32,7 +32,7 @@ function login($usuario,$clave)
     if($sentencia->rowCount()>0)
         $respuesta["usuario"]=$sentencia->fetch(PDO::FETCH_ASSOC);
     else
-        $respuesta["mensanje"]="El usuario no se encuentra registrado en la BD";
+        $respuesta["mensaje"]="El usuario no se encuentra registrado en la BD";
 
     $sentencia=null;
     $conexion=null;
