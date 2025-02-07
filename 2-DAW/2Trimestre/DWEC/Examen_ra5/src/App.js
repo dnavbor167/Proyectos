@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Card, CardBody, CardText, CardTitle, Modal, ModalHeader, ModalBody, ModalFooter, Button, FormGroup, Label, Col, Input, Alert } from 'reactstrap';
+import { Card, ListGroup, ListGroupItem, CardBody, CardText, CardTitle, Modal, ModalHeader, ModalBody, ModalFooter, Button, FormGroup, Label, Col, Input, Alert } from 'reactstrap';
 import './App.css';
 import { Component, useState } from 'react';
 export const PIELES = [
@@ -29,7 +29,7 @@ export const PIELES = [
 function Productos(props) {
   return (
     <Card style={{ width: '18rem' }}>
-      <img src={props.img} />
+      <img src={props.img} alt={props.nombre} />
       <CardBody>
         <CardTitle tag="h5">{props.nombre}</CardTitle>
         <CardText>{props.texto}</CardText>
@@ -46,6 +46,66 @@ function ShowProductos(props) {
         <Productos img={p.imagen} nombre={p.nombre} texto={p.texto} id={p.id} comprar={() => props.comprar(p.id)} />
       ))}
     </>)
+}
+
+const CardPedido = (props) => {
+  if (props.pedidos.productos && props.pedidos.productos.length > 0) {
+    return (
+
+      <div>
+        {props.pedidos.productos.map(p => {
+          <Card
+            style={{
+              width: '18rem'
+            }}
+          >
+            <img
+              alt="Card"
+              src={p.imagen_producto}
+            />
+            <CardBody>
+              <CardTitle tag="h5">
+                Pedido
+              </CardTitle>
+            </CardBody>
+            <ListGroup flush>
+
+              <ListGroupItem>
+                Nombre: {p.nombre_producto}
+                <br />
+                Cantidad: {p.cantidad_producto}
+                <br />
+                Precio: {p.precio_producto}
+              </ListGroupItem>
+
+            </ListGroup>
+          </Card>
+        })}
+      </div>
+    )
+  }
+}
+
+const VentanaModalPedidos = (props) => {
+  const { className } = props;
+  return (
+    <div>
+      <Modal isOpen={props.mostrar} toggle={props.toggle} className={className}>
+        <ModalHeader toggle={props.toggle}>Pedidos</ModalHeader>
+        <ModalBody>
+          <CardPedido
+            pedidos={props.pedidos}
+          />
+        </ModalBody>
+
+        <ModalFooter>
+          <Button
+            color="primary"
+            onClick={() => { props.toggle() }}>CERRAR</Button>
+        </ModalFooter>
+      </Modal>
+    </div>
+  )
 }
 
 const VentanaModal = (props) => {
@@ -75,12 +135,14 @@ const VentanaModal = (props) => {
 
   const datos = () => {
     if (nombre !== "" && nombre !== undefined && telefono !== "" && telefono !== undefined && !isNaN(telefono) && direccion !== "" && direccion !== undefined) {
-      setAlerta(false)
       //montamos el pedido
+      let ped = { nombre_persona: nombre, telefono_persona: telefono, direccion_persona: direccion, productos: [], total_precio: total() }
       props.carrito.map(p => (
-        setPedido({ nombre_persona: nombre, telefono_persona: telefono, direccion_persona: direccion, nombre_producto: p.nombre, cantidad_producto: p.cantidad, precio_producto: p.precio.toFixed(2), total_precio: total() })
+        ped.productos.push({ nombre_producto: p.nombre, cantidad_producto: p.cantidad, precio_producto: p.precio.toFixed(2), imagen_producto: p.imagen })
       ))
-      return (pedido)
+      setAlerta(false)
+      setPedido(ped)
+      return (ped)
     } else {
       setAlerta(true)
       return false
@@ -165,12 +227,14 @@ class App extends Component {
     this.state = {
       listaProductos: PIELES,
       isOpen: false,
+      isOpenPedido: false,
       carrito: [],
       pedidos: [],
     }
   }
 
   toggleModal() { this.setState({ isOpen: !this.state.isOpen }) }
+  toggleModalPedidos() { this.setState({ isOpenPedido: !this.state.isOpenPedido }) }
 
   comprar(id) {
     let copia = this.state.carrito
@@ -183,7 +247,7 @@ class App extends Component {
         if (e.id === id) { e.cantidad++; e.precio += producto[0].precio }
       })
     } else {
-      copia.push({ id: id, nombre: producto[0].nombre, cantidad: 1, precio: producto[0].precio })
+      copia.push({ id: id, nombre: producto[0].nombre, cantidad: 1, precio: producto[0].precio, imagen: producto[0].imagen })
     }
     console.log(copia)
     this.setState({ carrito: copia })
@@ -234,19 +298,29 @@ class App extends Component {
   aceptar(datos) {
     let copiaPedidos = this.state.pedidos
     copiaPedidos.push(datos)
+    this.setState({ pedidos: copiaPedidos })
+    console.log(datos)
   }
 
   render() {
     return (
       <>
         <Button color="primary" onClick={() => this.toggleModal()}>Carrito ({this.cantidadProductos()})</Button>
+        <Button color="warning" onClick={() => this.toggleModalPedidos()}>Pedidos</Button>
         <ShowProductos productos={this.state.listaProductos} comprar={(id) => this.comprar(id)} />
+        {console.log(this.state.pedidos)}
         <VentanaModal
           mostrar={this.state.isOpen}
           toggle={() => this.toggleModal()}
           carrito={this.state.carrito}
           sumar={(id) => this.sumar(id)}
           restar={(id) => this.restar(id)}
+          aceptar={(datos) => this.aceptar(datos)}
+        />
+        <VentanaModalPedidos
+          mostrar={this.state.isOpenPedido}
+          toggle={() => this.toggleModalPedidos()}
+          pedidos={this.state.pedidos}
         />
       </>
     );
