@@ -71,7 +71,7 @@ function validar_form_editar(codigo) {
                 let familia = $('#familia').val();
 
                 $.ajax({
-                    url: DIR_API + "/producto/actualizar/" + codigo ,
+                    url: DIR_API + "/producto/actualizar/" + codigo,
                     dataType: "json",
                     type: "PUT",
                     data: { "nombre": nombre, "nombre_corto": nombre_corto, "descripcion": descripcion, "PVP": PVP, "familia": familia }

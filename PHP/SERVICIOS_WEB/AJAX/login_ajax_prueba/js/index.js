@@ -6,6 +6,7 @@ $(function () {
     } else {
         montarLoguin()
     }
+    console.log(Date.now())
 });
 
 //Funcion para saber si estamos logueado
@@ -41,7 +42,7 @@ function montarVista(usuario, tipo) {
     //y si es de tipo normal montamos otra cosa, como lo único que cambia es el tipo, pues lo monto el mismo
     let contenido
     contenido = "<h3>Bienvenido " + usuario + "</h3>"
-    contenido += "<p>Eres de tipo " + tipo + " pulsa para salir <button onclick='event.preventDefault(); desLoguearse()' class='boton'>Salir</button></p>"
+    contenido += "<p>Eres de tipo " + tipo + " pulsa para salir <button onclick='desLoguearse()' class='boton'>Salir</button></p>"
     $("#respuesta").html(contenido)
 }
 
