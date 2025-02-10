@@ -1,0 +1,122 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #101820;
+    margin: 0;
+    color: white;
+    min-height: 100vh;
+    position: relative;
+}
+
+svg {
+    padding: 0;
+    margin: 0;
+}
+
+header a {
+    text-decoration: none;
+    color: white;
+    display: block;
+}
+
+header {
+    position: fixed;
+    width: 100%;
+    background-color: black;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    margin-top: 3rem;
+    z-index: 10;
+}
+
+/*Ocultamos el checkbox*/
+#hamburguesa-checkbox,
+#hamburguesa-checkbox-cerrar,
+#checkbox-nav {
+    display: none;
+}
+
+.icon-menu {
+    width: 20px;
+    height: auto;
+    fill: white;
+}
+
+#menu-desplegable {
+    position: relative;
+}
+
+#menu-desplegable nav {
+    display: flex;
+    flex-flow: column;
+    background-color: #32363b;
+    position: absolute;
+    top: -3.6vw;
+    left: -75vw;
+    width: 70vw;
+    height: 100vh;
+    transition: left 0.3s ease-in;
+}
+
+#hamburguesa-checkbox:checked+label+nav {
+    left: -3.3vw;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#search-login> :first-child {
+    margin-right: 1rem;
+}
+
+#menu-desplegable nav>div {
+    margin-top: 1.2rem;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1rem;
+}
+
+header #menu-desplegable nav ul {
+    padding-left: 1rem;
+}
+
+
+header #menu-desplegable nav ul li a {
+    padding: 1.5rem 0;
+    display: flex;
+    align-items: center;
+}
+
+header #menu-desplegable nav ul li a svg {
+    margin-right: 1.5rem;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: black;
+    padding: 10px 0;
+    display: flex;
+    flex-flow: column;
+}
+
+footer #redes-socials {
+    display: flex;
+    justify-content: space-between;
+}
+
+footer #redes-socials>:nth-child(1) {
+    margin-left: 2rem;
+}
+
+footer #redes-socials>:nth-child(4) {
+    margin-right: 2rem;
+}
