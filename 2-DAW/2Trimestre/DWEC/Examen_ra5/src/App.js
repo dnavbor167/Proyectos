@@ -1,30 +1,8 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Card, ListGroup, ListGroupItem, CardBody, CardText, CardTitle, Modal, ModalHeader, ModalBody, ModalFooter, Button, FormGroup, Label, Col, Input, Alert } from 'reactstrap';
+import { Row, Card, ListGroup, ListGroupItem, CardBody, CardText, CardTitle, Modal, ModalHeader, ModalBody, ModalFooter, Button, FormGroup, Label, Col, Input, Alert, CardColumns, CardGroup } from 'reactstrap';
 import './App.css';
-import { Component, useState } from 'react';
-export const PIELES = [
-  {
-    id: 0,
-    imagen: "https://pielparaartesanos.com/cdn/shop/files/Cabra_laminada_oro.jpg",
-    nombre: "Cabra laminada oro",
-    texto: "Cabra laminada con acabado arrugado en color oro.",
-    precio: 25.45
-  },
-  {
-    id: 1,
-    imagen: "https://pielparaartesanos.com/cdn/shop/files/Vacuno_encerado_lodo.jpg",
-    nombre: "Vacuno encerado lodo",
-    texto: "Dale un toque único y resistene a tus productos artesanales con este material de alta calidad.",
-    precio: 50.56
-  },
-  {
-    id: 2,
-    imagen: "https://pielparaartesanos.com/cdn/shop/files/RST_420.jpg",
-    nombre: "Vacuno flor de burdeos",
-    texto: "La piel de vacuno es la opción ideal para bolsos de calidad.",
-    precio: 5.5
-  }
-];
+import { Component, useEffect, useState } from 'react';
+import { PIELES } from './json/pieles';
 
 function Productos(props) {
   return (
@@ -41,49 +19,55 @@ function Productos(props) {
 
 function ShowProductos(props) {
   return (
-    <>
+    <CardGroup>
       {props.productos.map(p => (
-        <Productos img={p.imagen} nombre={p.nombre} texto={p.texto} id={p.id} comprar={() => props.comprar(p.id)} />
+
+        <Productos
+          img={p.imagen}
+          nombre={p.nombre}
+          texto={p.texto}
+          comprar={() => props.comprar(p.id)}
+        />
+
       ))}
-    </>)
+    </CardGroup>
+  )
 }
 
 const CardPedido = (props) => {
-  if (props.pedidos.productos && props.pedidos.productos.length > 0) {
-    return (
-
-      <div>
-        {props.pedidos.productos.map(p => {
-          <Card
-            style={{
-              width: '18rem'
-            }}
-          >
-            <img
-              alt="Card"
-              src={p.imagen_producto}
-            />
-            <CardBody>
-              <CardTitle tag="h5">
-                Pedido
-              </CardTitle>
-            </CardBody>
-            <ListGroup flush>
-
-              <ListGroupItem>
-                Nombre: {p.nombre_producto}
-                <br />
-                Cantidad: {p.cantidad_producto}
-                <br />
-                Precio: {p.precio_producto}
-              </ListGroupItem>
-
-            </ListGroup>
-          </Card>
-        })}
-      </div>
-    )
-  }
+  return (
+    <Card
+      style={{
+        width: '18rem'
+      }}
+    >
+      <img
+        alt="Card"
+        src={props.imagen}
+      />
+      <CardBody>
+        <CardTitle tag="h5">
+          Pedido
+        </CardTitle>
+      </CardBody>
+      <ListGroup flush>
+        <ListGroupItem>
+          <strong>Nombre: </strong>{props.nombre}
+          <br />
+          <strong>Teléfono: </strong>{props.telefono}
+          <br />
+          <strong>Dirección: </strong>{props.direccion}
+        </ListGroupItem>
+        <ListGroupItem>
+          <strong>Nombre del producto: </strong>{props.nombre_producto}
+          <br />
+          <strong>Cantidad del producto: </strong>{props.cantidad}
+          <br />
+          <strong>Precio: </strong>{props.precio_producto}
+        </ListGroupItem>
+      </ListGroup>
+    </Card>
+  )
 }
 
 const VentanaModalPedidos = (props) => {
@@ -93,9 +77,30 @@ const VentanaModalPedidos = (props) => {
       <Modal isOpen={props.mostrar} toggle={props.toggle} className={className}>
         <ModalHeader toggle={props.toggle}>Pedidos</ModalHeader>
         <ModalBody>
-          <CardPedido
-            pedidos={props.pedidos}
-          />
+          {props.pedidos.length > 0 ? (
+            <>
+              {props.pedidos.map((e, i) => (
+                <div key={i}>
+                  <h2 key={i}>Total: {e.total_precio}</h2>
+                  {e.productos.map((p, j) => (
+                    <CardPedido
+                      key={j}
+                      nombre={e.nombre_persona}
+                      telefono={e.telefono_persona}
+                      direccion={e.direccion_persona}
+                      imagen={p.imagen_producto}
+                      nombre_producto={p.nombre_producto}
+                      cantidad={p.cantidad_producto}
+                      precio_producto={p.precio_producto}
+                    />
+                  ))}
+                </div>
+              ))}
+            </>
+          ) : (
+            <p>No hay pedidos aún</p>
+          )}
+
         </ModalBody>
 
         <ModalFooter>
@@ -114,6 +119,12 @@ const VentanaModal = (props) => {
   const [direccion, setDireccion] = useState(undefined)
   const [alerta, setAlerta] = useState(false)
   const [pedido, setPedido] = useState({})
+
+  useEffect(() => {
+    if (!props.mostrar) {
+      setAlerta(false)
+    }
+  }, [props.mostrar])
 
   const { className } = props;
 
@@ -134,7 +145,7 @@ const VentanaModal = (props) => {
   }
 
   const datos = () => {
-    if (nombre !== "" && nombre !== undefined && telefono !== "" && telefono !== undefined && !isNaN(telefono) && direccion !== "" && direccion !== undefined) {
+    if (nombre !== "" && nombre !== undefined && telefono !== "" && telefono !== undefined && !isNaN(telefono) && direccion !== "" && direccion !== undefined && props.carrito.length > 0) {
       //montamos el pedido
       let ped = { nombre_persona: nombre, telefono_persona: telefono, direccion_persona: direccion, productos: [], total_precio: total() }
       props.carrito.map(p => (
@@ -225,7 +236,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      listaProductos: PIELES,
+      listaProductos: PIELES.productos,
       isOpen: false,
       isOpenPedido: false,
       carrito: [],
@@ -298,8 +309,8 @@ class App extends Component {
   aceptar(datos) {
     let copiaPedidos = this.state.pedidos
     copiaPedidos.push(datos)
-    this.setState({ pedidos: copiaPedidos })
-    console.log(datos)
+    this.setState({ pedidos: copiaPedidos, carrito: [] })
+
   }
 
   render() {
@@ -321,6 +332,7 @@ class App extends Component {
           mostrar={this.state.isOpenPedido}
           toggle={() => this.toggleModalPedidos()}
           pedidos={this.state.pedidos}
+          total={this.state.pedidos.map(t => (t.total_precio))}
         />
       </>
     );
