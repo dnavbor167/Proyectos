@@ -2,7 +2,29 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Row, Card, ListGroup, ListGroupItem, CardBody, CardText, CardTitle, Modal, ModalHeader, ModalBody, ModalFooter, Button, FormGroup, Label, Col, Input, Alert, CardColumns, CardGroup } from 'reactstrap';
 import './App.css';
 import { Component, useEffect, useState } from 'react';
-import { PIELES } from './json/pieles';
+export const PIELES = [
+  {
+    id: 0,
+    imagen: "https://pielparaartesanos.com/cdn/shop/files/Cabra_laminada_oro.jpg",
+    nombre: "Cabra laminada oro",
+    texto: "Cabra laminada con acabado arrugado en color oro.",
+    precio: 25.45
+  },
+  {
+    id: 1,
+    imagen: "https://pielparaartesanos.com/cdn/shop/files/Vacuno_encerado_lodo.jpg",
+    nombre: "Vacuno encerado lodo",
+    texto: "Dale un toque único y resistente a tus productos artesanales con este material de alta calidad.",
+    precio: 200
+  },
+  {
+    id: 2,
+    imagen: "https://pielparaartesanos.com/cdn/shop/files/RST_420.jpg",
+    nombre: "Vacuno flor burdeos",
+    texto: "La piel de vacuno es la opción ideal para bolsos de calidad.",
+    precio: 1000.45
+  }
+];
 
 function Productos(props) {
   return (
@@ -26,7 +48,8 @@ function ShowProductos(props) {
           img={p.imagen}
           nombre={p.nombre}
           texto={p.texto}
-          comprar={() => props.comprar(p.id)}
+          id={p.id}
+          comprar={(id) => props.comprar(id)}
         />
 
       ))}
@@ -78,7 +101,7 @@ const VentanaModalPedidos = (props) => {
         <ModalHeader toggle={props.toggle}>Pedidos</ModalHeader>
         <ModalBody>
           {props.pedidos.length > 0 ? (
-            <>
+            <CardGroup>
               {props.pedidos.map((e, i) => (
                 <div key={i}>
                   <h2 key={i}>Total: {e.total_precio}</h2>
@@ -96,7 +119,7 @@ const VentanaModalPedidos = (props) => {
                   ))}
                 </div>
               ))}
-            </>
+            </CardGroup>
           ) : (
             <p>No hay pedidos aún</p>
           )}
@@ -236,7 +259,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      listaProductos: PIELES.productos,
+      listaProductos: PIELES,
       isOpen: false,
       isOpenPedido: false,
       carrito: [],
