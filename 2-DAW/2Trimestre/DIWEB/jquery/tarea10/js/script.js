@@ -2,12 +2,12 @@ $(function () {
     $(window).on("scroll", function () {
 
         if ($(window).scrollTop() === 0) {
-            $("div#content nav#main-menu").stop(true,true).css({
+            $("div#content nav#main-menu").css({
                 "position": "relative",
                 "opacity": "1"
             })
         } else if ($(window).scrollTop() >= 150) {
-            $("div#content nav#main-menu").stop(true,true).css({
+            $("div#content nav#main-menu").css({
                 "position": "fixed",
                 "top": "0",
                 "left": "0",
@@ -16,12 +16,20 @@ $(function () {
             })
         }
     });
-    
+
     let menuVisible = false
 
-    $("#svg-menu").on("click", function() {
+    $("#svg-menu").on("click", function () {
         menuVisible = !menuVisible
         $("nav#main-menu > ul").toggle(menuVisible)
+    })
+
+    $("#svg-menu").on("mouseenter", function () {
+        $(this).stop().animate({"color": "green"},100)
+    })
+
+    $("#svg-menu").on("mouseleave", function () {
+        $(this).stop().animate({"color": "white"},100)
     })
 
     $(window).on("resize", function () {
