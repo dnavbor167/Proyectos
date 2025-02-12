@@ -14,9 +14,8 @@ $(function () {
 
         if (valorOption !== "") {
             elemento.text('Vamos a contactar con usted por ' + valorOption).stop(true).slideToggle()
-        } else {
-            elemento.text('Vamos a contactar con usted por ' + valorOption).stop(true).slideToggle()
         }
+        $(elemento).stop(true).delay(5000).slideToggle()
     });
 
     $("#mensaje-seleccion").on("click", function () {
