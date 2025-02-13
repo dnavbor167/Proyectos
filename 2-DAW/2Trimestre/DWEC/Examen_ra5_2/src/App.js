@@ -87,7 +87,7 @@ const Mostrar = (props) => {
           {
             props.corredores.map(c => (
               <tr>
-                <th scope="row">{c.posicion}</th><td>{c.nombre}</td><td>{c.equipo}</td> <td><Button onClick={() => props.mover("up", Number(c.posicion))} hidden={Number(c.posicion) === 1 ? true : false}>UP</Button><Button onClick={() => props.mover("down", Number(c.posicion))} hidden={Number(c.posicion) !== 1 && Number(c.posicion) === ultimaPosicion ? true : false}>DOWN</Button></td>
+                <th scope="row">{c.posicion}</th><td>{c.nombre}</td><td>{c.equipo}</td> <td><Button onClick={() => props.mover(-1, Number(c.posicion))} hidden={Number(c.posicion) === 1 ? true : false}>UP</Button><Button onClick={() => props.mover(1, Number(c.posicion))} hidden={Number(c.posicion) !== 1 && Number(c.posicion) === ultimaPosicion ? true : false}>DOWN</Button></td>
               </tr>
             ))}
 
@@ -118,23 +118,20 @@ class App extends Component {
 
   mover(movimiento, posicion) {
     let copiaLista = this.state.listaCorredores
-    let ordenado
-    let temp1
-    let temp2
-    if (movimiento === "down") {
-      temp1 = copiaLista.filter(j => j.posicion === posicion)
-      temp1 = { "nombre": temp1.nombre, "equipo": temp1.equipo, "posicion": posicion + 1 }
 
-      temp2 = copiaLista.filter(j => j.posicion === posicion + 1)
-      temp2 = { "nombre": temp2.nombre, "equipo": temp2.equipo, "posicion": posicion - 1 }
-    } else {
-      temp1 = copiaLista.filter(j => j.posicion === posicion)
-      temp1 = { "nombre": temp1.nombre, "equipo": temp1.equipo, "posicion": posicion - 1 }
+    let temp1 = copiaLista.filter(j => j.posicion === posicion)
+    let temp2 = copiaLista.filter(j => j.posicion === posicion + movimiento)
 
-      temp2 = copiaLista.filter(j => j.posicion === posicion - 1)
-      temp2 = { "nombre": temp2.nombre, "equipo": temp2.equipo, "posicion": posicion + 1 }
-    }
+    copiaLista = copiaLista.map(j => {
+      if (j.posicion === temp1.posicion) {
+        return { "nombre": temp2.nombre, "equipo": temp2.equipo, "posicion": posicion }
+      }
+      if (j.posicion === temp2.posicion) {
+        return { "nombre": temp1.nombre, "equipo": temp1.equipo, "posicion": posicion + movimiento }
+      }
+    })
 
+    this.setState({listaCorredores: copiaLista})
   }
 
   render() {
