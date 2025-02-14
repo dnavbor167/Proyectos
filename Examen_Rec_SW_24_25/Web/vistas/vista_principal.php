@@ -132,6 +132,10 @@ if (isset($_POST["btnInformacion"])) {
             padding: .5rem 1rem;
             text-align: center;
         }
+
+        #izquierda {
+            text-align: left;
+        }
     </style>
 </head>
 
@@ -194,12 +198,15 @@ if (isset($_POST["btnInformacion"])) {
             //Aquí escribiremos un hidden para no perder esta tabla, en el que guardaremos el dia y la hora con el mismo name
             echo "<td><form action='index.php' method='post'><input type='hidden' name='btnGuardia' value='" . $_POST["btnGuardia"] . "'><button name='btnInformacion' value='" . $value["id_usuario"] . "' class='enlace'>Equipo " . $value["nombre"] . "</button></form></td>";
             if ($tabla_td) {
-                echo "<td rowspan='" . $row . "'>";
+                echo "<td id='izquierda' rowspan='" . $row . "'>";
                 if (isset($info_user)) {
                     echo "<p><strong>Nombre: </strong>" . $info_user["nombre"] . "</p>";
                     echo "<p><strong>Usuario: </strong>" . $info_user["usuario"] . "</p>";
                     echo "<p><strong>Contraseña: </strong></p>";
-                    echo "<p><strong>Email: </strong>" . $info_user["email"] . "</p>";
+                    if($info_user["email"] == null || $info_user["email"] == "")
+                    echo "<p><strong>Email: </strong> Email no disponible</p>";
+                    else
+                        echo "<p><strong>Email: </strong>" . $info_user["email"] . "</p>";
                 }
 
                 echo "</td>";
