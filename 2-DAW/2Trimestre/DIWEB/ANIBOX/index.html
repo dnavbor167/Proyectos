@@ -11,16 +11,18 @@
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <script src="jq/jquery-3.7.1.min.js"></script>
+    <script src="jq/jquery.animate-colors-min.js"></script>
+    <script src="js/script.js"></script>
 </head>
 
 <body>
     <!--Hacemos el header (cabecera con menú)-->
     <header>
         <div id="menu-desplegable">
-            <input type="checkbox" name="hamburguesa-checkbox" id="hamburguesa-checkbox">
             <label for="hamburguesa-checkbox">
-                <svg class="icon-menu" xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 448 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+                <svg id="svg-menu" class="icon-menu" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                    <!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
                     <path
                         d="M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z" />
                 </svg>
@@ -28,10 +30,9 @@
 
             <nav>
                 <div>
-                    <input type="checkbox" name="hamburguesa-checkbox" id="hamburguesa-checkbox-cerrar">
                     <label for="hamburguesa-checkbox">
-                        <svg class="icon-menu" xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 384 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+                        <svg id="svg-menu-close" class="icon-menu" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                            <!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
                             <path
                                 d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
                         </svg>
@@ -44,9 +45,9 @@
 
                 </div>
                 <ul>
-                    <li><a href="#">
-                            <svg class="icon-menu" xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 512 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+                    <li><a id="search-menu" href="#" class="apartado-menu">
+                            <svg class="icon-menu" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                <!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
                                 <path
                                     d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" />
                             </svg>
@@ -55,9 +56,9 @@
 
                     </li>
                     <li>
-                        <a href="#">
-                            <svg class="icon-menu" xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 448 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+                        <a href="#" class="apartado-menu">
+                            <svg class="icon-menu" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                <!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
                                 <path
                                     d="M304 128a80 80 0 1 0 -160 0 80 80 0 1 0 160 0zM96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM49.3 464l349.5 0c-8.9-63.3-63.3-112-129-112l-91.4 0c-65.7 0-120.1 48.7-129 112zM0 482.3C0 383.8 79.8 304 178.3 304l91.4 0C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7L29.7 512C13.3 512 0 498.7 0 482.3z" />
                             </svg>
@@ -66,9 +67,9 @@
 
                     </li>
                     <li>
-                        <a href="#">
-                            <svg class="icon-menu" xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 576 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+                        <a href="index.html" class="apartado-menu">
+                            <svg class="icon-menu" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                <!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
                                 <path
                                     d="M575.8 255.5c0 18-15 32.1-32 32.1l-32 0 .7 160.2c0 2.7-.2 5.4-.5 8.1l0 16.2c0 22.1-17.9 40-40 40l-16 0c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1L416 512l-24 0c-22.1 0-40-17.9-40-40l0-24 0-64c0-17.7-14.3-32-32-32l-64 0c-17.7 0-32 14.3-32 32l0 64 0 24c0 22.1-17.9 40-40 40l-24 0-31.9 0c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2l-16 0c-22.1 0-40-17.9-40-40l0-112c0-.9 0-1.9 .1-2.8l0-69.7-32 0c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z" />
                             </svg>
@@ -77,9 +78,9 @@
 
                     </li>
                     <li>
-                        <a href="#">
-                            <svg class="icon-menu" xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 576 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+                        <a href="views/trending.html" class="apartado-menu">
+                            <svg class="icon-menu" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                <!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
                                 <path
                                     d="M384 160c-17.7 0-32-14.3-32-32s14.3-32 32-32l160 0c17.7 0 32 14.3 32 32l0 160c0 17.7-14.3 32-32 32s-32-14.3-32-32l0-82.7L342.6 374.6c-12.5 12.5-32.8 12.5-45.3 0L192 269.3 54.6 406.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l160-160c12.5-12.5 32.8-12.5 45.3 0L320 306.7 466.7 160 384 160z" />
                             </svg>
@@ -88,9 +89,9 @@
 
                     </li>
                     <li>
-                        <a href="#">
-                            <svg class="icon-menu" xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 512 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+                        <a href="views/vintage.html" class="apartado-menu">
+                            <svg class="icon-menu" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                <!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
                                 <path
                                     d="M220.6 121.2L271.1 96 448 96l0 96-114.8 0c-21.9-15.1-48.5-24-77.2-24s-55.2 8.9-77.2 24L64 192l0-64 128 0c9.9 0 19.7-2.3 28.6-6.8zM0 128L0 416c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-320c0-35.3-28.7-64-64-64L271.1 32c-9.9 0-19.7 2.3-28.6 6.8L192 64l-32 0 0-16c0-8.8-7.2-16-16-16L80 32c-8.8 0-16 7.2-16 16l0 16C28.7 64 0 92.7 0 128zM168 304a88 88 0 1 1 176 0 88 88 0 1 1 -176 0z" />
                             </svg>
@@ -113,54 +114,80 @@
             </svg>
         </div>
         <div id="search-login">
-            <a href="#">
-                <svg class="icon-menu" xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 512 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+            <a id="search-jq">
+                <svg class="icon-menu" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                    <!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
                     <path
                         d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" />
                 </svg>
             </a>
             <a href="#">
-                <svg class="icon-menu" xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 448 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+                <svg class="icon-menu" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                    <!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
                     <path
                         d="M304 128a80 80 0 1 0 -160 0 80 80 0 1 0 160 0zM96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM49.3 464l349.5 0c-8.9-63.3-63.3-112-129-112l-91.4 0c-65.7 0-120.1 48.7-129 112zM0 482.3C0 383.8 79.8 304 178.3 304l91.4 0C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7L29.7 512C13.3 512 0 498.7 0 482.3z" />
                 </svg>
             </a>
 
         </div>
+        <div id="search-bar">Buscar...</div>
     </header>
 
     <!--Hacemos el main o cuerpo-->
     <main>
-        <div id="carousel">
-            <img src="img/img/BlackClover.webp" alt="BlackClover Imagen">
-            <img src="img/img/onePiece.webp" alt="onePiece Imagen">
-            <img src="img/img/kimi-ni-todoke.webp" alt="kimi-ni-todoke Imagen">
-            <img src="img/img/7-pecados-capitales.webp" alt="7-pecados-capitales Imagen">
-            <img src="img/img/naruto.webp" alt="naruto Imagen">
-        </div>
+
+        <!--AQUIIIIIIIIIIIIIIII-->
+        <section id="slider" class="contenedor-slider">
+            <ul class="slider-wrapper">
+                <li class="current-slide">
+                    <!--<img src="http://i9.photobucket.com/albums/a88/creaticode/1_zpsc6871490.jpg" title="" alt="">-->
+                    <img src="img/img/BlackClover.webp" alt="BlackClover Imagen">
+                </li>
+
+                <li>
+                    <img src="img/img/onePiece.webp" alt="onePiece Imagen">
+                </li>
+
+                <li>
+                    <img src="img/img/kimi-ni-todoke.webp" alt="kimi-ni-todoke Imagen">
+                </li>
+
+                <li>
+                    <img src="img/img/7-pecados-capitales.webp" alt="7-pecados-capitales Imagen">
+                </li>
+
+                <li>
+                    <img src="img/img/naruto.webp" alt="naruto Imagen">
+                </li>
+            </ul>
+            <!-- Sombras -->
+            <div class="slider-shadow"></div>
+
+            <!-- Controles de Navegacion -->
+            <ul id="control-buttons" class="control-buttons"></ul>
+        </section>
+        <!--fin slider-->
 
         <div id="animes">
             <div id="trending-animes">
                 <h3>Trending Animes</h3>
                 <div class="content-animme">
                     <div class="anime-separado">
-                        <a href="#">
+                        <a href="views/film.html">
                             <img src="img/img/AtackOnTitan.webp" alt="Imagen Attack on Titan">
                             <p><strong>Attack on Titan</strong></p>
                             <p>Sub | Dob</p>
                         </a>
                     </div>
                     <div class="anime-separado">
-                        <a href="#">
+                        <a href="views/film.html">
                             <img src="img/img/AtackOnTitan.webp" alt="Imagen Attack on Titan">
                             <p><strong>Attack on Titan</strong></p>
                             <p>Sub | Dob</p>
                         </a>
                     </div>
                     <div class="anime-separado">
-                        <a href="#">
+                        <a href="views/film.html">
                             <img src="img/img/AtackOnTitan.webp" alt="Imagen Attack on Titan">
                             <p><strong>Attack on Titan</strong></p>
                             <p>Sub | Dob</p>
@@ -172,21 +199,21 @@
                 <h3>Vintage Animes</h3>
                 <div class="content-animme">
                     <div class="anime-separado">
-                        <a href="#">
+                        <a href="views/film.html">
                             <img src="img/img/AtackOnTitan.webp" alt="Imagen Attack on Titan">
                             <p><strong>Attack on Titan</strong></p>
                             <p>Sub | Dob</p>
                         </a>
                     </div>
                     <div class="anime-separado">
-                        <a href="#">
+                        <a href="views/film.html">
                             <img src="img/img/AtackOnTitan.webp" alt="Imagen Attack on Titan">
                             <p><strong>Attack on Titan</strong></p>
                             <p>Sub | Dob</p>
                         </a>
                     </div>
                     <div class="anime-separado">
-                        <a href="#">
+                        <a href="views/film.html">
                             <img src="img/img/AtackOnTitan.webp" alt="Imagen Attack on Titan">
                             <p><strong>Attack on Titan</strong></p>
                             <p>Sub | Dob</p>
@@ -202,23 +229,23 @@
     <!--Hacemos el footer-->
     <footer>
         <div id="redes-socials">
-            <svg class="icon-menu" xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 448 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+            <svg class="icon-menu" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                <!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
                 <path
                     d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z" />
             </svg>
-            <svg class="icon-menu" xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 448 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+            <svg class="icon-menu" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                <!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
                 <path
                     d="M448 209.9a210.1 210.1 0 0 1 -122.8-39.3V349.4A162.6 162.6 0 1 1 185 188.3V278.2a74.6 74.6 0 1 0 52.2 71.2V0l88 0a121.2 121.2 0 0 0 1.9 22.2h0A122.2 122.2 0 0 0 381 102.4a121.4 121.4 0 0 0 67 20.1z" />
             </svg>
-            <svg class="icon-menu" xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 512 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+            <svg class="icon-menu" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                <!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
                 <path
                     d="M512 256C512 114.6 397.4 0 256 0S0 114.6 0 256C0 376 82.7 476.8 194.2 504.5V334.2H141.4V256h52.8V222.3c0-87.1 39.4-127.5 125-127.5c16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1c-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H287V510.1C413.8 494.8 512 386.9 512 256h0z" />
             </svg>
-            <svg class="icon-menu" xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 496 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+            <svg class="icon-menu" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512">
+                <!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
                 <path
                     d="M496 256c0 137-111 248-248 248-25.6 0-50.2-3.9-73.4-11.1 10.1-16.5 25.2-43.5 30.8-65 3-11.6 15.4-59 15.4-59 8.1 15.4 31.7 28.5 56.8 28.5 74.8 0 128.7-68.8 128.7-154.3 0-81.9-66.9-143.2-152.9-143.2-107 0-163.9 71.8-163.9 150.1 0 36.4 19.4 81.7 50.3 96.1 4.7 2.2 7.2 1.2 8.3-3.3 .8-3.4 5-20.3 6.9-28.1 .6-2.5 .3-4.7-1.7-7.1-10.1-12.5-18.3-35.3-18.3-56.6 0-54.7 41.4-107.6 112-107.6 60.9 0 103.6 41.5 103.6 100.9 0 67.1-33.9 113.6-78 113.6-24.3 0-42.6-20.1-36.7-44.8 7-29.5 20.5-61.3 20.5-82.6 0-19-10.2-34.9-31.4-34.9-24.9 0-44.9 25.7-44.9 60.2 0 22 7.4 36.8 7.4 36.8s-24.5 103.8-29 123.2c-5 21.4-3 51.6-.9 71.2C65.4 450.9 0 361.1 0 256 0 119 111 8 248 8s248 111 248 248z" />
             </svg>
