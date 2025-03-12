@@ -213,4 +213,10 @@ $(function () {
         }
 
     })
+
+    $('#btnCrearCuenta').on('click', function (e) {
+        e.preventDefault()
+        window.location.href = 'signIn.html'
+
+    })
 });
