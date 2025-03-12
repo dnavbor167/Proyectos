@@ -247,7 +247,7 @@ span {
     padding: .5rem;
 }
 
-input {
+#barraTiempo, #volume {
     padding: 0;
     margin: .5rem;
 }
@@ -261,6 +261,43 @@ video {
     margin: 0 auto;
     max-width: 100%;
     object-fit: contain;
+    position: relative;
+}
+
+.play-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 50px;
+    color: white;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 10px 20px;
+    border-radius: 10px;
+    pointer-events: none;
+    display: none;
+}
+
+/*Ocultamos la barra de tiempo y la del volumen por si más adelante queremos implementarlas*/
+#barraTiempo, #volume {
+    display: none;
+}
+
+#verAhoraBtn {
+    background-color: #A4DADB;
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #101820;
+    font-weight: bold;
+    font-size: 1rem;
+    margin-top: 1.8rem;
+}
+
+#verAhoraBtn i {
+    padding-right: .5rem;
 }
 
 div.video-container {
@@ -268,9 +305,11 @@ div.video-container {
     flex-direction: column;
     align-items: center;
     width: 100%;
-    max-width: 100%;
+    max-width: 61rem;
+    margin: 0 auto;
     overflow: hidden;
     box-sizing: border-box;
+    position: relative;
 }
 
 #video {
@@ -279,8 +318,8 @@ div.video-container {
 
 .controls {
     display: flex;
-    flex-wrap: wrap; /* Permite que los controles se bajen a una nueva línea si es necesario */
-    justify-content: flex-start; /* Alinea los botones al principio */
+    flex-wrap: wrap;
+    justify-content: flex-start;
     align-items: center;
     width: 100%;
     box-sizing: border-box;
@@ -292,14 +331,12 @@ button i {
     font-size: 1.5rem;
 }
 
-/* Ajusta el tamaño de las barras de progreso y volumen */
 #barraTiempo, 
 #volume {
     flex-grow: 2;
-    min-width: 20%; /* Evita que las barras se encojan demasiado */
+    min-width: 20%;
 }
 
-/* Define el orden de los controles */
 #parar {
     order: 1;
 }
@@ -342,6 +379,140 @@ button i {
 
 #fullscreen {
     order: 11;
+}
+
+#vindalandTitle, div#stars{
+    margin-left: 1rem;
+}
+#vindalandTitle svg {
+    margin-right: 1rem;
+}
+
+#vindalandTitle{
+    display: flex;
+    justify-content: space-between;
+}
+
+/*STARS*/
+div#stars svg, #vindalandTitle svg {
+    fill: #A4DADB;
+    width: 1.5rem;
+}
+
+#stars {
+    display: flex;
+}
+
+div#stars svg {
+    margin-left: .5rem;
+}
+
+.fill {
+    display: none;
+}
+
+/*Descripción de la película*/
+#descriptionFilm {
+    padding: 2rem 0;
+    width: 90%;
+    margin: 0 auto;
+}
+
+/*Scroll películas*/
+#trending-animes .content-animme, 
+#vintage-animes .content-animme {
+    display: flex;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 10px;
+}
+
+#trending-animes .content-animme .anime-separado, 
+#vintage-animes .content-animme .anime-separado {
+    flex: 0 0 auto;
+    margin-right: 3rem;
+}
+
+/*LogIn SignIn*/
+#logSigIn {
+    width: 30rem;
+    margin: 0 auto;
+    margin-top: 1rem;
+}
+
+#logSigIn form {
+    display: flex;
+    flex-flow: row wrap;
+    position: relative;
+}
+#clave {
+    width: 100%;
+}
+
+#logSigIn form > * {
+    flex: 0 0 100%;
+}
+
+#logSigIn form input {
+    padding: 1rem;
+    position: relative;
+}
+
+#logSigIn form > input {
+    margin-bottom: 1rem;
+}
+
+#error-email, #seeDontSeeClave {
+    margin-bottom: 1rem;
+}
+
+#seeDontSeeClave {
+    position: relative;
+}
+
+.error {
+    color: #D696A9;
+    font-weight: bold;
+    font-size: .9rem;
+    display: none;
+}
+
+#seePass, #dontSeePass {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1.5rem;
+    height: auto;
+    cursor: pointer;
+}
+
+#dontSeePass {
+    display: none;
+}
+
+#logSigIn form p {
+    text-align: center;
+    font-weight: lighter;
+    margin-top: 1rem;
+}
+
+#logSigIn form button {
+    border-radius: 0;
+    margin-top: 1rem;
+    padding: 1rem;
+}
+
+#btnIniciarSesión {
+    background-color: white;
+    color: #101820;
+    font-weight: bold;
+}
+
+#btnCrearCuenta {
+    border: solid 1px white;
+    color: white;
+    font-weight: bold;
 }
 
 /** ---------------------------------------

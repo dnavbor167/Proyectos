@@ -14,11 +14,11 @@ $(function () {
             lengthSlider = pb.items.panels.length
 
         pb.init = function (settings) {
-            this.settings = settings || {duration: 5000}
+            this.settings = settings || { duration: 5000 }
             let losControles = ""
             SliderInit()
 
-            for(let i = 0; i < lengthSlider; i++) {
+            for (let i = 0; i < lengthSlider; i++) {
                 if (i == 0) {
                     losControles += "<li class='active'></li>"
                 } else {
@@ -94,17 +94,28 @@ $(function () {
     }()); //()); es para que se ejecute automáticamente
 
     //Llamada al constructor
-    SliderModule.init({duration: 3000})
+    SliderModule.init({ duration: 3000 })
+
+    //hover de la pelicula
+    $('.video-container').on('mouseover', function () {
+        $(this).find('video').css('filter', 'brightness(50%)');
+        $(this).find('.play-icon').stop().fadeIn();
+    });
+
+    $('.video-container').on('mouseout', function () {
+        $(this).find('video').css('filter', 'brightness(100%)');
+        $(this).find('.play-icon').stop().fadeOut();
+    });
 
     //Buscador
     let buscador = false
-    $('#search-jq, #search-menu').on('click', function(e) {
+    $('#search-jq, #search-menu').on('click', function (e) {
         e.stopPropagation()
         $('main, footer').css('filter', 'blur(5px)');
         $('#search-bar').fadeIn();
     })
     //Cerramos el buscador cuando esté fuera del documento
-    $(document).on('click', function(e) {
+    $(document).on('click', function (e) {
         e.stopPropagation()
         if (!$(e.target).closest('#search-jq, #search-bar').length) {
             $('main, footer').css('filter', 'none');
@@ -119,18 +130,18 @@ $(function () {
     })
 
     //active de los apartados del menu
-    $('.apartado-menu').on('mousedown', function() {
+    $('.apartado-menu').on('mousedown', function () {
         $(this).css('background-color', '#101820');
     })
-    $('.apartado-menu').on('mouseup', function() {
+    $('.apartado-menu').on('mouseup', function () {
         $(this).css('background-color', '#32363b');
     })
 
     //hover de los apartados del menú
-    $('.apartado-menu').on('mouseover', function() {
+    $('.apartado-menu').on('mouseover', function () {
         $(this).css('background-color', '#101820');
     })
-    $('.apartado-menu').on('mouseleave', function() {
+    $('.apartado-menu').on('mouseleave', function () {
         $(this).css('background-color', '#32363b');
     })
 
@@ -160,5 +171,46 @@ $(function () {
             $("div#menu-desplegable nav").hide()
             menuVisible = false
         }
+    })
+
+    //Stars
+    $(".not_fill").on('click', function () {
+        $(this).hide()
+        $(this).next().show()
+    })
+    $(".fill").on('click', function () {
+        $(this).hide()
+        $(this).prev().show()
+    })
+
+    //Ver contraseña, Ocultar contraseá
+    $('#seePass').on('click', function () {
+        $(this).hide()
+        $(this).next().show()
+        $('#clave').attr('type', 'text')
+    })
+
+    $('#dontSeePass').on('click', function () {
+        $(this).hide()
+        $(this).prev().show()
+        $('#clave').attr('type', 'password')
+    })
+
+    //Errores formulario inicio sesión
+    $('#btnIniciarSesión').on('click', function (e) {
+        let email = $('#email').val()
+        let clave = $('#clave').val()
+
+        e.preventDefault()
+
+        if (!email || email == "" || !clave || clave == "") {
+            $('#logSigIn form input').css('margin-bottom', '0');
+            $('.error').slideDown();
+            $('#seePass').css('top', '30%')
+            $('#dontSeePass').css('top', '30%')
+        } else {
+            window.location.href = '../index.html'
+        }
+
     })
 });
